@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/03 19:46:09 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:04:05 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_points(t_data *data, int fd)
 		y++;
 	}
 	data->point->point_id = data->nb_column * data->nb_row;
+	data->nb_point = data->point->point_id;
 	while (data->point->point_id != 0)
 		data->point--;
 }
