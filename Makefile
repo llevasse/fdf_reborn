@@ -6,13 +6,14 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/03/03 11:40:40 by llevasse         ###   ########.fr        #
+#    Updated: 2023/03/03 15:08:41 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS			= -Wall -Werror -Wextra
 
-FILES			=	srcs/fdf.c							
+FILES			=	srcs/fdf.c		\
+					srcs/point.c
 
 OBJS			=	${FILES:.c=.o}
 
