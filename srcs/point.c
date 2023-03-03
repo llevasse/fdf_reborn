@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/03 16:00:57 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:19:58 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_points(t_data *data, int fd)
 	int	y;
 
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
-	data->point = malloc((data->nb_row * data->nb_column) * sizeof(t_point));
+	data->point = malloc(((data->nb_row * data->nb_column) + 1) * sizeof(t_point));
 	if (!data->point)
 		return ;
 	y = 0;
@@ -27,13 +27,17 @@ void	init_points(t_data *data, int fd)
 		x = 0;
 		while (x < data->nb_column)
 		{
-			data->point->x = x++;
+			data->point->x = x;
 			data->point->y = y;
 			data->point->z = (float)ft_atoi((const char *)data->line++);
+			data->point->point_id = (y * data->nb_column) + x++;
 			data->point++;
 		}
 		y++;
 	}
+	data->point->point_id = data->nb_column * data->nb_row; 
+	while (data->point->point_id != 0)
+		data->point--;
 }
 static void	get_nb_elem(char **str, int *nb)
 {
