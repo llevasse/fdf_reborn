@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 10:37:24 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:45:59 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 			break ;
 		if (p_a.x_bis >= 0 && p_a.x_bis <= WINDOW_WIDTH && p_a.y_bis >= 0
 			&& p_a.y_bis <= WINDOW_HEIGHT)
-			img_pix_put(img, 1, 1, 0xffffff);
-/* 			img_pix_put(img, p_a.x_bis, p_a.y_bis, 0xFFFFFF);
- */		e2 = 2 * error;
+ 			img_pix_put(img, p_a.x_bis, p_a.y_bis, 0xFFFFFF);
+ 		e2 = 2 * error;
 		if (e2 >= dy)
 		{
 			if (p_a.x_bis == p_b.x_bis)
