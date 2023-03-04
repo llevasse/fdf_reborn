@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 11:00:45 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 11:40:13 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,12 @@ void	get_bis(t_data *data)
 {
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
-		data->point->x_bis = ((data->point->x) * data->zoom) + (data->beg_x / 2);
-		data->point->y_bis = ((data->point->y) * data->zoom) + (data->beg_y / 2);
+		data->point->x_bis = ((data->point->x) * data->zoom) + (data->beg_x
+				/ 2);
+		data->point->y_bis = ((data->point->y) * data->zoom) + (data->beg_y
+				/ 2);
+		data->point->z_bis = data->point->z;
+		get_matrix_point(data, *data->point, &data->point->x_bis, &data->point->y_bis);
 		data->point++;
 	}
 	while (data->point->point_id != 0)

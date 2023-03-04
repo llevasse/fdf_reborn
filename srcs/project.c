@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 10:45:59 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:36:33 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ void	project(t_data *data)
 
 void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 {
-	int dx, dy, sx, sy, error, e2;
+	int dx, dy, sx, sy, error, e2, i;
 	dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
 	sx = p_a.x_bis < p_b.x_bis ? 1 : -1;
-	dy = -abs((int)p_b.y_bis - (int)p_a.y_bis);
+	dy = abs((int)p_b.y_bis - (int)p_a.y_bis);
 	sy = p_a.y_bis < p_b.y_bis ? 1 : -1;
-	error = dx + dy;
-	while (1)
+	if (dx > dy)
+		error = dx / 2;
+	else
+		error = (0 - dy) / 2;
+	i = 0;
+	while (i <= dx || i <= dy)
 	{
 		if ((p_a.x_bis < 0 && p_b.x_bis < 0) || (p_a.x_bis > WINDOW_WIDTH
 				&& p_b.x_bis > WINDOW_WIDTH) || (p_a.y_bis < 0 && p_b.y_bis < 0)
@@ -48,21 +52,22 @@ void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 		if (p_a.x_bis >= 0 && p_a.x_bis <= WINDOW_WIDTH && p_a.y_bis >= 0
 			&& p_a.y_bis <= WINDOW_HEIGHT)
  			img_pix_put(img, p_a.x_bis, p_a.y_bis, 0xFFFFFF);
- 		e2 = 2 * error;
-		if (e2 >= dy)
+ 		e2 = error;
+		if (e2 < dy)
 		{
 			if (p_a.x_bis == p_b.x_bis)
-				break ;
-			error = error + dy;
-			p_a.x_bis += sx;
-		}
-		if (e2 <= dx)
-		{
-			if (p_a.y_bis == p_b.y_bis)
 				break ;
 			error += dx;
 			p_a.y_bis += sy;
 		}
+		if (e2 > (0 - dx))
+		{
+			if (p_a.y_bis == p_b.y_bis)
+				break ;
+			error -= dy;
+			p_a.x_bis += sx;
+		}
+		i++;
 	}
 	(void)data;
 }

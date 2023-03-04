@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 10:32:57 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:08:32 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ void		get_bis(t_data *data);
 float		**init_matrix_x(t_data data);
 float		**init_matrix_y(t_data data);
 float		**init_matrix_z(t_data data);
+void		get_matrix_point(t_data *data, t_point point, float *x, float *y);
+void		free_matrix(float **matrix_x, float **matrix_y, float **matrix_z);
+float		*multiply_matrix(float **matrix, float *matrix_point);
 
 /* project.c */
 void		project(t_data *data);
 void		draw_line(t_data data, t_point p_a, t_point p_b, t_img *img);
-void	img_pix_put(t_img *img, int x, int y, int color);
+void		img_pix_put(t_img *img, int x, int y, int color);
 
 #endif

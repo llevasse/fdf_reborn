@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/03/03 19:39:16 by llevasse         ###   ########.fr        #
+#    Updated: 2023/03/04 11:40:57 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS			= -Wall -Werror -Wextra
 FILES			=	srcs/fdf.c		\
 					srcs/point.c	\
 					srcs/project.c	\
-					#srcs/matrix.c	\
+					srcs/matrix.c	\
 
 OBJS			=	${FILES:.c=.o}
 
