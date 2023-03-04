@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 10:45:28 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 11:00:11 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 	data.nb_column = 0;
 	data.nb_row = 0;
 	init_points(&data, fd);
-	data.zoom = 2000 / data.nb_column;
+	data.zoom = 1000 / data.nb_column;
 	data.beg_x = WINDOW_WIDTH / 2;
 	data.beg_y = WINDOW_HEIGHT / 2;
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
