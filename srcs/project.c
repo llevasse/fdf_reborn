@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 12:36:33 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:00:37 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,11 @@ void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
  		e2 = error;
 		if (e2 < dy)
 		{
-			if (p_a.x_bis == p_b.x_bis)
-				break ;
 			error += dx;
 			p_a.y_bis += sy;
 		}
 		if (e2 > (0 - dx))
 		{
-			if (p_a.y_bis == p_b.y_bis)
-				break ;
 			error -= dy;
 			p_a.x_bis += sx;
 		}

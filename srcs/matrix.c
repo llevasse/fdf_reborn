@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 12:19:22 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:38:37 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,11 @@ float	*multiply_matrix(float **matrix, float *matrix_point)
 	float	temp_y;
 	float	temp_z;
 
-	temp_x = matrix_point[0];
-	temp_y = matrix_point[1];
-	temp_z = matrix_point[2];
-	temp_x = (temp_x * matrix[0][0]) + (temp_y * matrix[0][1]) + (temp_z
+	temp_x = (matrix_point[0] * matrix[0][0]) + (matrix_point[1] * matrix[0][1]) + (matrix_point[2]
 			* matrix[0][2]);
-	temp_y = (temp_x * matrix[1][0]) + (temp_y * matrix[1][1]) + (temp_z
+	temp_y = (matrix_point[0] * matrix[1][0]) + (matrix_point[1] * matrix[1][1]) + (matrix_point[2]
 			* matrix[1][2]);
-	temp_z = (temp_x * matrix[2][0]) + (temp_y * matrix[2][1]) + (temp_z
+	temp_z = (matrix_point[0] * matrix[2][0]) + (matrix_point[1] * matrix[2][1]) + (matrix_point[2]
 			* matrix[2][2]);
 	matrix_point[0] = temp_x;
 	matrix_point[1] = temp_y;

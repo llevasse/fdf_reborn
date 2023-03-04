@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 11:00:11 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:03:09 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,42 @@ int	handle_input(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		close_window(data);
+	if (keysym == XK_Left)
+		data->angle_y += 1;
+	if (keysym == XK_Right)
+		data->angle_y -= 1;
+	if (keysym == XK_Up)
+		data->angle_x += 1;
+	if (keysym == XK_Down)
+		data->angle_x -= 1;
+	if (keysym == XK_space)
+		data->angle_z += 1;
+	if (keysym == XK_Control_L)
+		data->angle_z -= 1;
+	if (keysym == XK_p)
+		print_info(*data);
+	reset_img(data);
+	project(data);
 	return (0);
+}
+
+void	reset_img(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	if (!data->win_ptr)
+		return ;
+	while (y < WINDOW_HEIGHT)
+	{
+		x = 0;
+		while (x < WINDOW_WIDTH)
+			img_pix_put(&data->img, x++, y, 0x000000);
+		y++;
+	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
+			0);
 }
 
 int	render(t_data *data)
@@ -33,6 +68,12 @@ int	render(t_data *data)
 		return (1);
 	project(data);
 	return (0);
+}
+
+void	print_info(t_data data)
+{
+	ft_printf("rotation : {x : %i}, {y : %i}, {z : %i}\n", (int)data.angle_x,
+			(int)data.angle_y, (int)data.angle_z);
 }
 
 int	main(int argc, char *argv[])
@@ -60,8 +101,9 @@ int	main(int argc, char *argv[])
 	data.beg_x = WINDOW_WIDTH / 2;
 	data.beg_y = WINDOW_HEIGHT / 2;
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	mlx_loop_hook(data.mlx_ptr, &render, &data);	
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
+			&data.img.line_len, &data.img.endian);
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);

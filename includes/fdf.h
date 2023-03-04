@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 12:08:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:52:26 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ typedef struct s_data
 }			t_data;
 
 /* fdf.c */
-
+void	print_info(t_data data);
+void	reset_img(t_data *data);
 /* point.c */
 void		init_points(t_data *data, int fd);
 char		**get_line(int fd, int *nb_row, int *nb_column);
