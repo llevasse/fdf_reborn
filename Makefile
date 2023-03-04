@@ -6,14 +6,16 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/03/03 15:08:41 by llevasse         ###   ########.fr        #
+#    Updated: 2023/03/03 19:39:16 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS			= -Wall -Werror -Wextra
 
 FILES			=	srcs/fdf.c		\
-					srcs/point.c
+					srcs/point.c	\
+					srcs/project.c	\
+					#srcs/matrix.c	\
 
 OBJS			=	${FILES:.c=.o}
 
@@ -24,10 +26,10 @@ EXECUTABLE		=	fdf
 %.o: %.c 
 					gcc ${FLAGS} -I includes -c $< -o ${<:.c=.o} -lmlx -lXext -lX11 -lm
 					
-${NAME}:		${OBJS}
+${NAME}:		${OBJS} includes/fdf.h Makefile
 					make -C libft 
-					ar rcs ${NAME} ${OBJS} libft/libft.a libmlx_Linux.a libmlx.a
-					gcc ${NAME}  -o ${EXECUTABLE} -lmlx -lXext -lX11 -lm
+					ar rcs ${NAME} libft/libft.a libmlx_Linux.a libmlx.a ${OBJS}
+					gcc ${NAME} -o ${EXECUTABLE} -lmlx -lXext -lX11 -lm
 
 all:			${NAME}
 

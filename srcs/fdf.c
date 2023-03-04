@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/03 19:59:05 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:31:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ int	handle_input(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		close_window(data);
+	return (0);
+}
+
+int	render(t_data *data)
+{
+	if (!data->win_ptr)
+		return (1);
+	project(data);
 	return (0);
 }
 
@@ -51,8 +59,8 @@ int	main(int argc, char *argv[])
 	data.zoom = 2000 / data.nb_column;
 	data.beg_x = WINDOW_WIDTH / 2;
 	data.beg_y = WINDOW_HEIGHT / 2;
-	project(&data);
 	data.img.addr = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_loop_hook(data.mlx_ptr, &render, &data);	
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
