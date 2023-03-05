@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:18:28 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 09:29:29 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		reset_img(t_data *data);
 void		init_points(t_data *data, int fd);
 char		**get_line(int fd, int *nb_row, int *nb_column);
 void		get_bis(t_data *data);
+void		reset_ptr_point(t_data *data);
 
 /* matrix */
 float		**init_matrix_x(t_data data);
