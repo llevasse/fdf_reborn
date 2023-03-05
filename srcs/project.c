@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 16:00:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 10:07:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	project(t_data *data)
 		if ((data->point + 1)->x != 0)
 			draw_line(*data, *data->point, *(data->point + 1), &data->img);
 		if (i < data->nb_point - data->nb_column)
-			draw_line(*data, *data->point, *(data->point + data->nb_column), &data->img);
+			draw_line(*data, *data->point, *(data->point + data->nb_column),
+					&data->img);
 		data->point++;
 		i++;
 	}
@@ -51,8 +52,8 @@ void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 			break ;
 		if (p_a.x_bis >= 0 && p_a.x_bis <= WINDOW_WIDTH && p_a.y_bis >= 0
 			&& p_a.y_bis <= WINDOW_HEIGHT)
- 			img_pix_put(img, p_a.x_bis, p_a.y_bis, 0xFFFFFF);
- 		e2 = error;
+			img_pix_put(img, p_a.x_bis, p_a.y_bis, 0xFFFFFF);
+		e2 = error;
 		if (e2 < dy)
 		{
 			error += dx;

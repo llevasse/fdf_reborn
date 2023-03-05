@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:49:29 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 10:37:21 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_points(t_data *data, int fd)
 	int	y;
 
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
-	data->point = malloc(((data->nb_row * data->nb_column) + 1)
+	data->point = malloc(((data->nb_row * (data->nb_column + 1)) + 1)
 			* sizeof(t_point));
 	if (!data->point)
 		return ;
@@ -26,13 +26,15 @@ void	init_points(t_data *data, int fd)
 	while (y < data->nb_row)
 	{
 		x = 0;
-		while (x < data->nb_column)
+		while (x <= data->nb_column)
 		{
 			data->point->x = x;
 			data->point->y = y;
-			data->point->z = ft_atoi((const char *)*data->line++);
-			data->point->point_id = (y * data->nb_column) + x++;
+			data->point->z = ft_atoi((const char *)data->line[(y * data->nb_column) + x]);
+			data->point->point_id = (y * data->nb_column) + x;
 			data->point++;
+			if (ft_is_in_str((const char *)data->line[(y * data->nb_point) + x++], '\n'))
+				break;
 		}
 		y++;
 	}
@@ -79,8 +81,8 @@ void	get_bis(t_data *data)
 	reset_ptr_point(data);
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
-		data->point->x_bis = ((data->point->x) * data->zoom);
-		data->point->y_bis = ((data->point->y) * data->zoom);
+		data->point->x_bis = data->point->x * data->zoom;
+		data->point->y_bis = data->point->y * data->zoom;
 		data->point->z_bis = data->point->z * data->zoom;
 		get_matrix_point(data, *data->point, &data->point->x_bis,
 				&data->point->y_bis);
@@ -94,5 +96,8 @@ void	get_bis(t_data *data)
 void	reset_ptr_point(t_data *data)
 {
 	if (data->point->point_id != 0)
-		data->point -= data->nb_point;
+	{
+		while (data->point->point_id != 0)
+			data->point--;
+	}
 }

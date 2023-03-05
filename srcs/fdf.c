@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:48:34 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 10:39:47 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	free((data->point - data->nb_point));
-	free_split(data->line - data->nb_point);
+	reset_ptr_point(data);
+	free(data->point);
+	free_split(data->line);
 	data->point = NULL;
 	data->win_ptr = NULL;
 	return (0);
@@ -90,6 +91,14 @@ void	print_info(t_data data)
 {
 	ft_printf("rotation : {x : %i}, {y : %i}, {z : %i}\n", (int)data.angle_x,
 			(int)data.angle_y, (int)data.angle_z);
+	reset_ptr_point(&data);
+	while(data.point->point_id != data.nb_point)
+	{
+		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y, (int)data.point->z);
+		data.point++;
+		if (data.point->x == 0)
+			ft_printf("\n");
+	}
 }
 
 int	main(int argc, char *argv[])
