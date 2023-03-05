@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 10:39:47 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 10:45:43 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ int	handle_input(int keysym, t_data *data)
 		data->zoom *= 1.10;
 	if (keysym == XK_KP_Subtract)
 		data->zoom *= 0.90;
+	if (keysym == XK_a)
+		data->beg_x -= 10;
+	if (keysym == XK_d)
+		data->beg_x += 10;
+	if (keysym == XK_w)
+		data->beg_y += 10;
+	if (keysym == XK_s)
+		data->beg_y -= 10;
 	reset_img(data);
 	project(data);
 	return (0);
@@ -92,9 +100,10 @@ void	print_info(t_data data)
 	ft_printf("rotation : {x : %i}, {y : %i}, {z : %i}\n", (int)data.angle_x,
 			(int)data.angle_y, (int)data.angle_z);
 	reset_ptr_point(&data);
-	while(data.point->point_id != data.nb_point)
+	while (data.point->point_id != data.nb_point)
 	{
-		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y, (int)data.point->z);
+		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
+				(int)data.point->z);
 		data.point++;
 		if (data.point->x == 0)
 			ft_printf("\n");
