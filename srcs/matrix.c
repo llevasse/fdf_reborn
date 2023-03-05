@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 15:38:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 09:07:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ float	**init_matrix_y(t_data data)
 	matrix[1][0] = 0;
 	matrix[1][1] = 1;
 	matrix[1][2] = 0;
-	matrix[2][0] = -sin(data.angle_x * RADIAN);
+	matrix[2][0] = -sin(data.angle_y * RADIAN);
 	matrix[2][1] = 0;
-	matrix[2][2] = cos(data.angle_x * RADIAN);
+	matrix[2][2] = cos(data.angle_y * RADIAN);
 	return (matrix);
 }
 
@@ -172,11 +172,11 @@ float	**init_matrix_z(t_data data)
 	matrix = init_matrix();
 	if (!matrix)
 		return (NULL);
-	matrix[0][0] = cos(data.angle_x * RADIAN);
-	matrix[0][1] = -sin(data.angle_x * RADIAN);
+	matrix[0][0] = cos(data.angle_z * RADIAN);
+	matrix[0][1] = -sin(data.angle_z * RADIAN);
 	matrix[0][2] = 0;
-	matrix[1][0] = sin(data.angle_x * RADIAN);
-	matrix[1][1] = cos(data.angle_x * RADIAN);
+	matrix[1][0] = sin(data.angle_z * RADIAN);
+	matrix[1][1] = cos(data.angle_z * RADIAN);
 	matrix[1][2] = 0;
 	matrix[2][0] = 0;
 	matrix[2][1] = 0;
