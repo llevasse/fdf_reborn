@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:39:29 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 09:49:29 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	get_bis(t_data *data)
 	{
 		data->point->x_bis = ((data->point->x) * data->zoom);
 		data->point->y_bis = ((data->point->y) * data->zoom);
-		data->point->z_bis = data->point->z;
+		data->point->z_bis = data->point->z * data->zoom;
 		get_matrix_point(data, *data->point, &data->point->x_bis,
 				&data->point->y_bis);
 		data->point->x_bis += data->beg_x / 2;

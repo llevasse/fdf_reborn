@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:44:54 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 09:48:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int	handle_input(int keysym, t_data *data)
 		print_info(*data);
 	if (keysym == XK_l)
 		print_line(*data);
+	if (keysym == XK_KP_Add)
+		data->zoom *= 1.10;
+	if (keysym == XK_KP_Subtract)
+		data->zoom *= 0.90;
 	reset_img(data);
 	project(data);
 	return (0);
