@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 16:03:09 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 09:24:57 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	handle_input(int keysym, t_data *data)
 		data->angle_z -= 1;
 	if (keysym == XK_p)
 		print_info(*data);
+	if (keysym == XK_l)
+		print_line(*data);
 	reset_img(data);
 	project(data);
 	return (0);
@@ -68,6 +70,13 @@ int	render(t_data *data)
 		return (1);
 	project(data);
 	return (0);
+}
+
+void	print_line(t_data data)
+{
+	data.line -= data.nb_point;
+	while (*data.line)
+		ft_printf(" %s", *data.line++);
 }
 
 void	print_info(t_data data)

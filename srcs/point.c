@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/04 15:56:12 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/05 09:25:56 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_points(t_data *data, int fd)
 		{
 			data->point->x = x;
 			data->point->y = y;
-			data->point->z = (float)ft_atoi((const char *)data->line++);
+			data->point->z = ft_atoi((const char *)*data->line++);
 			data->point->point_id = (y * data->nb_column) + x++;
 			data->point++;
 		}
