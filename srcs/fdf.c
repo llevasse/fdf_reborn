@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 10:43:15 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:24:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	free (data->point);
+	free(data->point);
 	free_tab(data->line);
 	data->win_ptr = NULL;
 	return (0);
@@ -50,9 +50,9 @@ int	handle_input(int keysym, t_data *data)
 		data->beg_x -= 10;
 	if (keysym == XK_d)
 		data->beg_x += 10;
-	if (keysym == XK_w)
-		data->beg_y += 10;
 	if (keysym == XK_s)
+		data->beg_y += 10;
+	if (keysym == XK_w)
 		data->beg_y -= 10;
 	reset_img(data);
 	project(data);
@@ -97,7 +97,7 @@ void	print_info(t_data data)
 {
 	ft_printf("rotation : {x : %i}, {y : %i}, {z : %i}\n", (int)data.angle_x,
 			(int)data.angle_y, (int)data.angle_z);
-//	reset_ptr_point(&data);
+	//	reset_ptr_point(&data);
 	while (data.point->point_id != data.nb_point)
 	{
 		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
@@ -106,6 +106,10 @@ void	print_info(t_data data)
 		if (data.point->x == 0)
 			ft_printf("\n");
 	}
+	ft_printf("\ncenter position : {%i.%i} (%i.%i)\n", (int)data.point->x_bis,
+			(int)data.point->y_bis, (int)data.point->x, (int)data.point->y);
+	ft_printf("\ncenter screen : {%i.%i}\n", WINDOW_WIDTH / 2, WINDOW_HEIGHT
+			/ 2);
 }
 
 int	main(int argc, char *argv[])

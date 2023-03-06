@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 11:41:43 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:23:07 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_points(t_data *data, int fd)
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
 	if (!data->line)
 		return ;
-	data->point = malloc(((data->nb_row * (data->nb_column + 1)) + 1)
+	data->point = malloc(((data->nb_row * data->nb_column) + 1)
 			* sizeof(t_point));
 	if (!data->point)
 		return ;
@@ -37,10 +37,13 @@ void	init_points(t_data *data, int fd)
 			data->point->point_id = (y * data->nb_column) + x;
 			data->point++;
 			if (x++ == data->nb_column)
-				break;
+				break ;
 		}
 		y++;
 	}
+	data->point->x = (float)data->nb_column / 2;
+	data->point->y = (float)data->nb_row / 2;
+	data->point->z = 0;
 	data->point->point_id = data->nb_column * data->nb_row;
 	data->nb_point = data->point->point_id;
 	reset_point_ptr(data);
@@ -88,8 +91,8 @@ void	get_bis(t_data *data)
 		data->point--;
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
-		data->point->x_bis = data->point->x * data->zoom;
-		data->point->y_bis = data->point->y * data->zoom;
+		data->point->x_bis = (data->point->x + 4.5) * data->zoom;
+		data->point->y_bis = (data->point->y - 4.5) * data->zoom;
 		data->point->z_bis = data->point->z * data->zoom;
 		get_matrix_point(data, *data->point, &data->point->x_bis,
 				&data->point->y_bis);
@@ -97,6 +100,13 @@ void	get_bis(t_data *data)
 		data->point->y_bis += data->beg_y / 2;
 		data->point++;
 	}
+	data->point->x_bis = (data->point->x + 4.5) * data->zoom;
+	data->point->y_bis = (data->point->y - 4.5) * data->zoom;
+	data->point->z_bis = data->point->z * data->zoom;
+	get_matrix_point(data, *data->point, &data->point->x_bis,
+			&data->point->y_bis);
+	data->point->x_bis += data->beg_x / 2;
+	data->point->y_bis += data->beg_y / 2;
 	while (data->point->point_id != 0)
 		data->point--;
 }
