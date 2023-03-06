@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 10:32:36 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:34:36 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	print_info(t_data data)
 {
 	ft_printf("rotation : {x : %i}, {y : %i}, {z : %i}\n", (int)data.angle_x,
 			(int)data.angle_y, (int)data.angle_z);
-	reset_ptr_point(&data);
+//	reset_ptr_point(&data);
 	while (data.point->point_id != data.nb_point)
 	{
 		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
