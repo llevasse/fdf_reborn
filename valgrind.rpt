@@ -1,0 +1,142 @@
+==20342== Memcheck, a memory error detector
+==20342== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==20342== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==20342== Command: bin/fdf test_files/42.fdf
+==20342== Parent PID: 12798
+==20342== 
+==20342== Use of uninitialised value of size 8
+==20342==    at 0x10B104: init_points (point.c:39)
+==20342==    by 0x10AE7F: main (fdf.c:131)
+==20342== 
+==20342== Use of uninitialised value of size 8
+==20342==    at 0x10B135: init_points (point.c:40)
+==20342==    by 0x10AE7F: main (fdf.c:131)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B775: draw_line (project.c:40)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B7BD: draw_line (project.c:42)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B7D4: draw_line (project.c:43)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B979: draw_line (project.c:48)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B91D: draw_line (project.c:58)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B94A: draw_line (project.c:63)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B985: draw_line (project.c:48)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AC4D: render (fdf.c:85)
+==20342==    by 0x10E48C: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B775: draw_line (project.c:40)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B7BD: draw_line (project.c:42)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B7D4: draw_line (project.c:43)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B979: draw_line (project.c:48)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B91D: draw_line (project.c:58)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B94A: draw_line (project.c:63)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== Conditional jump or move depends on uninitialised value(s)
+==20342==    at 0x10B985: draw_line (project.c:48)
+==20342==    by 0x10B5E9: project (project.c:24)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== 
+==20342== Process terminating with default action of signal 2 (SIGINT)
+==20342==    at 0x10B9E8: img_pix_put (project.c:105)
+==20342==    by 0x10B910: draw_line (project.c:56)
+==20342==    by 0x10B6B9: project (project.c:26)
+==20342==    by 0x10AB81: handle_input (fdf.c:58)
+==20342==    by 0x10E4E5: mlx_loop (in /home/leo/Desktop/42/fdf_reborn/bin/fdf)
+==20342==    by 0x10AF67: main (fdf.c:141)
+==20342== 
+==20342== HEAP SUMMARY:
+==20342==     in use at exit: 114,452 bytes in 398 blocks
+==20342==   total heap usage: 410,159 allocs, 409,761 frees, 6,207,309 bytes allocated
+==20342== 
+==20342== 5,880 bytes in 1 blocks are possibly lost in loss record 52 of 58
+==20342==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==20342==    by 0x10B013: init_points (point.c:23)
+==20342==    by 0x10AE7F: main (fdf.c:131)
+==20342== 
+==20342== LEAK SUMMARY:
+==20342==    definitely lost: 0 bytes in 0 blocks
+==20342==    indirectly lost: 0 bytes in 0 blocks
+==20342==      possibly lost: 5,880 bytes in 1 blocks
+==20342==    still reachable: 108,572 bytes in 397 blocks
+==20342==         suppressed: 0 bytes in 0 blocks
+==20342== Reachable blocks (those to which a pointer was found) are not shown.
+==20342== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==20342== 
+==20342== Use --track-origins=yes to see where uninitialised values come from
+==20342== For lists of detected and suppressed errors, rerun with: -s
+==20342== ERROR SUMMARY: 427475 errors from 17 contexts (suppressed: 1 from 1)

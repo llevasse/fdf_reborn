@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 10:34:36 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:43:15 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+	free (data->point);
+	free_tab(data->line);
 	data->win_ptr = NULL;
 	return (0);
 }
@@ -23,7 +25,7 @@ int	close_window(t_data *data)
 int	handle_input(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
-		close_window(data);
+		return (close_window(data), 0);
 	if (keysym == XK_Left)
 		data->angle_y += 1;
 	if (keysym == XK_Right)
