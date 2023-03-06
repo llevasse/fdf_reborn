@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 10:37:21 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:32:09 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	init_points(t_data *data, int fd)
 	}
 	data->point->point_id = data->nb_column * data->nb_row;
 	data->nb_point = data->point->point_id;
-	reset_ptr_point(data);
+	while (data->point->point_id != 0)
+		data->point--;
 }
 static void	get_nb_elem(char **str, int *nb)
 {
@@ -78,7 +79,8 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 }
 void	get_bis(t_data *data)
 {
-	reset_ptr_point(data);
+	while (data->point->point_id != 0)
+		data->point--;
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
 		data->point->x_bis = data->point->x * data->zoom;
@@ -90,14 +92,6 @@ void	get_bis(t_data *data)
 		data->point->y_bis += data->beg_y / 2;
 		data->point++;
 	}
-	reset_ptr_point(data);
-}
-
-void	reset_ptr_point(t_data *data)
-{
-	if (data->point->point_id != 0)
-	{
-		while (data->point->point_id != 0)
-			data->point--;
-	}
+	while (data->point->point_id != 0)
+		data->point--;
 }

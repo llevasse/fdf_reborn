@@ -6,21 +6,20 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:08:31 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:43:44 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:13:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**free_split(char **tab)
+char	**free_tab(char **tab, int index_word)
 {
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (i < index_word)
 	{
 		free(tab[i]);
-		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
@@ -97,7 +96,7 @@ char	**ft_split(char const *s, char *skip)
 	{
 		res[index_word] = get_word(s, skip, i);
 		if (!res[index_word])
-			return (free_split(res));
+			return (free_tab(res, index_word));
 		while (!ft_is_in_str(skip, s[i]) && s[i] != '\0')
 			i++;
 		i = skip_char(s, skip, i);
