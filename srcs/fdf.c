@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 12:24:50 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:39:59 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	print_info(t_data data)
 	}
 	ft_printf("\ncenter position : {%i.%i} (%i.%i)\n", (int)data.point->x_bis,
 			(int)data.point->y_bis, (int)data.point->x, (int)data.point->y);
-	ft_printf("\ncenter screen : {%i.%i}\n", WINDOW_WIDTH / 2, WINDOW_HEIGHT
-			/ 2);
+	ft_printf("center screen : {%i.%i}\n", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	ft_printf("beg_x : %i | beg_y %i\n", (int)data.beg_x, (int)data.beg_y);
 }
 
 int	main(int argc, char *argv[])

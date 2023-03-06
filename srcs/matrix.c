@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/05 09:13:33 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:41:19 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
 	matrix_point[0] = point.x_bis;
 	matrix_point[1] = point.y_bis;
 	matrix_point[2] = point.z_bis;
-	matrix_point = multiply_matrix(matrix_x, matrix_point);
-	matrix_point = multiply_matrix(matrix_y, matrix_point);
-	matrix_point = multiply_matrix(matrix_z, matrix_point);
+	matrix_point = multiply_matrix(matrix_x, matrix_point, data);
+	matrix_point = multiply_matrix(matrix_y, matrix_point, data);
+	matrix_point = multiply_matrix(matrix_z, matrix_point, data);
 	*x = matrix_point[0];
 	*y = matrix_point[1];
 	free_matrix(matrix_x, matrix_y, matrix_z);
@@ -39,26 +39,26 @@ void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
 }
 
 //		matrix X				matrix Y				matrix Z
-//	1	|	0	|	0	   cos	|	0	|  sin	  cos	| -sin	|	0
-//	0	|  cos	| -sin		0	|	1	|	0	  sin	|  cos	|	0
+//	1	|	0	|	0		cos	|	0	|  sin		cos	| -sin	|	0
+//	0	|  cos	| -sin		0	|	1	|	0		sin	|  cos	|	0
 //	0	|  sin	|  cos	  -sin	|	0	|  cos		0	|	0	|	1
 //
 //
 
-float	*multiply_matrix(float **matrix, float *matrix_point)
+float	*multiply_matrix(float **matrix, float *matrix_point, t_data *data)
 {
 	float	temp_x;
 	float	temp_y;
 	float	temp_z;
 
-	temp_x = (matrix_point[0] * matrix[0][0]) + (matrix_point[1] * matrix[0][1]) + (matrix_point[2]
-			* matrix[0][2]);
-	temp_y = (matrix_point[0] * matrix[1][0]) + (matrix_point[1] * matrix[1][1]) + (matrix_point[2]
-			* matrix[1][2]);
-	temp_z = (matrix_point[0] * matrix[2][0]) + (matrix_point[1] * matrix[2][1]) + (matrix_point[2]
-			* matrix[2][2]);
-	matrix_point[0] = temp_x;
-	matrix_point[1] = temp_y;
+	temp_x = ((matrix_point[0] - data->beg_x) * matrix[0][0]) + ((matrix_point[1] - data->beg_y) * matrix[0][1])
+		+ (matrix_point[2] * matrix[0][2]);
+	temp_y = ((matrix_point[0] - data->beg_x) * matrix[1][0]) + ((matrix_point[1] - data->beg_y) * matrix[1][1])
+		+ (matrix_point[2] * matrix[1][2]);
+	temp_z = ((matrix_point[0] - data->beg_x) * matrix[2][0]) + ((matrix_point[1] - data->beg_y) * matrix[2][1])
+		+ (matrix_point[2] * matrix[2][2]);
+	matrix_point[0] = temp_x + data->beg_x;
+	matrix_point[1] = temp_y + data->beg_y;
 	matrix_point[2] = temp_z;
 	return (matrix_point);
 }

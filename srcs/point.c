@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 12:23:07 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:39:39 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	init_points(t_data *data, int fd)
 		}
 		y++;
 	}
-	data->point->x = (float)data->nb_column / 2;
-	data->point->y = (float)data->nb_row / 2;
+	data->point->x = (float)(data->nb_column - 1) / 2;
+	data->point->y = (float)(data->nb_row - 1) / 2;
 	data->point->z = 0;
 	data->point->point_id = data->nb_column * data->nb_row;
 	data->nb_point = data->point->point_id;
@@ -91,22 +91,18 @@ void	get_bis(t_data *data)
 		data->point--;
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
-		data->point->x_bis = (data->point->x + 4.5) * data->zoom;
-		data->point->y_bis = (data->point->y - 4.5) * data->zoom;
+		data->point->x_bis = (data->point->x * data->zoom) + data->beg_x / 2;
+		data->point->y_bis = (data->point->y * data->zoom) + data->beg_y / 2;
 		data->point->z_bis = data->point->z * data->zoom;
 		get_matrix_point(data, *data->point, &data->point->x_bis,
 				&data->point->y_bis);
-		data->point->x_bis += data->beg_x / 2;
-		data->point->y_bis += data->beg_y / 2;
 		data->point++;
 	}
-	data->point->x_bis = (data->point->x + 4.5) * data->zoom;
-	data->point->y_bis = (data->point->y - 4.5) * data->zoom;
+	data->point->x_bis = (data->point->x * data->zoom) + data->beg_x / 2;
+	data->point->y_bis = (data->point->y * data->zoom) + data->beg_y / 2;
 	data->point->z_bis = data->point->z * data->zoom;
 	get_matrix_point(data, *data->point, &data->point->x_bis,
 			&data->point->y_bis);
-	data->point->x_bis += data->beg_x / 2;
-	data->point->y_bis += data->beg_y / 2;
 	while (data->point->point_id != 0)
 		data->point--;
 }

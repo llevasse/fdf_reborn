@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 10:44:28 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:20:27 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ float		**init_matrix_y(t_data data);
 float		**init_matrix_z(t_data data);
 void		get_matrix_point(t_data *data, t_point point, float *x, float *y);
 void		free_matrix(float **matrix_x, float **matrix_y, float **matrix_z);
-float		*multiply_matrix(float **matrix, float *matrix_point);
+float		*multiply_matrix(float **matrix, float *matrix_point, t_data *data);
 
 /* project.c */
 void		project(t_data *data);
