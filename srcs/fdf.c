@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 08:12:13 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:48:44 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	print_info(t_data data)
 {
 	ft_printf("rotation : {x : %i}, {y : %i}, {z : %i}\n", (int)data.angle_x,
 			(int)data.angle_y, (int)data.angle_z);
-	//	reset_ptr_point(&data);
 	while (data.point->point_id != data.nb_point)
 	{
 		ft_printf("{%i.%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
@@ -110,6 +109,21 @@ void	print_info(t_data data)
 			(int)data.point->y_bis, (int)data.point->x, (int)data.point->y);
 	ft_printf("center screen : {%i.%i}\n", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	ft_printf("beg_x : %i | beg_y %i\n", (int)data.beg_x, (int)data.beg_y);
+}
+
+void	set_highest_n_lowest_z(t_data *data)
+{
+	reset_point_ptr(data);
+	data->lowest_z = 0;
+	data->highest_z = 0;
+	while (data->point->point_id != (data->nb_point - 1))
+	{
+		if (data->point->z > data->highest_z)
+			data->highest_z = data->point->z;
+		if (data->point->z < data->lowest_z)
+			data->lowest_z = data->point->z;
+		data->point++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -133,6 +147,8 @@ int	main(int argc, char *argv[])
 	data.nb_column = 0;
 	data.nb_row = 0;
 	init_points(&data, fd);
+	set_highest_n_lowest_z(&data);
+	set_colour(&data);
 	data.zoom = 1000 / data.nb_column;
 	data.beg_x = WINDOW_WIDTH / 2;
 	data.beg_y = WINDOW_HEIGHT / 2;

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 08:30:10 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:40:20 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,43 @@ void	project(t_data *data)
 
 void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 {
-	int dx, dy, sx, sy, error, e2, i;
-	dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
-	sx = p_a.x_bis < p_b.x_bis ? 1 : -1;
-	dy = abs((int)p_b.y_bis - (int)p_a.y_bis);
-	sy = p_a.y_bis < p_b.y_bis ? 1 : -1;
-	if (dx > dy)
-		error = dx / 2;
+	struct s_line	line;
+
+	float x, y;
+	line.p_a = p_a;
+	line.p_b = p_b;
+	x = p_a.x_bis;
+	y = p_a.y_bis;
+	line.dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
+	line.sx = p_a.x_bis < p_b.x_bis ? 1 : -1;
+	line.dy = abs((int)p_b.y_bis - (int)p_a.y_bis);
+	line.sy = p_a.y_bis < p_b.y_bis ? 1 : -1;
+	if (line.dx > line.dy)
+		line.error = line.dx / 2;
 	else
-		error = (0 - dy) / 2;
-	i = 0;
-	while (i <= dx || i <= dy)
+		line.error = (0 - line.dy) / 2;
+	line.i = 0;
+	line.len = sqrt(pow(line.dy, 2) + pow(line.dx, 2));
+	while (line.i <= line.dx || line.i <= line.dy)
 	{
 		if ((p_a.x_bis < 0 && p_b.x_bis < 0) || (p_a.x_bis > WINDOW_WIDTH
 				&& p_b.x_bis > WINDOW_WIDTH) || (p_a.y_bis < 0 && p_b.y_bis < 0)
 			|| (p_a.y_bis > WINDOW_HEIGHT && p_b.y_bis > WINDOW_HEIGHT))
 			break ;
-		if (p_a.x_bis >= 0 && p_a.x_bis <= WINDOW_WIDTH && p_a.y_bis >= 0
-			&& p_a.y_bis <= WINDOW_HEIGHT)
-			img_pix_put(img, p_a.x_bis, p_a.y_bis, 0xFFFFFF);
-		e2 = error;
-		if (e2 < dy)
+		if (x >= 0 && x <= WINDOW_WIDTH && y >= 0 && y <= WINDOW_HEIGHT)
+			img_pix_put(img, x, y, get_colour(line));
+		line.e2 = line.error;
+		if (line.e2 < line.dy)
 		{
-			error += dx;
-			p_a.y_bis += sy;
+			line.error += line.dx;
+			y += line.sy;
 		}
-		if (e2 > (0 - dx))
+		if (line.e2 > (0 - line.dx))
 		{
-			error -= dy;
-			p_a.x_bis += sx;
+			line.error -= line.dy;
+			x += line.sx;
 		}
-		i++;
+		line.i++;
 	}
 	(void)data;
 }

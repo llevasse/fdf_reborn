@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 09:02:57 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:49:07 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,35 @@ typedef struct s_data
 	float		zoom;
 	float		beg_x;
 	float		beg_y;
+	float		lowest_z;
+	float		highest_z;
 }				t_data;
+
+typedef struct s_line
+{
+	t_point		p_a;
+	t_point		p_b;
+	float		len;
+	int			dx;
+	int			dy;
+	int			sx;
+	int			sy;
+	int			error;
+	int			e2;
+	int			i;
+}				t_line;
 
 /* fdf.c */
 void			print_line(t_data data);
 void			print_info(t_data data);
 void			reset_img(t_data *data);
+
 /* point.c */
 void			init_points(t_data *data, int fd);
 char			**get_line(int fd, int *nb_row, int *nb_column);
 void			get_bis(t_data *data);
 void			reset_point_ptr(t_data *data);
-
+void			set_colour(t_data *data);
 /* matrix */
 float			**init_matrix_x(t_data data);
 float			**init_matrix_y(t_data data);
@@ -119,5 +136,8 @@ float			check_angle(float angle);
 /* colour.c */
 int				get_rgb(int r, int g, int b);
 int				hex2int(char byte);
+t_colour		init_colour(int colour, int r, int g, int b);
+t_colour		init_colour_from_str(const char *str);
+unsigned int	get_colour(t_line line);
 
 #endif

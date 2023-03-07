@@ -6,11 +6,48 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:42:12 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 09:11:55 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:07:05 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+unsigned int	get_colour(t_line line)
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	double			gradiant;
+
+	if (line.p_a.colour.hex == line.p_b.colour.hex)
+		return (line.p_a.colour.hex);
+	if (line.p_a.z < line.p_b.z)
+		gradiant = (double)line.i / line.len;
+	else
+		gradiant = (double)(line.len - line.i) / line.len;
+	if (line.p_a.z == 0 && line.p_b.z != 0)
+		line.p_a.colour = init_colour(0, BEG_R, BEG_G, BEG_B);
+	if (line.p_b.z == 0 && line.p_a.z != 0)
+		line.p_b.colour = init_colour(0, BEG_R, BEG_G, BEG_B);
+	if (gradiant > 1.0)
+		gradiant = 1;
+	r = line.p_b.colour.r - ((1 - gradiant) * (line.p_b.colour.r
+				- line.p_a.colour.r));
+	g = line.p_b.colour.g - ((1 - gradiant) * (line.p_b.colour.g
+				- line.p_a.colour.g));
+	b = line.p_b.colour.b - ((1 - gradiant) * (line.p_b.colour.b
+				- line.p_a.colour.b));
+	if (line.p_a.z > line.p_b.z)
+	{
+		r = line.p_a.colour.r - ((1 - gradiant) * (line.p_a.colour.r
+					- line.p_b.colour.r));
+		g = line.p_a.colour.g - ((1 - gradiant) * (line.p_a.colour.g
+					- line.p_b.colour.g));
+		b = line.p_a.colour.b - ((1 - gradiant) * (line.p_a.colour.b
+					- line.p_b.colour.b));
+	}
+	return ((r * 256 * 256) + (g * 256) + b);
+}
 
 t_colour	init_colour(int colour, int r, int g, int b)
 {

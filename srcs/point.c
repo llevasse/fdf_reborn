@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 08:52:52 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:02:12 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	init_points(t_data *data, int fd)
 			data->point->z = ft_atoi((const char *)data->line[(y
 						* (data->nb_column)) + x]);
 			data->point->point_id = (y * data->nb_column) + x;
+			data->point->colour = init_colour(-1, -1, -1, -1);
+			if (ft_is_in_str(data->line[(y * data->nb_column) + x], ','))
+				data->point->colour = init_colour_from_str(data->line[(y
+							* data->nb_column) + x]);
 			data->point++;
 			if (x++ == data->nb_column)
 				break ;
@@ -48,6 +52,7 @@ void	init_points(t_data *data, int fd)
 	data->nb_point = data->point->point_id;
 	reset_point_ptr(data);
 }
+
 static void	get_nb_elem(char **str, int *nb)
 {
 	while (*str && !ft_strchr(*str, '\n'))
@@ -113,5 +118,41 @@ void	reset_point_ptr(t_data *data)
 	{
 		while (data->point->point_id != 0)
 			data->point--;
+	}
+}
+
+void	set_colour(t_data *data)
+{
+	double gradiant;
+
+	reset_point_ptr(data);
+	while (data->point->point_id != data->nb_point - 1)
+	{
+		while (data->point->point_id != data->nb_point - 1 && data->point->colour.hex != -1)
+			data->point++;
+		if (data->point->z == 0)
+			data->point->colour = init_colour(0, ZERO_R, ZERO_G, ZERO_B);
+		else if (data->point->z == data->highest_z)
+			data->point->colour = init_colour(0, HIGHEST_R, HIGHEST_G,
+					HIGHEST_B);
+		else if (data->point->z == data->lowest_z)
+			data->point->colour = init_colour(0, LOWEST_R, LOWEST_G, LOWEST_B);
+		else if (data->point->z > 0)
+		{
+			gradiant = (double)data->point->z / data->highest_z;
+			data->point->colour = init_colour(0, BEG_R - (gradiant * (BEG_R
+							- HIGHEST_R)), BEG_G - (gradiant * (BEG_G
+							- HIGHEST_G)), BEG_B - (gradiant * (BEG_B
+							- HIGHEST_B)));
+		}
+		else if (data->point->z < 0)
+		{
+			gradiant = (double)data->point->z / data->lowest_z;
+			data->point->colour = init_colour(0, BEG_R - (gradiant * (BEG_R
+							- LOWEST_R)), BEG_G - (gradiant * (BEG_G
+							- LOWEST_G)), BEG_B - (gradiant * (BEG_B
+							- LOWEST_B)));
+		}
+		data->point++;
 	}
 }
