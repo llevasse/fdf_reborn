@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 08:05:59 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 08:12:13 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	print_info(t_data data)
 	//	reset_ptr_point(&data);
 	while (data.point->point_id != data.nb_point)
 	{
-		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
-				(int)data.point->z);
+		ft_printf("{%i.%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
+				(int)data.point->z, data.point->colour);
 		data.point++;
 		if (data.point->x == 0)
 			ft_printf("\n");
@@ -145,6 +145,5 @@ int	main(int argc, char *argv[])
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
-	(void)fd;
 }
 // angle iso x = 45 y = -35 z = 30

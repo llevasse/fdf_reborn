@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 07:59:43 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 08:30:10 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	project(t_data *data)
 
 	get_bis(data);
 	i = 0;
-	while (data->point->point_id != data->nb_point)
+	while (data->point->point_id != (data->nb_point - 1))
 	{
 		if ((data->point + 1)->x != 0)
 			draw_line(*data, *data->point, *(data->point + 1), &data->img);
