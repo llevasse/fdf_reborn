@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 17:20:27 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 07:59:46 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ float		*multiply_matrix(float **matrix, float *matrix_point, t_data *data);
 void		project(t_data *data);
 void		draw_line(t_data data, t_point p_a, t_point p_b, t_img *img);
 void		img_pix_put(t_img *img, int x, int y, int color);
+float		check_angle(float angle);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/06 17:39:59 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 08:05:59 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	handle_input(int keysym, t_data *data)
 	if (keysym == XK_Escape)
 		return (close_window(data), 0);
 	if (keysym == XK_Left)
-		data->angle_y += 1;
+		data->angle_y = check_angle(data->angle_y + 1);
 	if (keysym == XK_Right)
-		data->angle_y -= 1;
+		data->angle_y = check_angle(data->angle_y - 1);
 	if (keysym == XK_Up)
-		data->angle_x += 1;
+		data->angle_x = check_angle(data->angle_x + 1);
 	if (keysym == XK_Down)
-		data->angle_x -= 1;
-	if (keysym == XK_space)
-		data->angle_z += 1;
-	if (keysym == XK_Control_L)
-		data->angle_z -= 1;
+		data->angle_x = check_angle(data->angle_x - 1);
+	if (keysym == XK_e)
+		data->angle_z = check_angle(data->angle_z + 1);
+	if (keysym == XK_q)
+		data->angle_z = check_angle(data->angle_z - 1);
 	if (keysym == XK_p)
 		print_info(*data);
 	if (keysym == XK_l)
@@ -127,9 +127,9 @@ int	main(int argc, char *argv[])
 			"fdf");
 	if (!data.win_ptr)
 		return (free(data.win_ptr), 1);
-	data.angle_x = 45;
-	data.angle_y = -35;
-	data.angle_z = 30;
+	data.angle_x = check_angle(45);
+	data.angle_y = check_angle(-35);
+	data.angle_z = check_angle(30);
 	data.nb_column = 0;
 	data.nb_row = 0;
 	init_points(&data, fd);
