@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:42:12 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 17:07:05 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:00:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,15 @@ unsigned int	get_colour(t_line line)
 				- line.p_a.colour.g));
 	b = line.p_b.colour.b - ((1 - gradiant) * (line.p_b.colour.b
 				- line.p_a.colour.b));
-	if (line.p_a.z > line.p_b.z)
+	if (line.p_a.z > line.p_b.z || (line.p_a.z == line.p_b.z
+			&& line.p_a.colour.hex != line.p_b.colour.hex))
 	{
-		r = line.p_a.colour.r - ((1 - gradiant) * (line.p_a.colour.r
-					- line.p_b.colour.r));
-		g = line.p_a.colour.g - ((1 - gradiant) * (line.p_a.colour.g
-					- line.p_b.colour.g));
-		b = line.p_a.colour.b - ((1 - gradiant) * (line.p_a.colour.b
-					- line.p_b.colour.b));
+		r = line.p_b.colour.r - (gradiant * (line.p_b.colour.r
+					- line.p_a.colour.r));
+		g = line.p_b.colour.g - (gradiant * (line.p_b.colour.g
+					- line.p_a.colour.g));
+		b = line.p_b.colour.b - (gradiant * (line.p_b.colour.b
+					- line.p_a.colour.b));
 	}
 	return ((r * 256 * 256) + (g * 256) + b);
 }
@@ -65,19 +66,19 @@ t_colour	init_colour(int colour, int r, int g, int b)
 		elem.r = (colour >> 16);
 		elem.g = (colour >> 8);
 		elem.b = colour;
-		if (elem.r < 0)
-			elem.r = 0;
-		if (elem.r > 255)
-			elem.r = 255;
-		if (elem.g < 0)
-			elem.g = 0;
-		if (elem.g > 255)
-			elem.g = 255;
-		if (elem.b < 0)
-			elem.b = 0;
-		if (elem.b > 255)
-			elem.b = 255;
 	}
+	if (elem.r < 0)
+		elem.r = 0;
+	if (elem.r > 255)
+		elem.r = 255;
+	if (elem.g < 0)
+		elem.g = 0;
+	if (elem.g > 255)
+		elem.g = 255;
+	if (elem.b < 0)
+		elem.b = 0;
+	if (elem.b > 255)
+		elem.b = 255;
 	return (elem);
 }
 
@@ -97,6 +98,7 @@ t_colour	init_colour_from_str(const char *str)
 	b = 1;
 	while (*str != 'x')
 		str++;
+	str++;
 	if (ft_strlen(str) >= 2)
 	{
 		r *= hex2int(*str++) + 1;

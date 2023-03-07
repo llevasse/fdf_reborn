@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 17:02:12 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:01:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	set_colour(t_data *data)
 	double gradiant;
 
 	reset_point_ptr(data);
-	while (data->point->point_id != data->nb_point - 1)
+	while (data->point->point_id != data->nb_point)
 	{
 		while (data->point->point_id != data->nb_point - 1 && data->point->colour.hex != -1)
 			data->point++;
