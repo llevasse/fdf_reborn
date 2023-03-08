@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 16:39:15 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:20:13 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ int	close_window(t_data *data)
 	free_tab(data->line);
 	data->win_ptr = NULL;
 	return (0);
+}
+
+void	reset_angle_pos(t_data *data)
+{
+	data->angle_x = check_angle(45);
+	data->angle_y = check_angle(-35);
+	data->angle_z = check_angle(30);
+	data->zoom = 1000 / data->nb_column;
+	data->beg_x = WINDOW_WIDTH / 2;
+	data->beg_y = WINDOW_HEIGHT / 2;
 }
 
 int	handle_input(int keysym, t_data *data)
@@ -54,6 +64,8 @@ int	handle_input(int keysym, t_data *data)
 		data->beg_y += 10;
 	if (keysym == XK_w)
 		data->beg_y -= 10;
+	if (keysym == XK_r)
+		reset_angle_pos(data);
 	reset_img(data);
 	project(data);
 	return (0);
@@ -144,10 +156,11 @@ int	main(int argc, char *argv[])
 	data.angle_x = check_angle(45);
 	data.angle_y = check_angle(-35);
 	data.angle_z = check_angle(30);
-/* 	data.angle_x = check_angle(0);
+	/* 	data.angle_x = check_angle(0);
 	data.angle_y = check_angle(0);
 	data.angle_z = check_angle(0);
- */	data.nb_column = 0;
+ */
+	data.nb_column = 0;
 	data.nb_row = 0;
 	init_points(&data, fd);
 	set_highest_n_lowest_z(&data);
