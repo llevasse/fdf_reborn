@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 10:06:44 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:29:30 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,16 @@ typedef struct s_line
 	int			error;
 	int			e2;
 	int			i;
+	float		x;
+	float		y;
 }				t_line;
 
-typedef struct polygon
+typedef struct s_polygon
 {
-	t_line left_line;
-	t_line right_line;
-	t_line up_line;
-	t_line down_line;
+	t_line		left_line;
+	t_line		right_line;
+	t_line		up_line;
+	t_line		down_line;
 }				t_polygon;
 
 /* fdf.c */
@@ -137,12 +139,13 @@ float			*multiply_matrix(float **matrix, float *matrix_point,
 
 /* project.c */
 void			project(t_data *data);
-void			draw_line(t_line line, float x, float y, t_img *img);
+void			draw_line(t_line line, t_img *img);
 void			img_pix_put(t_img *img, int x, int y, int color);
 float			check_angle(float angle);
 t_line			set_line_data(t_point p_a, t_point p_b);
-
-
+t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
+					t_point p_down_left, t_point p_down_right);
+void			draw_polygon(t_polygon polygon);
 /* colour.c */
 int				get_rgb(int r, int g, int b);
 int				hex2int(char byte);
