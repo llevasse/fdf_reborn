@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 10:02:50 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:10:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ void	project(t_data *data)
 	while (data->point->point_id != (data->nb_point - 1))
 	{
 		if ((data->point + 1)->x != 0)
-			draw_line(*data, *data->point, *(data->point + 1), &data->img);
+			draw_line(set_line_data(*data->point, *(data->point + 1)),
+						data->point->x_bis,
+						data->point->y_bis,
+						&data->img);
 		if (i < data->nb_point - data->nb_column)
-			draw_line(*data, *data->point, *(data->point + data->nb_column),
-					&data->img);
+			draw_line(set_line_data(*data->point, *(data->point
+							+ data->nb_column)),
+						data->point->x_bis,
+						data->point->y_bis,
+						&data->img);
 		data->point++;
 		i++;
 	}
@@ -35,6 +41,7 @@ void	project(t_data *data)
 t_line	set_line_data(t_point p_a, t_point p_b)
 {
 	struct s_line	line;
+
 	line.p_a = p_a;
 	line.p_b = p_b;
 	line.dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
@@ -52,19 +59,15 @@ t_line	set_line_data(t_point p_a, t_point p_b)
 	line.len = sqrt(pow(line.dy, 2) + pow(line.dx, 2));
 	return (line);
 }
-void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
+void	draw_line(t_line line, float x, float y, t_img *img)
 {
-	struct s_line	line;
-
-	float x, y;
-	x = p_a.x_bis;
-	y = p_a.y_bis;
-	line = set_line_data(p_a, p_b);
 	while (line.i <= line.dx || line.i <= line.dy)
 	{
-		if ((p_a.x_bis < 0 && p_b.x_bis < 0) || (p_a.x_bis > WINDOW_WIDTH
-				&& p_b.x_bis > WINDOW_WIDTH) || (p_a.y_bis < 0 && p_b.y_bis < 0)
-			|| (p_a.y_bis > WINDOW_HEIGHT && p_b.y_bis > WINDOW_HEIGHT))
+		if ((line.p_a.x_bis < 0 && line.p_b.x_bis < 0)
+			|| (line.p_a.x_bis > WINDOW_WIDTH && line.p_b.x_bis > WINDOW_WIDTH)
+			|| (line.p_a.y_bis < 0 && line.p_b.y_bis < 0)
+			|| (line.p_a.y_bis > WINDOW_HEIGHT
+				&& line.p_b.y_bis > WINDOW_HEIGHT))
 			break ;
 		if (x >= 0 && x <= WINDOW_WIDTH && y >= 0 && y <= WINDOW_HEIGHT)
 			img_pix_put(img, x, y, get_colour(line));
@@ -81,7 +84,6 @@ void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 		}
 		line.i++;
 	}
-	(void)data;
 }
 
 //  plotLine(x0, y0, x1, y1)
