@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 17:02:40 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:23:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 int	get_current_len_from_y_center(int x, t_point p, int len)
 {
-	return (x + (len - (x - p.x_bis)));
-
+	return (x + (len - (x)));
+	(void)p;
 }
 
 void	draw_polygon(t_polygon poly, t_img *img)
@@ -28,37 +28,45 @@ void	draw_polygon(t_polygon poly, t_img *img)
 	int	i;
 	int	y;
 	int	x;
-	int len;
+	int	len;
 	int	colour;
 
 	i = 0;
 	x = poly.first_line.x;
 	y = 0;
-	draw_line(poly.y_diag, img);
+	//	draw_line(poly.y_diag, img);
 	colour = 0xffffff;
 	while (i <= poly.first_line.dx || i <= poly.first_line.dy)
 	{
 		if (poly.y_diag.y >= poly.first_line.y)
 		{
+			len = poly.y_diag.x;
 			x = poly.first_line.x;
-			len = get_current_len_from_y_center(x, poly.first_line.p_b, poly.x_diag.dx / 2);
 			while (x <= len)
 				img_pix_put(img, x++, poly.y_diag.y, colour);
 		}
 		poly.first_line.e2 = poly.first_line.error;
+		poly.y_diag.e2 = poly.y_diag.error;
 		if (poly.first_line.e2 < poly.first_line.dy)
 		{
 			poly.first_line.error += poly.first_line.dx;
 			poly.first_line.y += poly.first_line.sy;
-			poly.y_diag.y += poly.first_line.sy;
+			if (poly.y_diag.e2 < poly.y_diag.dy)
+			{
+				poly.y_diag.error += poly.y_diag.dx;
+				poly.y_diag.y += poly.y_diag.sy;
+			}
 		}
 		if (poly.first_line.e2 > (0 - poly.first_line.dx))
 		{
 			poly.first_line.error -= poly.first_line.dy;
 			poly.first_line.x += poly.first_line.sx;
+			if (poly.y_diag.e2 > (0 - poly.y_diag.dx))
+			{
+				poly.y_diag.error -= poly.y_diag.dy;
+				poly.y_diag.x += poly.y_diag.sx;
+			}
 		}
-		if (i % poly.y_diag.dy)
-			poly.y_diag.x += poly.first_line.sx;
 		i++;
 	}
 	(void)i;
