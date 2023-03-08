@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 16:49:07 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 09:51:07 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,14 @@ typedef struct s_line
 	int			i;
 }				t_line;
 
+typedef struct polygon
+{
+	t_line left_line;
+	t_line right_line;
+	t_line up_line;
+	t_line down_line;
+}				t_polygon;
+
 /* fdf.c */
 void			print_line(t_data data);
 void			print_info(t_data data);
@@ -132,6 +140,8 @@ void			project(t_data *data);
 void			draw_line(t_data data, t_point p_a, t_point p_b, t_img *img);
 void			img_pix_put(t_img *img, int x, int y, int color);
 float			check_angle(float angle);
+void			set_line_data(t_line *line, t_point p_a, t_point p_b);
+
 
 /* colour.c */
 int				get_rgb(int r, int g, int b);

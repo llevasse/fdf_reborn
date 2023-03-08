@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 16:40:20 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 09:59:41 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,32 @@ void	project(t_data *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
 			0);
 }
-
+void	set_line_data(t_line *line, t_point p_a, t_point p_b)
+{
+	line->p_a = p_a;
+	line->p_b = p_b;
+	line->dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
+	line->sx = 1;
+	if (p_a.x_bis > p_b.x_bis)
+		line->sx = -1;
+	line->dy = abs((int)p_b.y_bis - (int)p_a.y_bis);
+	line->sy = 1;
+	if (p_a.y_bis > p_b.y_bis)
+		line->sy = -1;
+	line->error = line->dx / 2;
+	if (line->dx < line->dy)
+		line->error = (0 - line->dy) / 2;
+	line->i = 0;
+	line->len = sqrt(pow(line->dy, 2) + pow(line->dx, 2));
+}
 void	draw_line(t_data data, t_point p_a, t_point p_b, t_img *img)
 {
 	struct s_line	line;
 
 	float x, y;
-	line.p_a = p_a;
-	line.p_b = p_b;
 	x = p_a.x_bis;
 	y = p_a.y_bis;
-	line.dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
-	line.sx = p_a.x_bis < p_b.x_bis ? 1 : -1;
-	line.dy = abs((int)p_b.y_bis - (int)p_a.y_bis);
-	line.sy = p_a.y_bis < p_b.y_bis ? 1 : -1;
-	if (line.dx > line.dy)
-		line.error = line.dx / 2;
-	else
-		line.error = (0 - line.dy) / 2;
-	line.i = 0;
-	line.len = sqrt(pow(line.dy, 2) + pow(line.dx, 2));
+	set_line_data(&line, p_a, p_b);
 	while (line.i <= line.dx || line.i <= line.dy)
 	{
 		if ((p_a.x_bis < 0 && p_b.x_bis < 0) || (p_a.x_bis > WINDOW_WIDTH
