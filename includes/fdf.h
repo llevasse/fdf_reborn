@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 10:29:30 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:58:20 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,16 @@ typedef struct s_line
 
 typedef struct s_polygon
 {
-	t_line		left_line;
-	t_line		right_line;
-	t_line		up_line;
-	t_line		down_line;
+	t_line		first_line;
+	t_line		sec_line;
+	t_line		third_line;
+	t_line		fourth_line;
+	t_line		y_diag;
+	t_line		x_diag;
+	t_point		first_point;
+	t_point		sec_point;
+	t_point		third_point;
+	t_point		fourth_point;
 }				t_polygon;
 
 /* fdf.c */
@@ -143,14 +149,18 @@ void			draw_line(t_line line, t_img *img);
 void			img_pix_put(t_img *img, int x, int y, int color);
 float			check_angle(float angle);
 t_line			set_line_data(t_point p_a, t_point p_b);
-t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
-					t_point p_down_left, t_point p_down_right);
-void			draw_polygon(t_polygon polygon);
+void			move_forward(t_line *line);
 /* colour.c */
 int				get_rgb(int r, int g, int b);
 int				hex2int(char byte);
 t_colour		init_colour(int colour, int r, int g, int b);
 t_colour		init_colour_from_str(const char *str);
 unsigned int	get_colour(t_line line);
+
+/* polygon.c */
+t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
+					t_point p_down_left, t_point p_down_right);
+void			draw_polygon(t_polygon poly, t_img *img);
+int				get_current_len_from_y_center(int x, t_point p, int len);
 
 #endif

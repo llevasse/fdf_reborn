@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 10:30:45 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:36:12 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ void	project(t_data *data)
 	i = 0;
 	while (data->point->point_id != (data->nb_point - 1))
 	{
-		if ((data->point + 1)->x != 0 && i < data->nb_point - data->nb_column)
-			draw_polygon(set_polygon_data(*data->point, *(data->point + 1),
-						*(data->point + data->nb_column), *(data->point
-							+ data->nb_column + 1)));
 		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
 						&data->img);
@@ -31,6 +27,10 @@ void	project(t_data *data)
 			draw_line(set_line_data(*data->point, *(data->point
 							+ data->nb_column)),
 						&data->img);
+		if ((data->point + 1)->x != 0 && i < data->nb_point - data->nb_column)
+			draw_polygon(set_polygon_data(*data->point, *(data->point + 1),
+						*(data->point + data->nb_column), *(data->point
+							+ data->nb_column + 1)), &data->img);
 		data->point++;
 		i++;
 	}
@@ -39,21 +39,6 @@ void	project(t_data *data)
 			0);
 }
 
-void	draw_polygon(t_polygon polygon)
-{
-	(void)polygon;
-}
-	t_polygon set_polygon_data(t_point p_up_left, t_point p_up_right,
-			t_point p_down_left, t_point p_down_right)
-{
-	struct s_polygon	polygon;
-
-	polygon.up_line = set_line_data(p_up_left, p_up_right);
-	polygon.down_line = set_line_data(p_down_left, p_down_right);
-	polygon.left_line = set_line_data(p_up_left, p_down_left);
-	polygon.right_line = set_line_data(p_up_right, p_down_right);
-	return (polygon);
-}
 t_line	set_line_data(t_point p_a, t_point p_b)
 {
 	struct s_line	line;
@@ -90,18 +75,23 @@ void	draw_line(t_line line, t_img *img)
 		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
 			&& line.y <= WINDOW_HEIGHT)
 			img_pix_put(img, line.x, line.y, get_colour(line));
-		line.e2 = line.error;
-		if (line.e2 < line.dy)
-		{
-			line.error += line.dx;
-			line.y += line.sy;
-		}
-		if (line.e2 > (0 - line.dx))
-		{
-			line.error -= line.dy;
-			line.x += line.sx;
-		}
+		move_forward(&line);
 		line.i++;
+	}
+}
+
+void	move_forward(t_line *line)
+{
+	line->e2 = line->error;
+	if (line->e2 < line->dy)
+	{
+		line->error += line->dx;
+		line->y += line->sy;
+	}
+	if (line->e2 > (0 - line->dx))
+	{
+		line->error -= line->dy;
+		line->x += line->sx;
 	}
 }
 
@@ -130,6 +120,8 @@ void	draw_line(t_line line, t_img *img)
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
+	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
+		return ;
 	char	*pixel;
 	int		i;
 
