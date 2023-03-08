@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 09:51:07 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:03:24 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void			project(t_data *data);
 void			draw_line(t_data data, t_point p_a, t_point p_b, t_img *img);
 void			img_pix_put(t_img *img, int x, int y, int color);
 float			check_angle(float angle);
-void			set_line_data(t_line *line, t_point p_a, t_point p_b);
+t_line			set_line_data(t_point p_a, t_point p_b);
 
 
 /* colour.c */
