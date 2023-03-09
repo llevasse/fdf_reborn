@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 09:58:33 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:14:37 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,27 @@ void	draw_polygon(t_data *data, t_polygon poly, t_img *img)
 {
 	set_center_point(&poly, data);
 	draw_line(poly.first_to_center, img);
+	poly.first_to_center.i = 0;
 	draw_line(poly.sec_to_center, img);
+	poly.sec_to_center.i = 0;
 	draw_line(poly.third_to_center, img);
+	poly.third_to_center.i = 0;
 	draw_line(poly.fourth_to_center, img);
+	poly.fourth_to_center.i = 0;
+	while ((poly.first_to_center.i <= poly.first_to_center.dx
+			|| poly.first_to_center.i <= poly.first_to_center.dy) &&
+			(poly.sec_to_center.i <= poly.sec_to_center.dx
+					|| poly.sec_to_center.i <= poly.sec_to_center.dy))
+	{
+		draw_line(poly.first_line, img);
+		move_forward(&poly.first_to_center);
+		move_forward(&poly.sec_to_center);
+		poly.first_line.p_a.x_bis = poly.first_to_center.x;
+		poly.first_line.p_a.y_bis = poly.first_to_center.y;
+		poly.first_line.p_b.x_bis = poly.sec_to_center.x;
+		poly.first_line.p_b.y_bis = poly.sec_to_center.y;
+		poly.first_line = set_line_data(poly.first_line.p_a, poly.first_line.p_b);
+		poly.first_to_center.i++;
+		poly.sec_to_center.i++;
+	}
 }
