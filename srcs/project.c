@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 21:27:24 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:47:56 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ void	project(t_data *data)
 	i = 0;
 	while (data->point->point_id != (data->nb_point - 1))
 	{
-		if ((data->point + 1)->x != 0 && i < data->nb_point - data->nb_column)
-			draw_polygon(set_polygon_data(*data->point, *(data->point + 1),
-						*(data->point + data->nb_column), *(data->point
-							+ data->nb_column + 1)), &data->img);
+		 		if ((data->point + 1)->x != 0 && i < data->nb_point
+						- data->nb_column)
+			draw_polygon(data, set_polygon_data(*data->point, *(data->point
+							+ 1), *(data->point + data->nb_column),
+						*(data->point + data->nb_column + 1)), &data->img);
+ 
 		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
 						&data->img);
@@ -82,6 +84,8 @@ void	draw_line(t_line line, t_img *img)
 
 void	move_forward(t_line *line)
 {
+	if (line->i > line->dx && line->i > line->dy)
+		return ;
 	line->e2 = line->error;
 	if (line->e2 < line->dy)
 	{
@@ -120,11 +124,11 @@ void	move_forward(t_line *line)
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
-	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
-		return ;
 	char	*pixel;
 	int		i;
 
+	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
+		return ;
 	i = img->bpp - 8;
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	while (i >= 0)

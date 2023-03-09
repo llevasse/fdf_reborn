@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/07 21:01:50 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:20:09 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,13 @@ void	reset_point_ptr(t_data *data)
 
 void	set_colour(t_data *data)
 {
-	double gradiant;
+	double	gradiant;
 
 	reset_point_ptr(data);
 	while (data->point->point_id != data->nb_point)
 	{
-		while (data->point->point_id != data->nb_point - 1 && data->point->colour.hex != -1)
+		while (data->point->point_id != data->nb_point - 1
+			&& data->point->colour.hex != -1)
 			data->point++;
 		if (data->point->z == 0)
 			data->point->colour = init_colour(0, ZERO_R, ZERO_G, ZERO_B);
@@ -155,4 +156,21 @@ void	set_colour(t_data *data)
 		}
 		data->point++;
 	}
+}
+
+t_point	init_one_point(t_data *data, float x, float y, float z,
+		unsigned int colour)
+{
+	struct s_point new;
+
+	new.x = x;
+	new.y = y;
+	new.z = z;
+	new.colour.hex = colour;
+	new.x_bis = (new.x * data->zoom) + data->beg_x / 2;
+	new.y_bis = (new.y * data->zoom) + data->beg_y / 2;
+	new.z_bis = new.z * data->zoom;
+	get_matrix_point(data, new, &new.x_bis, &new.y_bis);
+
+	return (new);
 }

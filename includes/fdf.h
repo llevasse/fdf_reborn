@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 16:58:20 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:38:54 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,17 @@ typedef struct s_polygon
 	t_line		sec_line;
 	t_line		third_line;
 	t_line		fourth_line;
+	t_line		first_to_center;
+	t_line		sec_to_center;
+	t_line		third_to_center;
+	t_line		fourth_to_center;
 	t_line		y_diag;
 	t_line		x_diag;
 	t_point		first_point;
 	t_point		sec_point;
 	t_point		third_point;
 	t_point		fourth_point;
+	t_point		center_point;
 }				t_polygon;
 
 /* fdf.c */
@@ -132,6 +137,9 @@ char			**get_line(int fd, int *nb_row, int *nb_column);
 void			get_bis(t_data *data);
 void			reset_point_ptr(t_data *data);
 void			set_colour(t_data *data);
+t_point			init_one_point(t_data *data, float x, float y, float z,
+					unsigned int colour);
+
 /* matrix */
 float			**init_matrix_x(t_data data);
 float			**init_matrix_y(t_data data);
@@ -160,7 +168,8 @@ unsigned int	get_colour(t_line line);
 /* polygon.c */
 t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
 					t_point p_down_left, t_point p_down_right);
-void			draw_polygon(t_polygon poly, t_img *img);
+void			draw_polygon(t_data *data, t_polygon poly, t_img *img);
 int				get_current_len_from_y_center(int x, t_point p, int len);
+void			set_center_point(t_polygon *poly, t_data *data);
 
 #endif
