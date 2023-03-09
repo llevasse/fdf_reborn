@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 10:30:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:12:17 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	project(t_data *data)
 {
 	int	i;
 
+	img_pix_put(&data->img, 0, 0, 0xff00ff);
+	get_pixel_color(&data->img, 0, 0);
 	get_bis(data);
 	i = 0;
 	while (data->point->point_id != (data->nb_point - 1))
@@ -132,11 +134,52 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	while (i >= 0)
 	{
 		if (img->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
+			*pixel = (color >> i) & 0xFF;
 		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xff;
+			*pixel = (color >> (img->bpp - 8 - i)) & 0xff;
+		pixel++;
 		i -= 8;
 	}
+}
+
+int	get_pixel_color(t_img *img, int x, int y)
+{
+	char	*pixel;
+	int		i;
+	int		r;
+	int		g;
+	int		b;
+
+	r = 1;
+	g = 1;
+	b = 1;
+	i = img->bpp - 8;
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	if (img->endian != 0)
+	{
+		r *= ((*pixel << i) & 0xFF) + 1;
+		r *= ((*pixel << (i + 8)) & 0xFF) + 1;
+		g *= ((*pixel << (i + 16)) & 0xFF) + 1;
+		g *= ((*pixel << (i + 24)) & 0xFF) + 1;
+		b *= ((*pixel << (i + 32)) & 0xFF) + 1;
+		b *= ((*pixel << (i + 40)) & 0xFF) + 1;
+	}
+	else
+	{
+		b *= ((*pixel << (img->bpp - 8 - i)) & 0xFF) + 1;
+		b *= ((*pixel << (img->bpp - 8 - (i + 8))) & 0xFF) + 1;
+		g *= ((*pixel << (img->bpp - 8 - (i + 16))) & 0xFF) + 1;
+		g *= ((*pixel << (img->bpp - 8 - (i + 24))) & 0xFF) + 1;
+		r *= ((*pixel << (img->bpp - 8 - (i + 32))) & 0xFF) + 1;
+		r *= ((*pixel << (img->bpp - 8 - (i + 40))) & 0xFF) + 1;
+	}
+	r--;
+	g--;
+	b--;
+//	ft_printf("red at 0.0 : %i\n", r);
+//	ft_printf("green at 0.0 : %i\n", g);
+//	ft_printf("blue at 0.0 : %i\n", b);
+	return (get_rgb(r, g, b));
 }
 
 float	check_angle(float angle)
