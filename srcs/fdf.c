@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 09:46:45 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:33:04 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,10 @@ int	main(int argc, char *argv[])
 	data.angle_x = check_angle(45);
 	data.angle_y = check_angle(-35);
 	data.angle_z = check_angle(30);
-	data.angle_x = check_angle(0);
+/* 	data.angle_x = check_angle(0);
 	data.angle_y = check_angle(0);
 	data.angle_z = check_angle(0);
-	data.nb_column = 0;
+ */	data.nb_column = 0;
 	data.nb_row = 0;
 	init_points(&data, fd);
 	set_highest_n_lowest_z(&data);

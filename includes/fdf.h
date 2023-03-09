@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 09:38:54 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:30:17 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,8 @@ unsigned int	get_colour(t_line line);
 /* polygon.c */
 t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
 					t_point p_down_left, t_point p_down_right);
-void			draw_polygon(t_data *data, t_polygon poly, t_img *img);
+void			draw_polygon(t_polygon poly, t_img *img);
 int				get_current_len_from_y_center(int x, t_point p, int len);
-void			set_center_point(t_polygon *poly, t_data *data);
+void			set_center_point(t_polygon *poly);
 
 #endif

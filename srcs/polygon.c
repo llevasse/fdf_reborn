@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 10:14:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:32:22 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 //sec_point is the point with the farther west X
 //third_point is the point with the farther east X
 //fourth_point is the point with the highest Y
-
-int	get_current_len_from_y_center(int x, t_point p, int len)
-{
-	return (x + (len - (x)));
-	(void)p;
-}
-
-//bug on test.fdf rotation 45.5.30
 
 /* void	draw_polygon(t_polygon poly, t_img *img)
 {
@@ -121,15 +113,10 @@ t_polygon	set_polygon_data(t_point p_up_left, t_point p_up_right,
 		swap_point(&polygon.sec_point, &polygon.third_point);
 	polygon.y_diag = set_line_data(polygon.first_point, polygon.fourth_point);
 	polygon.x_diag = set_line_data(polygon.sec_point, polygon.third_point);
-	polygon.first_line = set_line_data(polygon.first_point, polygon.sec_point);
-	polygon.sec_line = set_line_data(polygon.first_point, polygon.third_point);
-	polygon.third_line = set_line_data(polygon.sec_point, polygon.fourth_point);
-	polygon.fourth_line = set_line_data(polygon.third_point,
-										polygon.fourth_point);
 	return (polygon);
 }
 
-void	set_center_point(t_polygon *poly, t_data *data)
+void	set_center_point(t_polygon *poly)
 {
 	t_point	center;
 
@@ -139,38 +126,43 @@ void	set_center_point(t_polygon *poly, t_data *data)
 	center.y = poly->y_diag.p_a.y_bis + (poly->y_diag.dy / 2);
 	center.colour = init_colour(0xffffff, 255, 255, 255);
 	poly->center_point = center;
-	poly->first_to_center = set_line_data(poly->first_point, center);
-	poly->sec_to_center = set_line_data(poly->sec_point, center);
-	poly->third_to_center = set_line_data(poly->third_point, center);
-	poly->fourth_to_center = set_line_data(poly->fourth_point, center);
-	(void)data;
 }
 
-void	draw_polygon(t_data *data, t_polygon poly, t_img *img)
+void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 {
-	set_center_point(&poly, data);
-	draw_line(poly.first_to_center, img);
-	poly.first_to_center.i = 0;
-	draw_line(poly.sec_to_center, img);
-	poly.sec_to_center.i = 0;
-	draw_line(poly.third_to_center, img);
-	poly.third_to_center.i = 0;
-	draw_line(poly.fourth_to_center, img);
-	poly.fourth_to_center.i = 0;
-	while ((poly.first_to_center.i <= poly.first_to_center.dx
-			|| poly.first_to_center.i <= poly.first_to_center.dy) &&
-			(poly.sec_to_center.i <= poly.sec_to_center.dx
-					|| poly.sec_to_center.i <= poly.sec_to_center.dy))
+	t_line	left_to_right;
+	t_line	left_to_top;
+	t_line	right_to_top;
+
+	left_to_right = set_line_data(left, right);
+	left_to_top = set_line_data(left, top);
+	right_to_top = set_line_data(right, top);
+	while ((left_to_top.i <= left_to_top.dx || left_to_top.i <= left_to_top.dy)
+		&& (right_to_top.i <= right_to_top.dx
+			|| right_to_top.i <= right_to_top.dy))
 	{
-		draw_line(poly.first_line, img);
-		move_forward(&poly.first_to_center);
-		move_forward(&poly.sec_to_center);
-		poly.first_line.p_a.x_bis = poly.first_to_center.x;
-		poly.first_line.p_a.y_bis = poly.first_to_center.y;
-		poly.first_line.p_b.x_bis = poly.sec_to_center.x;
-		poly.first_line.p_b.y_bis = poly.sec_to_center.y;
-		poly.first_line = set_line_data(poly.first_line.p_a, poly.first_line.p_b);
-		poly.first_to_center.i++;
-		poly.sec_to_center.i++;
+		draw_line(left_to_right, img);
+		move_forward(&left_to_top);
+		move_forward(&right_to_top);
+		left_to_right.p_a.x_bis = left_to_top.x;
+		left_to_right.p_a.y_bis = left_to_top.y;
+		left_to_right.p_b.x_bis = right_to_top.x;
+		left_to_right.p_b.y_bis = right_to_top.y;
+		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);
+		left_to_top.i++;
+		right_to_top.i++;
 	}
+}
+
+void	draw_polygon(t_polygon poly, t_img *img)
+{
+	set_center_point(&poly);
+	poly.first_point.colour = init_colour(0, 0, 0, 0);
+	poly.sec_point.colour = init_colour(0, 0, 0, 0);
+	poly.third_point.colour = init_colour(0, 0, 0, 0);
+	poly.fourth_point.colour = init_colour(0, 0, 0, 0);
+	draw_triangle(poly.first_point, poly.sec_point, poly.center_point, img);
+	draw_triangle(poly.first_point, poly.third_point, poly.center_point, img);
+	draw_triangle(poly.sec_point, poly.fourth_point, poly.center_point, img);
+	draw_triangle(poly.third_point, poly.fourth_point, poly.center_point, img);
 }
