@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 21:02:26 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:27:24 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	project(t_data *data)
 	i = 0;
 	while (data->point->point_id != (data->nb_point - 1))
 	{
+		if ((data->point + 1)->x != 0 && i < data->nb_point - data->nb_column)
+			draw_polygon(set_polygon_data(*data->point, *(data->point + 1),
+						*(data->point + data->nb_column), *(data->point
+							+ data->nb_column + 1)), &data->img);
 		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
 						&data->img);
@@ -27,10 +31,6 @@ void	project(t_data *data)
 			draw_line(set_line_data(*data->point, *(data->point
 							+ data->nb_column)),
 						&data->img);
-		if ((data->point + 1)->x != 0 && i < data->nb_point - data->nb_column)
-			draw_polygon(set_polygon_data(*data->point, *(data->point + 1),
-						*(data->point + data->nb_column), *(data->point
-							+ data->nb_column + 1)), &data->img);
 		data->point++;
 		i++;
 	}

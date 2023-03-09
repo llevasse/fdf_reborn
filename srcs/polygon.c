@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/08 21:23:50 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:36:35 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	get_current_len_from_y_center(int x, t_point p, int len)
 	(void)p;
 }
 
+//bug on test.fdf rotation 45.5.30
+
 void	draw_polygon(t_polygon poly, t_img *img)
 {
 	int	i;
@@ -34,38 +36,40 @@ void	draw_polygon(t_polygon poly, t_img *img)
 	i = 0;
 	x = poly.first_line.x;
 	y = 0;
-	//	draw_line(poly.y_diag, img);
+	draw_line(poly.y_diag, img);
+	draw_line(poly.x_diag, img);
 	colour = 0xffffff;
 	while (i <= poly.first_line.dx || i <= poly.first_line.dy)
 	{
-		if (poly.y_diag.y >= poly.first_line.y)
+		len = poly.y_diag.x;
+		x = poly.first_line.x;
+		while (x <= len)
+			img_pix_put(img, x++, poly.y_diag.y, colour);
+		/* 		if (poly.y_diag.y >= poly.first_line.y)
 		{
-			len = poly.y_diag.x;
-			x = poly.first_line.x;
-			while (x <= len)
-				img_pix_put(img, x++, poly.y_diag.y, colour);
 		}
+ */
 		poly.first_line.e2 = poly.first_line.error;
 		poly.y_diag.e2 = poly.y_diag.error;
 		if (poly.first_line.e2 < poly.first_line.dy)
 		{
 			poly.first_line.error += poly.first_line.dx;
 			poly.first_line.y += poly.first_line.sy;
-			if (poly.y_diag.e2 < poly.y_diag.dy)
-			{
-				poly.y_diag.error += poly.y_diag.dx;
-				poly.y_diag.y += poly.y_diag.sy;
-			}
+		}
+		if (poly.y_diag.e2 < poly.y_diag.dy)
+		{
+			poly.y_diag.error += poly.y_diag.dx;
+			poly.y_diag.y += poly.y_diag.sy;
 		}
 		if (poly.first_line.e2 > (0 - poly.first_line.dx))
 		{
 			poly.first_line.error -= poly.first_line.dy;
 			poly.first_line.x += poly.first_line.sx;
-			if (poly.y_diag.e2 > (0 - poly.y_diag.dx))
-			{
-				poly.y_diag.error -= poly.y_diag.dy;
-				poly.y_diag.x += poly.y_diag.sx;
-			}
+		}
+		if (poly.y_diag.e2 > (0 - poly.y_diag.dx))
+		{
+			poly.y_diag.error -= poly.y_diag.dy;
+			poly.y_diag.x += poly.y_diag.sx;
 		}
 		i++;
 	}
