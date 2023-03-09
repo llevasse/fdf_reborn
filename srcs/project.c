@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 22:12:17 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:24:47 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	draw_line(t_line line, t_img *img)
 				&& line.p_b.y_bis > WINDOW_HEIGHT))
 			break ;
 		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
-			&& line.y <= WINDOW_HEIGHT)
+			&& line.y <= WINDOW_HEIGHT && get_pixel_color(img, line.x,
+				line.y) != get_colour(line))
 			img_pix_put(img, line.x, line.y, get_colour(line));
 		move_forward(&line);
 		line.i++;
@@ -142,7 +143,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	}
 }
 
-int	get_pixel_color(t_img *img, int x, int y)
+unsigned int	get_pixel_color(t_img *img, int x, int y)
 {
 	char	*pixel;
 	int		i;
@@ -176,9 +177,9 @@ int	get_pixel_color(t_img *img, int x, int y)
 	r--;
 	g--;
 	b--;
-//	ft_printf("red at 0.0 : %i\n", r);
-//	ft_printf("green at 0.0 : %i\n", g);
-//	ft_printf("blue at 0.0 : %i\n", b);
+	//	ft_printf("red at 0.0 : %i\n", r);
+	//	ft_printf("green at 0.0 : %i\n", g);
+	//	ft_printf("blue at 0.0 : %i\n", b);
 	return (get_rgb(r, g, b));
 }
 

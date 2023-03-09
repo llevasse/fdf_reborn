@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 10:32:22 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:26:56 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,15 @@ t_polygon	set_polygon_data(t_point p_up_left, t_point p_up_right,
 void	set_center_point(t_polygon *poly)
 {
 	t_point	center;
+	int		colour;
 
 	center.x_bis = poly->x_diag.p_a.x_bis + (poly->x_diag.dx / 2);
 	center.y_bis = poly->y_diag.p_a.y_bis + (poly->y_diag.dy / 2);
 	center.x = poly->x_diag.p_a.x_bis + (poly->x_diag.dx / 2);
 	center.y = poly->y_diag.p_a.y_bis + (poly->y_diag.dy / 2);
-	center.colour = init_colour(0xffffff, 255, 255, 255);
+	colour = (poly->first_point.colour.hex + poly->sec_point.colour.hex
+		+ poly->third_point.colour.hex + poly->fourth_point.colour.hex) / 4;
+	center.colour = init_colour(colour, 0, 0, 0);
 	poly->center_point = center;
 }
 
@@ -157,10 +160,11 @@ void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 void	draw_polygon(t_polygon poly, t_img *img)
 {
 	set_center_point(&poly);
-	poly.first_point.colour = init_colour(0, 0, 0, 0);
+ 	poly.first_point.colour = init_colour(0, 0, 0, 0);
 	poly.sec_point.colour = init_colour(0, 0, 0, 0);
 	poly.third_point.colour = init_colour(0, 0, 0, 0);
 	poly.fourth_point.colour = init_colour(0, 0, 0, 0);
+ 
 	draw_triangle(poly.first_point, poly.sec_point, poly.center_point, img);
 	draw_triangle(poly.first_point, poly.third_point, poly.center_point, img);
 	draw_triangle(poly.sec_point, poly.fourth_point, poly.center_point, img);

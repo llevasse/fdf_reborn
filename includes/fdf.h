@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 10:30:17 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:24:58 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_data
 	float		beg_y;
 	float		lowest_z;
 	float		highest_z;
+	t_colour	bg;
 }				t_data;
 
 typedef struct s_line
@@ -158,6 +159,7 @@ void			img_pix_put(t_img *img, int x, int y, int color);
 float			check_angle(float angle);
 t_line			set_line_data(t_point p_a, t_point p_b);
 void			move_forward(t_line *line);
+unsigned int	get_pixel_color(t_img *img, int x, int y);
 /* colour.c */
 int				get_rgb(int r, int g, int b);
 int				hex2int(char byte);
