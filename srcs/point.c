@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 09:20:09 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:58:57 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,23 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 }
 void	get_bis(t_data *data)
 {
+	float	temp_z;
+
 	while (data->point->point_id != 0)
 		data->point--;
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
+		temp_z = data->point->z;
+		data->point->z = 0;
 		data->point->x_bis = (data->point->x * data->zoom) + data->beg_x / 2;
 		data->point->y_bis = (data->point->y * data->zoom) + data->beg_y / 2;
+		data->point->x_bis_no_z = (data->point->x * data->zoom) + data->beg_x
+			/ 2;
+		data->point->y_bis_no_z = (data->point->y * data->zoom) + data->beg_y
+			/ 2;
+		get_matrix_point(data, *data->point, &data->point->x_bis_no_z,
+				&data->point->y_bis_no_z);
+		data->point->z = temp_z;
 		data->point->z_bis = data->point->z * data->zoom;
 		get_matrix_point(data, *data->point, &data->point->x_bis,
 				&data->point->y_bis);

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 22:21:26 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:26:54 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ int	handle_input(int keysym, t_data *data)
 		data->beg_y -= 10;
 	if (keysym == XK_r)
 		reset_angle_pos(data);
+	if (keysym == XK_z)
+	{
+		if (data->is_wireframe == 1)
+			data->is_wireframe = 0;
+		else
+			data->is_wireframe = 1;
+	}
 	reset_img(data);
 	project(data);
 	return (0);
@@ -161,6 +168,7 @@ int	main(int argc, char *argv[])
 	data.angle_z = check_angle(0);
  */	data.nb_column = 0;
 	data.nb_row = 0;
+	data.is_wireframe = 1;
 	init_points(&data, fd);
 	set_highest_n_lowest_z(&data);
 	set_colour(&data);

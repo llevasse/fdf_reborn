@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 22:26:56 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:55:35 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,28 @@ void	set_center_point(t_polygon *poly)
 	center.x = poly->x_diag.p_a.x_bis + (poly->x_diag.dx / 2);
 	center.y = poly->y_diag.p_a.y_bis + (poly->y_diag.dy / 2);
 	colour = (poly->first_point.colour.hex + poly->sec_point.colour.hex
-		+ poly->third_point.colour.hex + poly->fourth_point.colour.hex) / 4;
+			+ poly->third_point.colour.hex + poly->fourth_point.colour.hex) / 4;
 	center.colour = init_colour(colour, 0, 0, 0);
 	poly->center_point = center;
+}
+
+t_point	set_false_point(t_point p_1, t_point p_2)
+{
+	struct s_point	p_3;
+
+	if (p_1.z > p_2.z)
+	{
+		p_3.x_bis = p_1.x_bis_no_z;
+		p_3.y_bis = p_1.y_bis_no_z;
+		p_3.colour.hex = p_2.colour.hex;
+	}
+	else
+	{
+		p_3.x_bis = p_2.x_bis_no_z;
+		p_3.y_bis = p_2.y_bis_no_z;
+		p_3.colour.hex = p_1.colour.hex;
+	}
+	return (p_3);
 }
 
 void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
@@ -137,6 +156,9 @@ void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 	t_line	left_to_top;
 	t_line	right_to_top;
 
+	left.colour.hex = 0x000000;
+	right.colour.hex = 0x000000;
+	top.colour.hex = 0x000000;
 	left_to_right = set_line_data(left, right);
 	left_to_top = set_line_data(left, top);
 	right_to_top = set_line_data(right, top);
@@ -146,9 +168,11 @@ void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 	{
 		draw_line(left_to_right, img);
 		move_forward(&left_to_top);
-		move_forward(&right_to_top);
 		left_to_right.p_a.x_bis = left_to_top.x;
 		left_to_right.p_a.y_bis = left_to_top.y;
+		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);
+		draw_line(left_to_right, img);
+		move_forward(&right_to_top);
 		left_to_right.p_b.x_bis = right_to_top.x;
 		left_to_right.p_b.y_bis = right_to_top.y;
 		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);
@@ -160,11 +184,10 @@ void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 void	draw_polygon(t_polygon poly, t_img *img)
 {
 	set_center_point(&poly);
- 	poly.first_point.colour = init_colour(0, 0, 0, 0);
+	poly.first_point.colour = init_colour(0, 0, 0, 0);
 	poly.sec_point.colour = init_colour(0, 0, 0, 0);
 	poly.third_point.colour = init_colour(0, 0, 0, 0);
 	poly.fourth_point.colour = init_colour(0, 0, 0, 0);
- 
 	draw_triangle(poly.first_point, poly.sec_point, poly.center_point, img);
 	draw_triangle(poly.first_point, poly.third_point, poly.center_point, img);
 	draw_triangle(poly.sec_point, poly.fourth_point, poly.center_point, img);

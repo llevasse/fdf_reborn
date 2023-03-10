@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 22:24:58 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:47:24 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,15 @@ typedef struct s_point
 	float		x_bis;
 	float		y_bis;
 	float		z_bis;
+	float		x_bis_no_z;
+	float		y_bis_no_z;
 	int			point_id;
 	t_colour	colour;
 }				t_point;
 
 typedef struct s_data
 {
+	int			is_wireframe;
 	t_point		*point;
 	t_img		img;
 	void		*mlx_ptr;
@@ -173,5 +176,7 @@ t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
 void			draw_polygon(t_polygon poly, t_img *img);
 int				get_current_len_from_y_center(int x, t_point p, int len);
 void			set_center_point(t_polygon *poly);
+t_point			set_false_point(t_point p_1, t_point p_2);
+void	draw_triangle(t_point left, t_point right, t_point top, t_img *img);
 
 #endif
