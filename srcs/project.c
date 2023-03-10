@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/10 15:51:25 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:27:15 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	project(t_data *data)
 {
-	int	i;
+	int		i;
+	float	z1;
+	float	z2;
 
 	img_pix_put(&data->img, 0, 0, 0xff00ff);
 	get_pixel_color(&data->img, 0, 0);
@@ -22,30 +24,29 @@ void	project(t_data *data)
 	i = 0;
 	while (data->point->point_id != (data->nb_point - 1))
 	{
-		if (!data->is_wireframe)
+		if ((data->point + 1)->x != 0)
 		{
-			if ((data->point + 1)->z > data->point->z)
+			z1 = data->point->z;
+			z2 = (data->point + 1)->z;
+			if (!data->is_wireframe && (z1 != z2 || (z1 != 0 && z2 != 0)))
 				draw_triangle(*data->point, set_false_point(*data->point,
 							*(data->point + 1)), *(data->point + 1),
 						&data->img);
-			else if ((data->point + 1)->z < data->point->z)
-				draw_triangle(*(data->point + 1), set_false_point(*data->point,
-							*(data->point + 1)), *data->point,
-						&data->img);
-		}
-		/* 		if (!data->is_wireframe && (data->point + 1)->x != 0
-						&& i < data->nb_point - data->nb_column)
-			draw_polygon(set_polygon_data(*data->point, *(data->point + 1),
-						*(data->point + data->nb_column), *(data->point
-							+ data->nb_column + 1)), &data->img);
- */
-		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
 						&data->img);
+		}
 		if (i < data->nb_point - data->nb_column)
+		{
+			z1 = data->point->z;
+			z2 = (data->point + data->nb_column)->z;
+			if (!data->is_wireframe && (z1 != z2 || (z1 != 0 && z2 != 0)))
+				draw_triangle(*data->point, set_false_point(*data->point,
+							*(data->point + data->nb_column)), *(data->point
+							+ data->nb_column), &data->img);
 			draw_line(set_line_data(*data->point, *(data->point
 							+ data->nb_column)),
 						&data->img);
+		}
 		data->point++;
 		i++;
 	}

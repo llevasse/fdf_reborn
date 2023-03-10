@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/10 15:55:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:39:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,25 @@ t_point	set_false_point(t_point p_1, t_point p_2)
 		p_3.colour.hex = p_1.colour.hex;
 	}
 	return (p_3);
+}
+
+void	draw_line_filling(t_line line, t_img *img)
+{
+	while (line.i <= line.dx || line.i <= line.dy)
+	{
+		if ((line.p_a.x_bis < 0 && line.p_b.x_bis < 0)
+			|| (line.p_a.x_bis > WINDOW_WIDTH && line.p_b.x_bis > WINDOW_WIDTH)
+			|| (line.p_a.y_bis < 0 && line.p_b.y_bis < 0)
+			|| (line.p_a.y_bis > WINDOW_HEIGHT
+				&& line.p_b.y_bis > WINDOW_HEIGHT))
+			break ;
+		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
+			&& line.y <= WINDOW_HEIGHT && get_pixel_color(img, line.x,
+				line.y) != 0x000000)
+			img_pix_put(img, line.x, line.y, get_colour(line));
+		move_forward(&line);
+		line.i++;
+	}
 }
 
 void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)

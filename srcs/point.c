@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/10 15:58:57 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:14:12 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	get_bis(t_data *data)
 	while (data->point->point_id != data->nb_row * data->nb_column)
 	{
 		temp_z = data->point->z;
-		data->point->z = 0;
+		data->point->z_bis = 0;
 		data->point->x_bis = (data->point->x * data->zoom) + data->beg_x / 2;
 		data->point->y_bis = (data->point->y * data->zoom) + data->beg_y / 2;
 		data->point->x_bis_no_z = (data->point->x * data->zoom) + data->beg_x
