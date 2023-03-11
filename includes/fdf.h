@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/11 11:02:12 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/11 11:12:02 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,13 +171,9 @@ t_colour		init_colour(int colour, int r, int g, int b);
 t_colour		init_colour_from_str(const char *str);
 unsigned int	get_colour(t_line line);
 
-/* polygon.c */
-t_polygon		set_polygon_data(t_point p_up_left, t_point p_up_right,
-					t_point p_down_left, t_point p_down_right);
-void			draw_polygon(t_polygon poly, t_img *img);
-int				get_current_len_from_y_center(int x, t_point p, int len);
-void			set_center_point(t_polygon *poly);
+/* filling.c */
 t_point			set_false_point(t_point p_1, t_point p_2);
-void	draw_triangle(t_point left, t_point right, t_point top, t_img *img);
+void			draw_triangle(t_point left, t_point right, t_point top,
+					t_img *img);
 
 #endif

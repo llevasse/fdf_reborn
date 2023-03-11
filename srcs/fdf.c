@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/11 11:05:56 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:28:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,16 @@ int	handle_input(int keysym, t_data *data)
 	return (0);
 }
 
-void	reset_img(t_data *data)
+//	(*f)(int button, int x, int y, void *param);
+
+int	handle_mouse_input(int button, int x, int y, t_data *data)
+{
+	ft_printf("click on x : %i y : %i with button %i\n", x, y, button);
+	(void)data;
+	return (0);
+}
+
+	void reset_img(t_data *data)
 {
 	int	x;
 	int	y;
@@ -187,6 +196,7 @@ int	main(int argc, char *argv[])
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
+	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
