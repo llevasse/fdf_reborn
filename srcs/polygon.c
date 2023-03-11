@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/10 18:39:34 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:51:29 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 		left_to_right.p_a.y_bis = left_to_top.y;
 		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);
 		draw_line(left_to_right, img);
-		move_forward(&right_to_top);
+		move_forward(&right_to_top); 
 		left_to_right.p_b.x_bis = right_to_top.x;
 		left_to_right.p_b.y_bis = right_to_top.y;
 		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);

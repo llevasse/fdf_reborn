@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/10 15:47:24 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/11 11:02:12 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_data
 	float		beg_y;
 	float		lowest_z;
 	float		highest_z;
+	float		z_amplifier;
 	t_colour	bg;
 }				t_data;
 
