@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/11 11:18:14 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:50:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	draw_line_filling(t_line line, t_img *img)
 				&& line.p_b.y_bis > WINDOW_HEIGHT))
 			break ;
 		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
-			&& line.y <= WINDOW_HEIGHT && get_pixel_color(img, line.x,
-				line.y) != 0)
+			&& line.y <= WINDOW_HEIGHT)
 			img_pix_put(img, line.x, line.y, get_colour(line));
 		move_forward(&line);
 		line.i++;

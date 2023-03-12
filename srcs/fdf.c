@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/11 12:28:50 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:45:19 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ int	handle_input(int keysym, t_data *data)
 
 int	handle_mouse_input(int button, int x, int y, t_data *data)
 {
+	t_colour	colour;
+	
+	colour = init_colour(get_pixel_color(&data->img, x, y), 0, 0, 0);
 	ft_printf("click on x : %i y : %i with button %i\n", x, y, button);
+	ft_printf("r : %i, g : %i, b : %i\n", colour.r, colour.g, colour.b);
 	(void)data;
 	return (0);
 }
