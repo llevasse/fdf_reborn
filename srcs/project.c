@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/12 20:31:20 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:39:26 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,20 @@ void	project(t_data *data)
 			z2 = (data->point + 1)->z;
 			if (!data->is_wireframe && (z1 != z2 || (z1 != 0 && z2 != 0)))
 			{
- 				draw_triangle(*data->point, set_false_point(*data->point,
+				draw_triangle(*data->point, set_false_point(*data->point,
 							*(data->point + 1)), *(data->point + 1),
 						&data->img);
 			}
-				if (!data->is_wireframe && i < data->nb_point - data->nb_column && z1 == z2)
-				{
-					draw_triangle(*data->point, *(data->point + 1),
-							*(data->point + data->nb_column), &data->img);
-					draw_triangle(*(data->point + data->nb_column),
-									*(data->point + data->nb_column + 1),
-									*(data->point + 1),
-									&data->img);
-				}
-			draw_line(set_line_data(*data->point, *(data->point + 1)),
-						&data->img);
+			if (!data->is_wireframe && i < data->nb_point - data->nb_column
+				&& z1 == z2)
+			{
+				draw_triangle(*data->point, *(data->point + 1), *(data->point
+							+ data->nb_column), &data->img);
+				draw_triangle(*(data->point + data->nb_column),
+								*(data->point + data->nb_column + 1),
+								*(data->point + 1),
+								&data->img);
+			}
 		}
 		if (i < data->nb_point - data->nb_column)
 		{
@@ -54,10 +53,23 @@ void	project(t_data *data)
 				draw_triangle(*data->point, set_false_point(*data->point,
 							*(data->point + data->nb_column)), *(data->point
 							+ data->nb_column), &data->img);
+			if (!data->is_wireframe && z1 == z2 && (data->point + 1)->x != 0)
+			{
+				draw_triangle(*data->point, *(data->point + data->nb_column),
+						*(data->point + 1), &data->img);
+				draw_triangle(*(data->point + 1),
+								*(data->point + data->nb_column),
+								*(data->point + data->nb_column + 1),
+								&data->img);
+			}
+		}
+		if ((data->point + 1)->x != 0)
+			draw_line(set_line_data(*data->point, *(data->point + 1)),
+						&data->img);
+		if (i < data->nb_point - data->nb_column)
 			draw_line(set_line_data(*data->point, *(data->point
 							+ data->nb_column)),
 						&data->img);
-		}
 		data->point++;
 		i++;
 	}

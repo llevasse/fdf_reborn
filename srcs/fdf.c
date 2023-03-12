@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/12 17:45:19 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/12 21:08:41 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	reset_angle_pos(t_data *data)
 	data->zoom = 1000 / data->nb_column;
 	data->beg_x = WINDOW_WIDTH / 2;
 	data->beg_y = WINDOW_HEIGHT / 2;
+	data->button.dif_x = 0;
+	data->button.dif_y = 0;
 }
 
 int	handle_input(int keysym, t_data *data)
@@ -87,15 +89,37 @@ int	handle_input(int keysym, t_data *data)
 int	handle_mouse_input(int button, int x, int y, t_data *data)
 {
 	t_colour	colour;
-	
+
 	colour = init_colour(get_pixel_color(&data->img, x, y), 0, 0, 0);
 	ft_printf("click on x : %i y : %i with button %i\n", x, y, button);
 	ft_printf("r : %i, g : %i, b : %i\n", colour.r, colour.g, colour.b);
+	if (button == 1)
+	{
+		data->button.click_x = x;
+		data->button.click_y = y;
+	}
 	(void)data;
 	return (0);
 }
 
-	void reset_img(t_data *data)
+int	button1_release(int button, int x, int y, t_data *data)
+{
+	ft_printf("motion at %i:%i\n", x, y);
+	if (button == 1)
+	{
+		data->button.release_x = x;
+		data->button.release_y = y;
+		data->button.dif_x = data->button.release_x - data->button.click_x;
+		data->button.dif_y = data->button.release_y - data->button.click_y;
+		ft_printf("mouvement of x : %i | y : %i\n", data->button.dif_x,
+				data->button.dif_y);
+	}
+	reset_img(data);
+	project(data);
+	return (0);
+}
+
+void	reset_img(t_data *data)
 {
 	int	x;
 	int	y;
@@ -195,12 +219,17 @@ int	main(int argc, char *argv[])
 	data.zoom = 1000 / data.nb_column;
 	data.beg_x = WINDOW_WIDTH / 2;
 	data.beg_y = WINDOW_HEIGHT / 2;
+	data.button.dif_x = 0;
+	data.button.dif_y = 0;
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
-	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input, &data);
+	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
+			&data);
+	mlx_hook(data.win_ptr, ButtonRelease, ButtonReleaseMask, &button1_release,
+			&data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);

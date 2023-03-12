@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/11 11:03:16 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/12 21:08:15 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ void	get_bis(t_data *data)
 	{
 		temp_z = data->point->z;
 		data->point->z_bis = 0;
-		data->point->x_bis = (data->point->x * data->zoom) + data->beg_x / 2;
-		data->point->y_bis = (data->point->y * data->zoom) + data->beg_y / 2;
-		data->point->x_bis_no_z = (data->point->x * data->zoom) + data->beg_x
+		data->point->x_bis = data->button.dif_x + (data->point->x * data->zoom) + data->beg_x / 2;
+		data->point->y_bis = data->button.dif_y + (data->point->y * data->zoom) + data->beg_y / 2;
+		data->point->x_bis_no_z = data->button.dif_x + (data->point->x * data->zoom) + data->beg_x
 			/ 2;
-		data->point->y_bis_no_z = (data->point->y * data->zoom) + data->beg_y
+		data->point->y_bis_no_z = data->button.dif_y + (data->point->y * data->zoom) + data->beg_y
 			/ 2;
 		get_matrix_point(data, *data->point, &data->point->x_bis_no_z,
 				&data->point->y_bis_no_z);
