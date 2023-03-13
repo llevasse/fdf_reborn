@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/12 21:06:07 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:30:43 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ typedef struct s_button_1_motion
 	int					click_y;
 	int					release_x;
 	int					release_y;
-	int					dif_x;
-	int					dif_y;
 }						t_button_1_motion;
 
 typedef struct s_data
@@ -103,6 +101,8 @@ typedef struct s_data
 	float				lowest_z;
 	float				highest_z;
 	float				z_amplifier;
+	int					dif_x;
+	int					dif_y;
 	t_colour			bg;
 	t_button_1_motion	button;
 }						t_data;
