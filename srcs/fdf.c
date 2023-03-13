@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/13 15:17:19 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:03:40 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,19 @@ int	handle_mouse_input(int button, int x, int y, t_data *data)
 
 int	button1_motion(int x, int y, t_data *data)
 {
-	if (x > data->button.click_x)
-		data->dif_x += 1;
-	else
-		data->dif_x -= 1;
-	if (y > data->button.click_y)
-		data->dif_y += 1;
-	else
-		data->dif_y -= 1;
+	ft_printf("x %i\n", x);
+	ft_printf("y %i\n", y);
+	if (data->button.click_x != 0 || data->button.click_y != 0)
+	{
+		if (x > data->button.click_x)
+			data->dif_x += 1;
+		else
+			data->dif_x -= 1;
+		if (y > data->button.click_y)
+			data->dif_y += 1;
+		else
+			data->dif_y -= 1;
+	}
 	data->button.click_x = x;
 	data->button.click_y = y;
 	ft_printf("dif x : %i | dif y : %i\n", data->dif_x, data->dif_y);
@@ -118,16 +123,25 @@ int	button1_motion(int x, int y, t_data *data)
 }
 int	button3_motion(int x, int y, t_data *data)
 {
-	if (data->button.click_x != 0 || data->button.click_y != 0)
+	ft_printf("x %i\n", x);
+	ft_printf("y %i\n", y);
+	if ((data->button.click_x != 0 || data->button.click_y != 0) && (x % 10 == 0
+			|| y % 10 == 0))
 	{
 		if (x > data->button.click_x)
-			data->angle_y = check_angle(data->angle_y - 1);
+			data->angle_y = check_angle(data->angle_y + 5);
 		else
-			data->angle_y = check_angle(data->angle_y + 1);
+			data->angle_y = check_angle(data->angle_y - 5);
 		if (y > data->button.click_y)
-			data->angle_x = check_angle(data->angle_x + 1);
+		{
+//			data->angle_z = check_angle(data->angle_z + 5);
+			data->angle_x = check_angle(data->angle_x + 5);
+		}
 		else
-			data->angle_x = check_angle(data->angle_x - 1);
+		{
+//			data->angle_z = check_angle(data->angle_z - 5);
+			data->angle_x = check_angle(data->angle_x - 5);
+		}
 	}
 	data->button.click_x = x;
 	data->button.click_y = y;
@@ -235,10 +249,10 @@ int	main(int argc, char *argv[])
 	data.angle_x = check_angle(45);
 	data.angle_y = check_angle(-35);
 	data.angle_z = check_angle(30);
-	/* 	data.angle_x = check_angle(0);
+ 	data.angle_x = check_angle(0);
 	data.angle_y = check_angle(0);
 	data.angle_z = check_angle(0);
- */
+ 
 	data.nb_column = 0;
 	data.nb_row = 0;
 	data.is_wireframe = 1;
@@ -257,16 +271,12 @@ int	main(int argc, char *argv[])
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
-	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
-			&data);
 	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
 			&data);
 	mlx_hook(data.win_ptr, MotionNotify, Button3MotionMask, &button3_motion,
 			&data);
-	/* 	mlx_hook(data.win_ptr, ButtonRelease, ButtonReleaseMask,
-				&button1_release,
+	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
 			&data);
- */
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);

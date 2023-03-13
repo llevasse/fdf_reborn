@@ -6,11 +6,51 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/12 20:39:26 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:14:59 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	draw_redcross_on_point(t_point point, t_img *img)
+{
+	img_pix_put(img, point.x_bis, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis - 1, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis - 2, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis - 3, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis - 4, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis + 1, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis + 2, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis + 3, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis + 4, point.y_bis, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis - 1, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis - 2, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis - 3, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis - 4, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis + 1, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis + 2, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis + 3, 0xff0000);
+	img_pix_put(img, point.x_bis, point.y_bis + 4, 0xff0000);
+	
+	// draw green cross at center of screen
+	img_pix_put(img, (WINDOW_WIDTH / 2), point.y_bis, 0xff0000);
+	img_pix_put(img, (WINDOW_WIDTH / 2) - 1, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) - 2, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) - 3, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) - 4, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) + 1, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) + 2, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) + 3, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2) + 4, (WINDOW_HEIGHT / 2), 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 1, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 2, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 3, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) - 4, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 1, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 2, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 3, 0x00ff00);
+	img_pix_put(img, (WINDOW_WIDTH / 2), (WINDOW_HEIGHT / 2) + 4, 0x00ff00);
+}
 
 void	project(t_data *data)
 {
@@ -73,6 +113,7 @@ void	project(t_data *data)
 		data->point++;
 		i++;
 	}
+	draw_redcross_on_point(*(data->point + 1), &data->img);
 	reset_point_ptr(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
 			0);
