@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/13 11:31:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:27:35 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ void	get_bis(t_data *data)
 		temp_z = data->point->z;
 		data->point->z_bis = 0;
 		data->point->x_bis = data->dif_x + (data->point->x * data->zoom)
-			+ data->beg_x / 2;
+			+ (data->beg_x - (data->zoom * (data->nb_column - 1) / 2));
 		data->point->y_bis = data->dif_y + (data->point->y * data->zoom)
-			+ data->beg_y / 2;
+			+ (data->beg_y - (data->zoom * (data->nb_row - 1) / 2));
 		data->point->x_bis_no_z = data->dif_x + (data->point->x
-				* data->zoom) + data->beg_x / 2;
+				* data->zoom) + (data->beg_x - (data->zoom * (data->nb_column - 1) / 2));
 		data->point->y_bis_no_z = data->dif_y + (data->point->y
-				* data->zoom) + data->beg_y / 2;
+				* data->zoom) + (data->beg_y - (data->zoom * (data->nb_row - 1) / 2));
 		get_matrix_point(data, *data->point, &data->point->x_bis_no_z,
 				&data->point->y_bis_no_z);
 		data->point->z = temp_z;
@@ -120,8 +120,8 @@ void	get_bis(t_data *data)
 		data->point->y_bis_no_z += data->dif_y;
 		data->point++;
 	}
-	data->point->x_bis = (data->point->x * data->zoom) + data->beg_x / 2;
-	data->point->y_bis = (data->point->y * data->zoom) + data->beg_y / 2;
+	data->point->x_bis = (data->point->x * data->zoom) + (data->beg_x - (data->zoom * (data->nb_column - 1)) / 2);
+	data->point->y_bis = (data->point->y * data->zoom) + (data->beg_y - (data->zoom * (data->nb_row - 1)) / 2);
 	data->point->z_bis = data->point->z * data->zoom;
 	get_matrix_point(data, *data->point, &data->point->x_bis,
 			&data->point->y_bis);
