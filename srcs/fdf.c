@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/13 14:55:53 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:17:19 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,8 @@ int	handle_mouse_input(int button, int x, int y, t_data *data)
 	colour = init_colour(get_pixel_color(&data->img, x, y), 0, 0, 0);
 	ft_printf("click on x : %i y : %i with button %i\n", x, y, button);
 	ft_printf("r : %i, g : %i, b : %i\n", colour.r, colour.g, colour.b);
-	if (button == 1)
-	{
-		data->button.click_x = x;
-		data->button.click_y = y;
-	}
+	data->button.click_x = x;
+	data->button.click_y = y;
 	(void)data;
 	return (0);
 }
@@ -119,18 +116,35 @@ int	button1_motion(int x, int y, t_data *data)
 	project(data);
 	return (0);
 }
+int	button3_motion(int x, int y, t_data *data)
+{
+	if (data->button.click_x != 0 || data->button.click_y != 0)
+	{
+		if (x > data->button.click_x)
+			data->angle_y = check_angle(data->angle_y - 1);
+		else
+			data->angle_y = check_angle(data->angle_y + 1);
+		if (y > data->button.click_y)
+			data->angle_x = check_angle(data->angle_x + 1);
+		else
+			data->angle_x = check_angle(data->angle_x - 1);
+	}
+	data->button.click_x = x;
+	data->button.click_y = y;
+	ft_printf("dif x : %i | dif y : %i\n", data->dif_x, data->dif_y);
+	reset_img(data);
+	project(data);
+	return (0);
+}
 
 int	button1_release(int button, int x, int y, t_data *data)
 {
-	ft_printf("release at %i:%i\n", x, y);
-	if (button == 1)
-	{
-		data->button.release_x = x;
-		data->button.release_y = y;
-		data->dif_x = data->button.release_x - data->button.click_x;
-		data->dif_y = data->button.release_y - data->button.click_y;
-		ft_printf("mouvement of x : %i | y : %i\n", data->dif_x, data->dif_y);
-	}
+	ft_printf("release at %i:%i with button %i\n", x, y, button);
+	data->button.release_x = x;
+	data->button.release_y = y;
+	data->dif_x = data->button.release_x - data->button.click_x;
+	data->dif_y = data->button.release_y - data->button.click_y;
+	ft_printf("mouvement of x : %i | y : %i\n", data->dif_x, data->dif_y);
 	reset_img(data);
 	project(data);
 	return (0);
@@ -246,6 +260,8 @@ int	main(int argc, char *argv[])
 	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
 			&data);
 	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
+			&data);
+	mlx_hook(data.win_ptr, MotionNotify, Button3MotionMask, &button3_motion,
 			&data);
 	/* 	mlx_hook(data.win_ptr, ButtonRelease, ButtonReleaseMask,
 				&button1_release,
