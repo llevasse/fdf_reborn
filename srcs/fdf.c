@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/13 11:39:42 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:55:53 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,20 @@ int	handle_mouse_input(int button, int x, int y, t_data *data)
 
 int	button1_motion(int x, int y, t_data *data)
 {
-	data->dif_x = x - data->button.click_x;
-	data->dif_y = y - data->button.click_y;
+	if (x > data->button.click_x)
+		data->dif_x += 1;
+	else
+		data->dif_x -= 1;
+	if (y > data->button.click_y)
+		data->dif_y += 1;
+	else
+		data->dif_y -= 1;
+	data->button.click_x = x;
+	data->button.click_y = y;
+	ft_printf("dif x : %i | dif y : %i\n", data->dif_x, data->dif_y);
 	reset_img(data);
 	project(data);
-	return(0);
+	return (0);
 }
 
 int	button1_release(int button, int x, int y, t_data *data)
@@ -238,9 +247,11 @@ int	main(int argc, char *argv[])
 			&data);
 	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
 			&data);
-/* 	mlx_hook(data.win_ptr, ButtonRelease, ButtonReleaseMask, &button1_release,
+	/* 	mlx_hook(data.win_ptr, ButtonRelease, ButtonReleaseMask,
+				&button1_release,
 			&data);
- */	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
+ */
+	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
