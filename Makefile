@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/03/11 11:12:39 by llevasse         ###   ########.fr        #
+#    Updated: 2023/03/14 13:31:21 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,10 @@ run:			cleandebug alldebug
 run_test:		cleandebug alldebug
 					clear
 					./bin/$(EXECUTABLE) test_files/test.fdf
+					
+run_test100-6:	cleandebug alldebug
+					clear
+					./bin/fdf test_files/100-6.fdf
 
 
 run_vs_code: cleandebug alldebug

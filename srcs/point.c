@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/13 18:27:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:58:59 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_points(t_data *data, int fd)
 	{
 		x = 0;
 		while (x < data->nb_column)
-		{
+		{	
 			data->point->x = x;
 			data->point->y = y;
 			data->point->z = ft_atoi((const char *)data->line[(y
@@ -60,7 +60,8 @@ static void	get_nb_elem(char **str, int *nb)
 		(*nb)++;
 		str++;
 	}
-	(*nb)++;
+	if (ft_is_in_str("0123456789", **str))
+		(*nb)++;
 }
 
 char	**get_line(int fd, int *nb_row, int *nb_column)
