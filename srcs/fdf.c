@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/14 13:46:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:03:45 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	close_window(t_data *data)
 	return (0);
 }
 
-void	reset_angle_pos(t_data *data)
+void	reset_setting(t_data *data)
 {
 	data->angle_x = check_angle(45);
 	data->angle_y = check_angle(-35);
@@ -34,133 +34,12 @@ void	reset_angle_pos(t_data *data)
 	data->dif_y = 0;
 }
 
-int	handle_input(int keysym, t_data *data)
+
+
+int ft_resize(int width, int height, t_data *data)
 {
-	if (keysym == XK_Escape)
-		return (close_window(data), 0);
-	if (keysym == XK_Left)
-		data->angle_y = check_angle(data->angle_y + 1);
-	if (keysym == XK_Right)
-		data->angle_y = check_angle(data->angle_y - 1);
-	if (keysym == XK_Up)
-		data->angle_x = check_angle(data->angle_x + 1);
-	if (keysym == XK_Down)
-		data->angle_x = check_angle(data->angle_x - 1);
-	if (keysym == XK_e)
-		data->angle_z = check_angle(data->angle_z + 1);
-	if (keysym == XK_q)
-		data->angle_z = check_angle(data->angle_z - 1);
-	if (keysym == XK_p)
-		print_info(*data);
-	if (keysym == XK_l)
-		print_line(*data);
-	if (keysym == XK_KP_Add)
-		data->zoom *= 1.10;
-	if (keysym == XK_KP_Subtract)
-		data->zoom *= 0.90;
-	if (keysym == XK_a)
-		data->beg_x -= 10;
-	if (keysym == XK_d)
-		data->beg_x += 10;
-	if (keysym == XK_s)
-		data->beg_y += 10;
-	if (keysym == XK_w)
-		data->beg_y -= 10;
-	if (keysym == XK_r)
-		reset_angle_pos(data);
-	if (keysym == XK_z)
-	{
-		if (data->is_wireframe == 1)
-			data->is_wireframe = 0;
-		else
-			data->is_wireframe = 1;
-	}
-	if (keysym == XK_x)
-		data->z_amplifier -= 0.10;
-	if (keysym == XK_c)
-		data->z_amplifier += 0.10;
-	reset_img(data);
-	project(data);
-	return (0);
-}
-
-//	(*f)(int button, int x, int y, void *param);
-
-int	handle_mouse_input(int button, int x, int y, t_data *data)
-{
-	t_colour	colour;
-
-	colour = init_colour(get_pixel_color(&data->img, x, y), 0, 0, 0);
-	ft_printf("click on x : %i y : %i with button %i\n", x, y, button);
-	ft_printf("r : %i, g : %i, b : %i\n", colour.r, colour.g, colour.b);
-	data->button.click_x = x;
-	data->button.click_y = y;
+	ft_printf("resize %i:%i", width, height);
 	(void)data;
-	return (0);
-}
-
-int	button1_motion(int x, int y, t_data *data)
-{
-	ft_printf("x %i\n", x);
-	ft_printf("y %i\n", y);
-	if (data->button.click_x != 0 || data->button.click_y != 0)
-	{
-		if (x > data->button.click_x)
-			data->dif_x += 1;
-		else
-			data->dif_x -= 1;
-		if (y > data->button.click_y)
-			data->dif_y += 1;
-		else
-			data->dif_y -= 1;
-	}
-	data->button.click_x = x;
-	data->button.click_y = y;
-	ft_printf("dif x : %i | dif y : %i\n", data->dif_x, data->dif_y);
-	reset_img(data);
-	project(data);
-	return (0);
-}
-int	button3_motion(int x, int y, t_data *data)
-{
-	ft_printf("x %i\n", x);
-	ft_printf("y %i\n", y);
-	if ((data->button.click_x != 0 || data->button.click_y != 0) && (x % 10 == 0
-			|| y % 10 == 0))
-	{
-		if (x > data->button.click_x)
-			data->angle_y = check_angle(data->angle_y + 5);
-		else
-			data->angle_y = check_angle(data->angle_y - 5);
-		if (y > data->button.click_y)
-		{
-//			data->angle_z = check_angle(data->angle_z + 5);
-			data->angle_x = check_angle(data->angle_x + 5);
-		}
-		else
-		{
-//			data->angle_z = check_angle(data->angle_z - 5);
-			data->angle_x = check_angle(data->angle_x - 5);
-		}
-	}
-	data->button.click_x = x;
-	data->button.click_y = y;
-	ft_printf("dif x : %i | dif y : %i\n", data->dif_x, data->dif_y);
-	reset_img(data);
-	project(data);
-	return (0);
-}
-
-int	button1_release(int button, int x, int y, t_data *data)
-{
-	ft_printf("release at %i:%i with button %i\n", x, y, button);
-	data->button.release_x = x;
-	data->button.release_y = y;
-	data->dif_x = data->button.release_x - data->button.click_x;
-	data->dif_y = data->button.release_y - data->button.click_y;
-	ft_printf("mouvement of x : %i | y : %i\n", data->dif_x, data->dif_y);
-	reset_img(data);
-	project(data);
 	return (0);
 }
 
@@ -187,6 +66,7 @@ int	render(t_data *data)
 {
 	if (!data->win_ptr)
 		return (1);
+	reset_img(data);
 	project(data);
 	return (0);
 }
@@ -271,13 +151,14 @@ int	main(int argc, char *argv[])
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
-	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
+ 	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
 			&data);
 	mlx_hook(data.win_ptr, MotionNotify, Button3MotionMask, &button3_motion,
 			&data);
 	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
 			&data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
+	mlx_hook(data.win_ptr, ResizeRequest, ResizeRedirectMask, &ft_resize, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);

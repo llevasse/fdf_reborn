@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/13 11:30:43 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:03:45 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,15 @@ typedef struct s_polygon
 void					print_line(t_data data);
 void					print_info(t_data data);
 void					reset_img(t_data *data);
+void					reset_setting(t_data *data);
+int						close_window(t_data *data);
+
+/* input.c */
+int						handle_input(int keysym, t_data *data);
+int						handle_mouse_input(int button, int x, int y,
+							t_data *data);
+int						button1_motion(int x, int y, t_data *data);
+int						button3_motion(int x, int y, t_data *data);
 
 /* point.c */
 void					init_points(t_data *data, int fd);

@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/03/14 13:31:21 by llevasse         ###   ########.fr        #
+#    Updated: 2023/03/16 09:40:10 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FILES			=	srcs/fdf.c		\
 					srcs/matrix.c	\
 					srcs/colour.c	\
 					srcs/filling.c  \
+					srcs/input.c	\
 
 OBJS			=	${FILES:.c=.o}
 
