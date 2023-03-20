@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/16 10:03:45 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:58:30 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define ZERO_R 255
 # define ZERO_G 255
 # define ZERO_B 255
+
 typedef struct s_img
 {
 	void				*mlx_img;
@@ -171,8 +172,9 @@ float					**init_matrix_y(t_data data);
 float					**init_matrix_z(t_data data);
 void					get_matrix_point(t_data *data, t_point point, float *x,
 							float *y);
-void					free_matrix(float **matrix_x, float **matrix_y,
-							float **matrix_z);
+void					free_all_matrix(float *matrix_point, float **matrix_x,
+							float **matrix_y, float **matrix_z);
+void					free_matrix(float **matrix);
 float					*multiply_matrix(float **matrix, float *matrix_point,
 							t_data *data);
 
