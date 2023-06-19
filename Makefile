@@ -6,11 +6,15 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/03/20 11:00:02 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/19 22:18:00 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS			= -Wall -Werror -Wextra
+
+MLX_PATH		= minilibx
+
+MLX_FLAG		= -lmlx -lXext -lX11
 
 FILES			=	srcs/fdf.c		\
 					srcs/point.c	\
@@ -29,12 +33,11 @@ NAME			=	fdf.a
 EXECUTABLE		=	fdf
 
 %.o: %.c 
-					gcc ${FLAGS} -I includes -c $< -o ${<:.c=.o} -lmlx -lXext -lX11 -lm
+					cc ${FLAGS} -I$(MLX_PATH) -c $< -o ${<:.c=.o}
 					
 ${NAME}:		${OBJS} includes/fdf.h Makefile
-					make -C libft 
-					ar rcs ${NAME} libft/libft.a libmlx_Linux.a libmlx.a ${OBJS}
-					gcc ${NAME} -o ${EXECUTABLE} -lmlx -lXext -lX11 -lm
+					make -sC libft 
+					cc $(OBJS) libft/libft.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
 
 all:			${NAME}
 

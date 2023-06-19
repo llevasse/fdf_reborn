@@ -6,44 +6,104 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 16:33:32 by leo               #+#    #+#              #
-#    Updated: 2023/03/03 15:46:38 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/19 22:20:13 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
 
-FILES		= ft_atoi.c ft_striteri.c ft_bzero.c ft_strjoin.c ft_calloc.c ft_strlcat.c ft_isalnum.c ft_memchr.c ft_strlcpy.c ft_isalpha.c ft_memcmp.c ft_strlen.c ft_isascii.c ft_memcpy.c ft_strmapi.c ft_isdigit.c ft_memmove.c ft_strncmp.c ft_isprint.c ft_memset.c ft_strnstr.c ft_itoa.c ft_putchar_fd.c ft_putnbr_fd.c ft_strrchr.c ft_putendl_fd.c ft_strtrim.c ft_substr.c ft_putstr_fd.c ft_tolower.c ft_split.c ft_toupper.c ft_strchr.c ft_strdup.c ft_is_in_str.c \
-				ft_printf/ft_printf.c ft_printf/ft_printf_utils.c \
-				gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
+CC				=	cc
 
-BONUS		= ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
+STR_FILES		=	./str/ft_strchr.c \
+					./str/ft_strnstr.c \
+					./str/ft_substr.c \
+					./str/ft_strlcpy.c \
+					./str/ft_strtrim.c \
+					./str/ft_itoa.c \
+					./str/ft_toupper.c \
+					./str/ft_strmapi.c \
+					./str/ft_strdup.c \
+					./str/ft_split.c \
+					./str/ft_striteri.c \
+					./str/ft_strncmp.c \
+					./str/ft_strrchr.c \
+					./str/ft_tolower.c \
+					./str/ft_strjoin.c \
+					./str/ft_strlen.c \
+					./str/ft_strlcat.c \
+					./str/ft_str_revert.c
+PRINTING_FILES	=	./print/ft_putstr_fd.c \
+					./print/ft_putnbr_fd.c \
+					./print/ft_putchar_fd.c \
+					./print/ft_putendl_fd.c 
+BOOLEAN_FILES	=	./boolean/ft_is_in_str.c \
+					./boolean/ft_isprint.c \
+					./boolean/ft_isdigit.c \
+					./boolean/ft_isascii.c \
+					./boolean/ft_isalpha.c \
+					./boolean/ft_isalnum.c 
+MEMORY_FILES	=	./memory/ft_memset.c \
+					./memory/ft_bzero.c \
+					./memory/ft_memmove.c \
+					./memory/ft_memchr.c \
+					./memory/ft_memcmp.c \
+					./memory/ft_calloc.c \
+					./memory/ft_memcpy.c
+LIST_FILES		=	./list/ft_lstadd_back.c \
+					./list/ft_lstmap.c \
+					./list/ft_lstiter.c \
+					./list/ft_lstnew.c \
+					./list/ft_lstlast.c \
+					./list/ft_lstclear.c \
+					./list/ft_lstsize.c \
+					./list/ft_lstdelone.c \
+					./list/ft_lstadd_front.c
+INT_FILES		=	./ft_atoi.c
+PRINTF_FILES	=	./ft_printf/flags/print_precision.c \
+					./ft_printf/flags/print_field_width.c \
+					./ft_printf/flags/print_space.c \
+					./ft_printf/flags/get_details.c \
+					./ft_printf/flags/print_padding.c \
+					./ft_printf/flags/print_plus.c \
+					./ft_printf/flags/field_width_utils.c \
+					./ft_printf/flags/predict.c \
+					./ft_printf/flags/priorities.c \
+					./ft_printf/flags/print_minus.c \
+					./ft_printf/flags/print_pound.c \
+					./ft_printf/ft_printf_utils.c \
+					./ft_printf/ft_printf.c
 
-OBJS		= ${FILES:.c=.o}
 
-BONUS_OBJS	= ${BONUS:.c=.o}
+FILES_GNL		=	./gnl/get_next_line.c \
+					./gnl/get_next_line_utils.c
 
-NAME		= libft.a
+OBJS			=	$(PRINTING_FILES:.c=.o) \
+					$(STR_FILES:.c=.o) \
+					$(BOOLEAN_FILES:.c=.o) \
+					$(MEMORY_FILES:.c=.o) \
+					$(INT_FILES:.c=.o) \
+					$(FILES_GNL:.c=.o) \
+					$(PRINTF_FILES:.c=.o) \
 
-HEADER		= libft.h
+NAME			=	libft.a
 
-%.o:		%.c ${HEADER} Makefile
-				gcc ${FLAGS} -c $< -o ${<:.c=.o}
+HEADER			=	libft.h
 
-${NAME}:	${OBJS}
-				ar rcs ${NAME} ${OBJS}
+%.o:			%.c $(HEADER)
+					$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
-bonus:		$(OBJS) $(BONUS_OBJS)
-				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+$(NAME):		$(OBJS)
+					ar rcs $(NAME) $(OBJS)
 
-all:		${NAME}
+all:			$(NAME)
 
 clean:
-				rm -f ${OBJS} ${BONUS_OBJS}
+					rm -f $(OBJS)
 
-fclean:		clean
-				rm -f ${NAME}
+fclean:			clean
+					rm -f $(NAME)
 				
-re:			fclean all
+re:				fclean all
 
-.PHONY:		all	clean	fclean	re	bonus
+.PHONY:			all	clean	fclean	re 
