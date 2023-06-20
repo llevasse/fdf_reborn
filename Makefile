@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/20 17:11:24 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/20 17:25:12 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,22 +24,19 @@ FILES			=	srcs/fdf.c		\
 					srcs/filling.c  \
 					srcs/input.c	\
 					srcs/extra.c	\
-					srcs/init_matrix.c \
-					srcs/debug.c
+					srcs/init_matrix.c
 
 OBJS			=	${FILES:.c=.o}
 
 LIBFT			=	libft/libft.a
 
-NAME			=	fdf.a
-
-EXECUTABLE		=	fdf
+NAME			=	fdf
 
 %.o:			%.c Makefile includes/fdf.h
 					cc -g ${FLAGS} -I includes -I$(MLX_PATH) -c $< -o ${<:.c=.o}
 					
 ${NAME}:		LIBFT ${OBJS} includes/fdf.h Makefile
-					cc -g -ggdb $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
+					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
 all:			${NAME}
 
@@ -48,39 +45,12 @@ LIBFT:
 
 clean:
 					@make -sC libft clean
-					rm -f ${OBJS}
+					@rm -f ${OBJS}
 
 fclean:			clean
 					@make -sC libft fclean
-					rm -f ${NAME} ${EXECUTABLE}
+					@rm -f ${NAME} ${EXECUTABLE}
 
 re:				fclean all
-
-VAR				= test_files/42.fdf
-
-alldebug:		bin/$(EXECUTABLE)
-
-run:			cleandebug alldebug
-					clear
-					./bin/$(EXECUTABLE) $(VAR)
-
-run_test:		cleandebug alldebug
-					clear
-					./bin/$(EXECUTABLE) test_files/test.fdf
-					
-run_test100-6:	cleandebug alldebug
-					clear
-					./bin/fdf test_files/100-6.fdf
-
-
-run_vs_code: cleandebug alldebug
-	clear
-	./bin/$(EXECUTABLE)
-
-bin/$(EXECUTABLE): ${FILES} libft/libft.a libmlx_Linux.a libmlx.a
-					gcc ${FLAGS} -fsanitize=address -ggdb $^ -o $@ -lmlx -lXext -lX11 -lm
-
-cleandebug:
-					-rm ./bin/*
 
 .PHONY:			all clean fclean re
