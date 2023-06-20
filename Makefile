@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/20 14:06:49 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/20 17:11:24 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,19 +38,20 @@ EXECUTABLE		=	fdf
 %.o:			%.c Makefile includes/fdf.h
 					cc -g ${FLAGS} -I includes -I$(MLX_PATH) -c $< -o ${<:.c=.o}
 					
-${NAME}:		${OBJS} $(LIBFT) includes/fdf.h Makefile
+${NAME}:		LIBFT ${OBJS} includes/fdf.h Makefile
 					cc -g -ggdb $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
 
 all:			${NAME}
 
-$(LIBFT):
+LIBFT:
 					@make -sC libft
 
 clean:
-					make -C libft clean
+					@make -sC libft clean
 					rm -f ${OBJS}
 
 fclean:			clean
+					@make -sC libft fclean
 					rm -f ${NAME} ${EXECUTABLE}
 
 re:				fclean all

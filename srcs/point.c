@@ -6,11 +6,12 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/20 14:52:02 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:07:51 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <stdio.h>
 
 void	init_points(t_data *data, int fd)
 {
@@ -20,7 +21,7 @@ void	init_points(t_data *data, int fd)
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
 	if (!data->line)
 		return ;
-	print_line(*data);
+	//print_line(*data);
 	data->line -= data->nb_point;
 	data->point = malloc(((data->nb_row * data->nb_column) + 1)
 			* sizeof(t_point));
@@ -36,7 +37,6 @@ void	init_points(t_data *data, int fd)
 			data->point->y = y;
 			data->point->z = ft_atoi((const char *)data->line[(y
 						* (data->nb_column)) + x]);
-			ft_printf(" {%d,%d,%d(%d,%d,%s)}\n", data->point->x, data->point->y, data->point->z, x, y, data->line[(y * (data->nb_column)) + x]);
 			data->point->point_id = (y * data->nb_column) + x;
 			data->point->colour = init_colour(-1, -1, -1, -1);
 			if (ft_is_in_str(data->line[(y * data->nb_column) + x], ','))
@@ -46,7 +46,6 @@ void	init_points(t_data *data, int fd)
 			if (x++ == data->nb_column)
 				break ;
 		}
-		//ft_printf("\n");
 		y++;
 	}
 	data->point->x = (float)(data->nb_column - 1) / 2;
@@ -87,12 +86,12 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 		line = ft_strjoin(line, temp);
 		free(temp);
 	}
-	res = ft_split(line, ' ');
+	res = ft_split(line, " ");
 	if (res)
 		get_nb_elem(res, nb_column);
 	close(fd);
 	free_tab(res);
-	res = ft_split(line, '\n');
+	res = ft_split(line, " \n");
 	return (free(line), res);
 }
 void	get_bis(t_data *data)

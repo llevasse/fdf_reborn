@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:08:31 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/20 15:53:47 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:06:55 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*get_word(char const *s, char *to_skip, int i)
 
 	j = 0;
 	len_word = 0;
-	while (ft_is_in_str(to_skip, s[i + len_word]) && s[i + len_word] != '\0')
+	while (!ft_is_in_str(to_skip, s[i + len_word]) && s[i + len_word] != '\0')
 		len_word++;
 	res = malloc((len_word + 1) * sizeof(char));
 	if (!res)

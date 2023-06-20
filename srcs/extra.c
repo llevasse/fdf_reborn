@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/20 11:24:08 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:58:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,19 @@ void reset_setting(t_data *data)
 
 void print_line(t_data data)
 {
+	int i;
+
+	i = 0;
 	data.line -= data.nb_point;
 	while (*data.line)
-		ft_printf(" %s\n", *data.line++);
+	{
+		ft_printf("|%s", *data.line++);
+		if (i++ == data.nb_column)
+		{
+			i = 0;
+			ft_printf("|\n");
+		}
+	}
 }
 
 void print_info(t_data data)
