@@ -6,22 +6,19 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:08:31 by llevasse          #+#    #+#             */
-/*   Updated: 2023/05/25 14:50:15 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:04:10 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	**free_tab(char **tab, int index_word)
+char	**free_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
-	while (i < index_word)
-	{
-		free(tab[i]);
-		i++;
-	}
+	while (tab[i])
+		free(tab[i++]);
 	free(tab);
 	return (NULL);
 }
@@ -96,7 +93,7 @@ char	**ft_split(char const *s, char c)
 	{
 		res[index_word] = get_word(s, c, i);
 		if (!res[index_word])
-			return (free_tab(res, index_word));
+			return (free_tab(res));
 		while (s[i] != c && s[i] != '\0')
 			i++;
 		i = skip_char(s, c, i);
@@ -105,24 +102,3 @@ char	**ft_split(char const *s, char c)
 	res[index_word] = NULL;
 	return (res);
 }
-
-/* #include <stdio.h>
-#include <malloc/malloc.h>
-int main()
-{
-	char **tab;
-	unsigned long sizetab;
-
-	void * p2 = malloc(sizeof(char *) * 2);
-	tab = ft_split("chinimala", ' ');
-	sizetab = sizeof(tab);
-	printf("size tab : %lu\n", malloc_size(tab));
-	printf("expected size : %lu\nTAB :\n", malloc_size(p2));
-	int i = 0;
-	while (tab[i] != NULL)
-	{
-		printf("%s\n",tab[i]);
-		i++;
-	}
-	printf("%s\n",tab[i]);
-} */

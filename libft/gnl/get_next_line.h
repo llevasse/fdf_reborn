@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:59:20 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/11 10:54:50 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:06:56 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 char		*get_next_line(int fd);
 void		fill_char(char *dst, char *src, int till_nl);
-char		*ft_strjoin(char *s1, char *s2);
+char		*ft_strjoin_free_first(char *s1, char *s2);
 size_t		ft_strlen(const char *str);
 int			is_nl(const char *str);
 void		get_left_over(char *line, char *stach);

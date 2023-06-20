@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/19 22:18:00 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/20 10:08:19 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,22 @@ FILES			=	srcs/fdf.c		\
 
 OBJS			=	${FILES:.c=.o}
 
+LIBFT			=	libft/libft.a
+
 NAME			=	fdf.a
 
 EXECUTABLE		=	fdf
 
-%.o: %.c 
-					cc ${FLAGS} -I$(MLX_PATH) -c $< -o ${<:.c=.o}
+%.o:			%.c Makefile includes/fdf.h
+					cc -g ${FLAGS} -I includes -I$(MLX_PATH) -c $< -o ${<:.c=.o}
 					
-${NAME}:		${OBJS} includes/fdf.h Makefile
-					make -sC libft 
-					cc $(OBJS) libft/libft.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
+${NAME}:		${OBJS} $(LIBFT) includes/fdf.h Makefile
+					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
 
 all:			${NAME}
+
+$(LIBFT):
+					@make -sC libft
 
 clean:
 					make -C libft clean

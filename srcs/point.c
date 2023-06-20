@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/14 13:58:59 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:04:40 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 		line = ft_strjoin(line, temp);
 		free(temp);
 	}
-	res = ft_split(line, " ");
+	res = ft_split(line, ' ');
 	if (res)
 		get_nb_elem(res, nb_column);
 	close(fd);
 	free_tab(res);
-	res = ft_split(line, " \n");
+	res = ft_split(line, '\n');
 	return (free(line), res);
 }
 void	get_bis(t_data *data)

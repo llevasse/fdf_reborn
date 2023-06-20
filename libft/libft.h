@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 13:10:28 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/11 10:56:13 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:01:39 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 
 char	**ft_split(char const *s, char c);
+char	**free_tab(char **tab);
+
 
 int		ft_atoi(const char *str);
 
