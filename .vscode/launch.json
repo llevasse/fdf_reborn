@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/fdf",
 			"args": [
-				"test_files/42.fdf"
+				"../test_files/42.fdf"
 			],
 			"cwd": ".",
 			"environment": [],

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/20 10:08:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:36:11 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int argc, char *argv[])
 
 	if (argc == 1)
 		return (1);
+	data.point = NULL;
 	fd = open(argv[1], O_RDONLY);
 	if (init_data(&data, fd))
 		return (1);

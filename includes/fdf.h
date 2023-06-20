@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/19 22:14:16 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:15:11 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,9 @@ unsigned int			get_colour(t_line line);
 t_point					set_false_point(t_point p_1, t_point p_2);
 void					draw_triangle(t_point left, t_point right, t_point top,
 							t_img *img);
+
+
+void    print_lines(char **lines, int col, int rows);
+
 
 #endif
