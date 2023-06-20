@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/20 10:08:19 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/20 10:59:59 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ EXECUTABLE		=	fdf
 					cc -g ${FLAGS} -I includes -I$(MLX_PATH) -c $< -o ${<:.c=.o}
 					
 ${NAME}:		${OBJS} $(LIBFT) includes/fdf.h Makefile
-					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
+					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${EXECUTABLE}
 
 all:			${NAME}
 
