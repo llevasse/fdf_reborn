@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/20 17:25:12 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/20 22:35:40 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,20 +28,26 @@ FILES			=	srcs/fdf.c		\
 
 OBJS			=	${FILES:.c=.o}
 
+GREEN				=	\e[0;32m
+NC					=	\e[0m
+
 LIBFT			=	libft/libft.a
 
-NAME			=	fdf
+NAME			=	art
 
-%.o:			%.c Makefile includes/fdf.h
+%.o:			%.c $(LIBFT) Makefile includes/fdf.h
 					cc -g ${FLAGS} -I includes -I$(MLX_PATH) -c $< -o ${<:.c=.o}
-					
-${NAME}:		LIBFT ${OBJS} includes/fdf.h Makefile
-					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
-all:			${NAME}
+$(NAME):		libft fdf includes/fdf.h Makefile
+					@echo "$(GREEN)All files compiled succesfully :D$(NC)"
 
-LIBFT:
+$(LIBFT)::
 					@make -sC libft
+
+all:			$(NAME)
+
+fdf::		$(OBJS) $(LIBFT) includes/fdf.h Makefile
+					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
 clean:
 					@make -sC libft clean
