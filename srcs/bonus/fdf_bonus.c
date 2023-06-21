@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 11:10:51 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:36:11 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	init_data(t_data *data, int fd)
 	data->z_amplifier = 1;
 	init_points(data, fd);
 	set_highest_n_lowest_z(data);
+	set_colour(data);
+	data->bg = init_colour(0, 0, 0, 0);
 	data->zoom = 1000 / data->nb_column;
 	data->beg_x = WINDOW_WIDTH / 2;
 	data->beg_y = WINDOW_HEIGHT / 2;
