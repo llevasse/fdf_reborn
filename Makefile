@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/21 10:36:50 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/21 10:40:33 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,10 +59,12 @@ fdf::		$(OBJS) $(LIBFT) includes/fdf.h Makefile
 clean:
 					@make -sC libft clean
 					@rm -f ${OBJS}
+					@echo "$(GREEN)All object files deleted succesfully :D$(NC)"
 
 fclean:			clean
 					@make -sC libft fclean
-					@rm -f ${NAME} ${EXECUTABLE}
+					@rm -f ${NAME}
+					@echo "$(GREEN)All exec files deleted succesfully :D$(NC)"
 
 re:				fclean all
 
