@@ -6,15 +6,19 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/20 22:35:40 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/21 10:36:50 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS			= -Wall -Werror -Wextra
+FLAGS			= -Wall -Werror -Wextra -g -I $(INC_DIR) -I$(MLX_PATH)
 
 MLX_PATH		= minilibx
 
 MLX_FLAG		= -lmlx -lXext -lX11
+
+INC_DIR			=	includes/
+
+SRC_DIR			=	srcs/
 
 FILES			=	srcs/fdf.c		\
 					srcs/point.c	\
@@ -28,18 +32,21 @@ FILES			=	srcs/fdf.c		\
 
 OBJS			=	${FILES:.c=.o}
 
-GREEN				=	\e[0;32m
-NC					=	\e[0m
+RED					=	\033[0;31m
+GREEN				=	\033[0;32m
+NC					=	\033[0m
 
 LIBFT			=	libft/libft.a
 
 NAME			=	art
 
 %.o:			%.c $(LIBFT) Makefile includes/fdf.h
-					cc -g ${FLAGS} -I includes -I$(MLX_PATH) -c $< -o ${<:.c=.o}
+					cc ${FLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):		libft fdf includes/fdf.h Makefile
 					@echo "$(GREEN)All files compiled succesfully :D$(NC)"
+					@norminette $(INC_DIR) | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
+					@norminette $(SRC_DIR) | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 
 $(LIBFT)::
 					@make -sC libft
