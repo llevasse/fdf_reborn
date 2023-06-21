@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:08:31 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/20 17:06:55 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:36:44 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,13 @@ char	**ft_split(char const *s, char *to_skip)
 		res[index_word] = get_word(s, to_skip, i);
 		if (!res[index_word])
 			return (free_tab(res));
+		ft_printf("%-3s", res[index_word]);
 		while (!ft_is_in_str(to_skip, s[i]) && s[i] != '\0')
 			i++;
 		i = skip_char(s, to_skip, i);
 		index_word++;
 	}
 	res[index_word] = NULL;
+	ft_printf("\n\nJ'ai finis\n\n");
 	return (res);
 }

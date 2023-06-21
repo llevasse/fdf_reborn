@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 11:17:19 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:48:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	init_points(t_data *data, int fd)
 	int	y;
 
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
+	//ft_printf("\n\ncc : %s\n\n", data->line[0]);
 	if (!data->line)
 		return ;
 	//print_line(*data);
-	data->line -= data->nb_point;
+	//data->line -= data->nb_point;
 	data->point = malloc(((data->nb_row * data->nb_column) + 1)
 			* sizeof(t_point));
 	if (!data->point)
@@ -39,6 +40,7 @@ void	init_points(t_data *data, int fd)
 						* (data->nb_column)) + x]);
 			data->point->point_id = (y * data->nb_column) + x;
 			data->point++;
+			printf("\nCreated point %d : {%f,%f,%f} (%d,%d,%s)", data->point->point_id, data->point->x, data->point->y, data->point->z, x, y, data->line[(y * (data->nb_column)) + x]);
 			if (x++ == data->nb_column)
 				break ;
 		}
@@ -70,7 +72,9 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	char	**res;
 
 	line = get_next_line(fd);
-	if (line && ft_strchr(line, '\n'))
+	if (!line)
+		return (NULL);
+	if (ft_strchr(line, '\n'))
 		(*nb_row)++;
 	while (line)
 	{
@@ -88,6 +92,7 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	close(fd);
 	free_tab(res);
 	res = ft_split(line, " \n");
+	ft_printf("cc : %s", res[40]);
 	return (free(line), res);
 }
 void	get_bis(t_data *data)
