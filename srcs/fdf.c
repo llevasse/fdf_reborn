@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 11:10:51 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:29:03 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,6 @@ int	main(int argc, char *argv[])
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
-	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
-			&data);
-	mlx_hook(data.win_ptr, MotionNotify, Button3MotionMask, &button3_motion,
-			&data);
-	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
-			&data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);

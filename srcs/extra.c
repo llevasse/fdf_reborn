@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/20 15:58:14 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:27:29 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void print_info(t_data data)
 			  (int)data.angle_y, (int)data.angle_z);
 	while (data.point->point_id != data.nb_point)
 	{
-		ft_printf("{%i.%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
-				  (int)data.point->z, data.point->colour);
+		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
+				  (int)data.point->z);
 		data.point++;
 		if (data.point->x == 0)
 			ft_printf("\n");

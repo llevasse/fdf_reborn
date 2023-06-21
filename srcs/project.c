@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 11:20:06 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:29:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	project(t_data *data)
 {
 	int		i;
 
-	get_pixel_color(&data->img, 0, 0);
 	get_bis(data);
 	i = 0;
 	while (data->point->point_id != (data->nb_point - 1))
@@ -69,7 +68,7 @@ void	draw_line(t_line line, t_img *img)
 			|| (line.p_a.y_bis > WINDOW_HEIGHT
 				&& line.p_b.y_bis > WINDOW_HEIGHT))
 			break ;
-		img_pix_put(img, line.x, line.y);
+		img_pix_put(img, line.x, line.y, 0xffffff);
 		move_forward(&line);
 		line.i++;
 	}
@@ -115,7 +114,7 @@ void	move_forward(t_line *line)
 //          end if
 //      end while
 
-void	img_pix_put(t_img *img, int x, int y)
+void	img_pix_put(t_img *img, int x, int y, int colour)
 {
 	char	*pixel;
 	int		i;
@@ -127,9 +126,9 @@ void	img_pix_put(t_img *img, int x, int y)
 	while (i >= 0)
 	{
 		if (img->endian != 0)
-			*pixel = (0xffffff >> i) & 0xFF;
+			*pixel = (colour >> i) & 0xFF;
 		else
-			*pixel = (0xffffff >> (img->bpp - 8 - i)) & 0xff;
+			*pixel = (colour >> (img->bpp - 8 - i)) & 0xff;
 		pixel++;
 		i -= 8;
 	}
