@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/22 11:11:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:17:26 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,44 +88,6 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	free_tab(res);
 	res = ft_split(line, " \n");
 	return (free(line), res);
-}
-void	get_bis(t_data *data)
-{
-	float	temp_z;
-
-	while (data->point->point_id != 0)
-		data->point--;
-	while (data->point->point_id != data->nb_row * data->nb_column)
-	{
-		temp_z = data->point->z;
-		data->point->z_bis = 0;
-		data->point->x_bis = data->dif_x + (data->point->x * data->zoom)
-			+ (data->beg_x - (data->zoom * (data->nb_column - 1) / 2));
-		data->point->y_bis = data->dif_y + (data->point->y * data->zoom)
-			+ (data->beg_y - (data->zoom * (data->nb_row - 1) / 2));
-		data->point->x_bis_no_z = data->dif_x + (data->point->x
-				* data->zoom) + (data->beg_x - (data->zoom * (data->nb_column - 1) / 2));
-		data->point->y_bis_no_z = data->dif_y + (data->point->y
-				* data->zoom) + (data->beg_y - (data->zoom * (data->nb_row - 1) / 2));
-		get_matrix_point(data, *data->point, &data->point->x_bis_no_z,
-				&data->point->y_bis_no_z);
-		data->point->z = temp_z;
-		data->point->z_bis = (data->point->z * data->z_amplifier) * data->zoom;
-		get_matrix_point(data, *data->point, &data->point->x_bis,
-				&data->point->y_bis);
-		data->point->x_bis += data->dif_x;
-		data->point->y_bis += data->dif_y;
-		data->point->x_bis_no_z += data->dif_x;
-		data->point->y_bis_no_z += data->dif_y;
-		data->point++;
-	}
-	data->point->x_bis = (data->point->x * data->zoom) + (data->beg_x - (data->zoom * (data->nb_column - 1)) / 2);
-	data->point->y_bis = (data->point->y * data->zoom) + (data->beg_y - (data->zoom * (data->nb_row - 1)) / 2);
-	data->point->z_bis = data->point->z * data->zoom;
-	get_matrix_point(data, *data->point, &data->point->x_bis,
-			&data->point->y_bis);
-	while (data->point->point_id != 0)
-		data->point--;
 }
 
 void	reset_point_ptr(t_data *data)

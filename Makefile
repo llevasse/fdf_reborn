@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/21 11:10:02 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/22 14:16:54 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,13 @@ INC_DIR			=	includes/
 
 SRC_DIR			=	srcs/
 
-FILES			=	srcs/fdf.c		\
-					srcs/point.c	\
-					srcs/project.c	\
-					srcs/matrix.c	\
-					srcs/input.c	\
-					srcs/extra.c	\
+FILES			=	srcs/fdf.c			\
+					srcs/point.c		\
+					srcs/point_bis.c	\
+					srcs/project.c		\
+					srcs/matrix.c		\
+					srcs/input.c		\
+					srcs/extra.c		\
 					srcs/init_matrix.c
 
 OBJS			=	${FILES:.c=.o}
