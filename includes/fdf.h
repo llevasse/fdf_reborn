@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 17:28:12 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:45:25 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,7 @@
 # define WINDOW_HEIGHT 1080
 
 # define PI 3.1415926535
-# define RADIAN PI / 180
-# define HIGHEST_R 255
-# define HIGHEST_G 0
-# define HIGHEST_B 255
-# define LOWEST_R 0
-# define LOWEST_G 255
-# define LOWEST_B 0
-# define BEG_R 255
-# define BEG_G 255
-# define BEG_B 0
-# define ZERO_R 255
-# define ZERO_G 255
-# define ZERO_B 255
+# define RADIAN 0.017453292519444445
 
 typedef struct s_img
 {
@@ -148,7 +136,6 @@ t_line					set_line_data(t_point p_a, t_point p_b);
 void					move_forward(t_line *line);
 unsigned int			get_pixel_color(t_img *img, int x, int y);
 
-void    print_lines(char **lines, int col, int rows);
-
+void					print_lines(char **lines, int col, int rows);
 
 #endif

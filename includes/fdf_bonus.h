@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/20 11:15:11 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:47:53 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "../libft/libft.h"
 # include "mlx.h"
@@ -29,7 +29,7 @@
 # define WINDOW_HEIGHT 1080
 
 # define PI 3.1415926535
-# define RADIAN PI / 180
+# define RADIAN 0.017453292519444445
 # define HIGHEST_R 255
 # define HIGHEST_G 0
 # define HIGHEST_B 255
@@ -198,8 +198,6 @@ t_point					set_false_point(t_point p_1, t_point p_2);
 void					draw_triangle(t_point left, t_point right, t_point top,
 							t_img *img);
 
-
-void    print_lines(char **lines, int col, int rows);
-
+void					print_lines(char **lines, int col, int rows);
 
 #endif

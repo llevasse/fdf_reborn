@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 17:29:23 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:50:41 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ void	project(t_data *data)
 	{
 		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
-						&data->img);
+				&data->img);
 		if (i < data->nb_point - data->nb_column)
 			draw_line(set_line_data(*data->point, *(data->point
-							+ data->nb_column)),
-						&data->img);
+						+ data->nb_column)), &data->img);
 		data->point++;
 		i++;
 	}
 	reset_point_ptr(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
-			0);
+		0);
 }
 
 t_line	set_line_data(t_point p_a, t_point p_b)
@@ -58,6 +57,7 @@ t_line	set_line_data(t_point p_a, t_point p_b)
 	line.y = p_a.y_bis;
 	return (line);
 }
+
 void	draw_line(t_line line, t_img *img)
 {
 	while (line.i <= line.dx || line.i <= line.dy)
