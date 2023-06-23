@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 14:12:49 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:00:53 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	init_data(t_data *data, int fd)
 			"fdf");
 	if (!data->win_ptr)
 		return (free(data->win_ptr), 1);
-	data->angle_x = check_angle(45);
-	data->angle_y = check_angle(-35);
-	data->angle_z = check_angle(30);
+	data->angle_x = 45;
+	data->angle_y = -35;
+	data->angle_z = 30;
 	data->nb_column = 0;
 	data->nb_row = 0;
 	data->is_wireframe = 1;
@@ -90,12 +90,6 @@ int	main(int argc, char *argv[])
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
-	mlx_hook(data.win_ptr, MotionNotify, Button1MotionMask, &button1_motion,
-		&data);
-	mlx_hook(data.win_ptr, MotionNotify, Button3MotionMask, &button3_motion,
-		&data);
-	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &handle_mouse_input,
-		&data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_display(data.mlx_ptr);

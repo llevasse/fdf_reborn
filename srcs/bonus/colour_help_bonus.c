@@ -6,18 +6,19 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:18:40 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 14:27:15 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:18:15 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
-void	no_higher(int *nb)
+int	no_higher(int nb, int highest, int lowest)
 {
-	if (*nb < 0)
-		*nb = 0;
-	if (*nb > 255)
-		*nb = 255;
+	if (nb < lowest)
+		return (no_higher(nb + highest, highest, lowest));
+	if (nb > highest)
+		return (no_higher(nb - highest, highest, lowest));
+	return (nb);
 }
 
 t_colour	init_colour(int colour, int r, int g, int b)
@@ -37,9 +38,9 @@ t_colour	init_colour(int colour, int r, int g, int b)
 		elem.g = (colour >> 8);
 		elem.b = colour;
 	}
-	no_higher(&elem.r);
-	no_higher(&elem.g);
-	no_higher(&elem.b);
+	elem.r = no_higher(elem.r, 255, 0);
+	elem.g = no_higher(elem.g, 255, 0);
+	elem.b = no_higher(elem.b, 255, 0);
 	return (elem);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:29:15 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:51:33 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	project(t_data *data)
 	{
 		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
-						&data->img);
+				&data->img);
 		if (i < data->nb_point - data->nb_column)
 			draw_line(set_line_data(*data->point, *(data->point
-							+ data->nb_column)),
-						&data->img);
+						+ data->nb_column)), &data->img);
 		data->point++;
 		i++;
 	}
@@ -34,7 +33,7 @@ void	project(t_data *data)
 	draw_greencross_on_center(&data->img);
 	reset_point_ptr(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
-			0);
+		0);
 }
 
 t_line	set_line_data(t_point p_a, t_point p_b)
@@ -60,6 +59,7 @@ t_line	set_line_data(t_point p_a, t_point p_b)
 	line.y = p_a.y_bis;
 	return (line);
 }
+
 void	draw_line(t_line line, t_img *img)
 {
 	while (line.i <= line.dx || line.i <= line.dy)
@@ -71,8 +71,7 @@ void	draw_line(t_line line, t_img *img)
 				&& line.p_b.y_bis > WINDOW_HEIGHT))
 			break ;
 		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
-			&& line.y <= WINDOW_HEIGHT && get_pixel_color(img, line.x,
-				line.y) != get_colour(line))
+			&& line.y <= WINDOW_HEIGHT)
 			img_pix_put(img, line.x, line.y, get_colour(line));
 		move_forward(&line);
 		line.i++;
@@ -114,43 +113,6 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 		pixel++;
 		i -= 8;
 	}
-}
-
-unsigned int	get_pixel_color(t_img *img, int x, int y)
-{
-	char	*pixel;
-	int		i;
-	int		r;
-	int		g;
-	int		b;
-
-	r = 1;
-	g = 1;
-	b = 1;
-	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	if (img->endian != 0)
-	{
-		r *= ((*pixel << i) & 0xFF) + 1;
-		r *= ((*pixel << (i + 8)) & 0xFF) + 1;
-		g *= ((*pixel << (i + 16)) & 0xFF) + 1;
-		g *= ((*pixel << (i + 24)) & 0xFF) + 1;
-		b *= ((*pixel << (i + 32)) & 0xFF) + 1;
-		b *= ((*pixel << (i + 40)) & 0xFF) + 1;
-	}
-	else
-	{
-		b *= ((*pixel << (img->bpp - 8 - i)) & 0xFF) + 1;
-		b *= ((*pixel << (img->bpp - 8 - (i + 8))) & 0xFF) + 1;
-		g *= ((*pixel << (img->bpp - 8 - (i + 16))) & 0xFF) + 1;
-		g *= ((*pixel << (img->bpp - 8 - (i + 24))) & 0xFF) + 1;
-		r *= ((*pixel << (img->bpp - 8 - (i + 32))) & 0xFF) + 1;
-		r *= ((*pixel << (img->bpp - 8 - (i + 40))) & 0xFF) + 1;
-	}
-	r--;
-	g--;
-	b--;
-	return (get_rgb(r, g, b));
 }
 
 float	check_angle(float angle)

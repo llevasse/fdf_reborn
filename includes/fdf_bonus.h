@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:18:23 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:02:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,9 @@ t_colour				init_colour_from_str(const char *str);
 unsigned int			get_colour(t_line line);
 void					help_get_colour(t_line line, t_colour *rgb,
 							double gradiant);
+void					set_colour_high(t_data *data);
+void					set_colour_low(t_data *data);
+int						no_higher(int nb, int highest, int lowest);
 
 /* filling_bonus.c */
 t_point					set_false_point(t_point p_1, t_point p_2);

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:17:11 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 13:29:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:42:29 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,9 @@ void	set_bis_matrix(t_data *data)
 	data->point->y_bis += data->dif_y;
 	data->point->x_bis_no_z += data->dif_x;
 	data->point->y_bis_no_z += data->dif_y;
+}
+
+int	get_rgb(int r, int g, int b)
+{
+	return ((r * 256 * 256) + (g * 256) + b);
 }

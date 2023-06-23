@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:42:12 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 14:40:01 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:45:53 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,47 @@ void	help_get_colour(t_line line, t_colour *rgb, double gradiant)
 	}
 }
 
-int	get_rgb(int r, int g, int b)
+void	set_colour(t_data *data)
 {
-	return ((r * 256 * 256) + (g * 256) + b);
+	reset_point_ptr(data);
+	while (data->point->point_id != data->nb_point)
+	{
+		while (data->point->point_id != data->nb_point - 1
+			&& data->point->colour.hex != -1)
+			data->point++;
+		if (data->point->z == 0)
+			data->point->colour = init_colour(0, ZERO_R, ZERO_G, ZERO_B);
+		else if (data->point->z == data->highest_z)
+			data->point->colour = init_colour(0, HIGHEST_R, HIGHEST_G,
+					HIGHEST_B);
+		else if (data->point->z == data->lowest_z)
+			data->point->colour = init_colour(0, LOWEST_R, LOWEST_G, LOWEST_B);
+		else if (data->point->z > 0)
+			set_colour_high(data);
+		else if (data->point->z < 0)
+			set_colour_low(data);
+		data->point++;
+	}
+}
+
+void	set_colour_high(t_data *data)
+{
+	double	gradiant;
+
+	gradiant = (double)data->point->z / data->highest_z;
+	data->point->colour = init_colour(0, BEG_R - (gradiant * (BEG_R
+					- HIGHEST_R)), BEG_G - (gradiant * (BEG_G
+					- HIGHEST_G)), BEG_B - (gradiant * (BEG_B
+					- HIGHEST_B)));
+}
+
+void	set_colour_low(t_data *data)
+{
+	double	gradiant;
+
+	gradiant = (double)data->point->z / data->lowest_z;
+	data->point->colour = init_colour(0, BEG_R - (gradiant * (BEG_R
+					- LOWEST_R)), BEG_G - (gradiant * (BEG_G
+					- LOWEST_G)), BEG_B - (gradiant * (BEG_B
+					- LOWEST_B)));
 }
