@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 09:59:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:13:31 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void					set_points(t_data *data);
 void					get_bis(t_data *data);
 void					set_bis_point(t_data *data);
 void					set_bis_matrix(t_data *data);
-
 
 /* matrix */
 float					**init_matrix_x(t_data data);

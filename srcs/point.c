@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 10:02:11 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:15:16 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,13 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	line = get_next_line(fd);
 	if (!line)
 		return (NULL);
-	if (ft_strchr(line, '\n'))
-		(*nb_row)++;
+	(*nb_row)++;
 	while (line)
 	{
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
-		if (ft_strchr(temp, '\n'))
-			(*nb_row)++;
+		(*nb_row)++;
 		line = ft_strjoin(line, temp);
 		free(temp);
 	}
@@ -103,4 +101,3 @@ void	reset_point_ptr(t_data *data)
 			data->point--;
 	}
 }
-
