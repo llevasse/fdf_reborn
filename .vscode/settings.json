@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"fdf.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"fdf_bonus.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
