@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.c                                           :+:      :+:    :+:   */
+/*   matrix_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/20 11:00:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:07:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
 {

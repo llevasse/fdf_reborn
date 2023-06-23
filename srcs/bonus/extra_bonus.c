@@ -6,11 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 18:39:48 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:07:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 void reset_setting(t_data *data)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colour.c                                           :+:      :+:    :+:   */
+/*   colour_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:42:12 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/09 22:23:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:07:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 unsigned int	get_colour(t_line line)
 {

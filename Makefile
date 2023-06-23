@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/23 10:04:41 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/23 13:19:36 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,18 @@ FILES			=	srcs/fdf.c			\
 					srcs/extra.c		\
 					srcs/init_matrix.c
 
-OBJS			=	${FILES:.c=.o}
+BONUS_FILES		=	./srcs/bonus/init_matrix_bonus.c \
+					./srcs/bonus/filling_bonus.c \
+					./srcs/bonus/extra_bonus.c \
+					./srcs/bonus/input_bonus.c \
+					./srcs/bonus/fdf_bonus.c \
+					./srcs/bonus/point_bonus.c \
+					./srcs/bonus/colour_bonus.c \
+					./srcs/bonus/project_bonus.c \
+					./srcs/bonus/matrix_bonus.c
+
+OBJS				=	${FILES:.c=.o}
+BONUS_OBJS			=	${BONUS_FILES:.c=.o}
 
 RED					=	\033[0;31m
 GREEN				=	\033[0;32m
@@ -60,6 +71,10 @@ all:			$(NAME)
 fdf::			$(OBJS) $(LIBFT) includes/fdf.h Makefile
 					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
+fdf_bonus::		$(BONUS_OBJS) $(LIBFT) includes/fdf.h Makefile
+					cc -g $(BONUS_OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
+
+
 clean:
 					@make -sC libft clean
 					@rm -f ${OBJS}
@@ -67,7 +82,7 @@ clean:
 
 fclean:			clean
 					@make -sC libft fclean
-					@rm -f ${NAME} fdf
+					@rm -f ${NAME} fdf fdf_bonus
 					@echo "$(GREEN)All exec files deleted succesfully :D$(NC)"
 
 re:				fclean all
