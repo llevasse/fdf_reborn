@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/22 14:31:29 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 09:59:35 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ int						button3_motion(int x, int y, t_data *data);
 void					init_points(t_data *data, int fd);
 char					**get_line(int fd, int *nb_row, int *nb_column);
 void					reset_point_ptr(t_data *data);
-void					set_colour(t_data *data);
-t_point					init_one_point(t_data *data, float x, float y, float z);
+void					set_points(t_data *data);
 
 /* point_bis.c */
 void					get_bis(t_data *data);

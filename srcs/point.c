@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/22 14:17:26 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:02:11 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	init_points(t_data *data, int fd)
 {
-	int	x;
-	int	y;
-
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
 	if (!data->line)
 		return ;
@@ -24,6 +21,16 @@ void	init_points(t_data *data, int fd)
 			* sizeof(t_point));
 	if (!data->point)
 		return ;
+	set_points(data);
+	data->nb_point = data->point->point_id;
+	reset_point_ptr(data);
+}
+
+void	set_points(t_data *data)
+{
+	int	x;
+	int	y;
+
 	y = 0;
 	while (y < data->nb_row)
 	{
@@ -45,8 +52,6 @@ void	init_points(t_data *data, int fd)
 	data->point->y = (float)(data->nb_row - 1) / 2;
 	data->point->z = 0;
 	data->point->point_id = data->nb_column * data->nb_row;
-	data->nb_point = data->point->point_id;
-	reset_point_ptr(data);
 }
 
 static void	get_nb_elem(char **str, int *nb)
@@ -99,17 +104,3 @@ void	reset_point_ptr(t_data *data)
 	}
 }
 
-t_point	init_one_point(t_data *data, float x, float y, float z)
-{
-	struct s_point new;
-
-	new.x = x;
-	new.y = y;
-	new.z = z;
-	new.x_bis = (new.x * data->zoom) + data->beg_x / 2;
-	new.y_bis = (new.y * data->zoom) + data->beg_y / 2;
-	new.z_bis = new.z * data->zoom;
-	get_matrix_point(data, new, &new.x_bis, &new.y_bis);
-
-	return (new);
-}
