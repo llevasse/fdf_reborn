@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:51:33 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:40:31 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,4 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 		pixel++;
 		i -= 8;
 	}
-}
-
-float	check_angle(float angle)
-{
-	while (angle < 0)
-		angle += 360;
-	while (angle > 360)
-		angle -= 360;
-	return (angle);
 }
