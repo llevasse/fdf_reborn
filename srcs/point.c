@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 10:15:16 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:50:56 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 		if (!temp)
 			break ;
 		(*nb_row)++;
-		line = ft_strjoin(line, temp);
+		line = ft_strjoin_free_first(line, temp);
 		free(temp);
 	}
 	res = ft_split(line, " ");

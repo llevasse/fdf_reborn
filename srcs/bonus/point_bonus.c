@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:40:41 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:10:19 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	init_points(t_data *data, int fd)
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
 	if (!data->line)
 		return ;
-	data->line -= data->nb_point;
 	data->point = malloc(((data->nb_row * data->nb_column) + 1)
 			* sizeof(t_point));
 	if (!data->point)
@@ -86,13 +85,12 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 			break ;
 		if (ft_strchr(temp, '\n'))
 			(*nb_row)++;
-		line = ft_strjoin(line, temp);
+		line = ft_strjoin_free_first(line, temp);
 		free(temp);
 	}
 	res = ft_split(line, " ");
 	if (res)
 		get_nb_elem(res, nb_column);
-	close(fd);
 	free_tab(res);
 	res = ft_split(line, " \n");
 	return (free(line), res);

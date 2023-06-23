@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 17:00:53 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:10:10 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	close_window(t_data *data)
 {
+	free(data->point);
+	if (data->line)
+		free_tab(data->line);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	free(data->point);
-	free_tab(data->line);
 	data->win_ptr = NULL;
 	return (0);
 }
@@ -85,6 +86,7 @@ int	main(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY);
 	if (init_data(&data, fd))
 		return (1);
+	close(fd);
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
@@ -95,4 +97,3 @@ int	main(int argc, char *argv[])
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 }
-// angle iso x = 45 y = -35 z = 30

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:57:48 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:57:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ void	reset_setting(t_data *data)
 	data->dif_y = 0;
 }
 
-void	print_line(t_data data)
-{
-	int	i;
+// void	print_line(t_data data)
+// {
+// 	int	i;
 
-	i = 0;
-	while (*data.line)
-	{
-		ft_printf("|%s", *data.line++);
-		if (i++ == data.nb_column)
-		{
-			i = 0;
-			ft_printf("|\n");
-		}
-	}
-}
+// 	i = 0;
+// 	while (*data.line)
+// 	{
+// 		ft_printf("|%s", *data.line++);
+// 		if (i++ == data.nb_column)
+// 		{
+// 			i = 0;
+// 			ft_printf("|\n");
+// 		}
+// 	}
+// }
 
 void	print_info(t_data data)
 {
