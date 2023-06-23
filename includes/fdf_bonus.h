@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/22 10:47:53 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:32:00 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,30 +143,33 @@ typedef struct s_polygon
 	t_point				center_point;
 }						t_polygon;
 
-/* fdf.c */
+/* fdf_bonus.c */
 void					print_line(t_data data);
 void					print_info(t_data data);
 void					reset_img(t_data *data);
 void					reset_setting(t_data *data);
 int						close_window(t_data *data);
 
-/* input.c */
+/* input_bonus.c */
 int						handle_input(int keysym, t_data *data);
 int						handle_mouse_input(int button, int x, int y,
 							t_data *data);
 int						button1_motion(int x, int y, t_data *data);
 int						button3_motion(int x, int y, t_data *data);
 
-/* point.c */
+/* point_bonus.c */
 void					init_points(t_data *data, int fd);
 char					**get_line(int fd, int *nb_row, int *nb_column);
-void					get_bis(t_data *data);
 void					reset_point_ptr(t_data *data);
+void					set_points(t_data *data);
 void					set_colour(t_data *data);
-t_point					init_one_point(t_data *data, float x, float y, float z,
-							unsigned int colour);
 
-/* matrix */
+/* point_bis_bonus.c */
+void					get_bis(t_data *data);
+void					set_bis_point(t_data *data);
+void					set_bis_matrix(t_data *data);
+
+/* matrix_bonus.c */
 float					**init_matrix_x(t_data data);
 float					**init_matrix_y(t_data data);
 float					**init_matrix_z(t_data data);
@@ -178,7 +181,7 @@ void					free_matrix(float **matrix);
 float					*multiply_matrix(float **matrix, float *matrix_point,
 							t_data *data);
 
-/* project.c */
+/* project_bonus.c */
 void					project(t_data *data);
 void					draw_line(t_line line, t_img *img);
 void					img_pix_put(t_img *img, int x, int y, int color);
@@ -186,14 +189,15 @@ float					check_angle(float angle);
 t_line					set_line_data(t_point p_a, t_point p_b);
 void					move_forward(t_line *line);
 unsigned int			get_pixel_color(t_img *img, int x, int y);
-/* colour.c */
+
+/* colour_bonus.c */
 int						get_rgb(int r, int g, int b);
 int						hex2int(char byte);
 t_colour				init_colour(int colour, int r, int g, int b);
 t_colour				init_colour_from_str(const char *str);
 unsigned int			get_colour(t_line line);
 
-/* filling.c */
+/* filling_bonus.c */
 t_point					set_false_point(t_point p_1, t_point p_2);
 void					draw_triangle(t_point left, t_point right, t_point top,
 							t_img *img);
