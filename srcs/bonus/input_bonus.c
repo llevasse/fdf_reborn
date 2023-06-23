@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:36:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 13:07:14 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:10:07 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	button1_motion(int x, int y, t_data *data)
 	project(data);
 	return (0);
 }
+
 int	button3_motion(int x, int y, t_data *data)
 {
 	ft_printf("x %i\n", x);
