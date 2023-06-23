@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/22 14:16:54 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/23 10:04:41 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,13 +44,13 @@ NAME			=	art
 
 $(NAME):		libft fdf includes/fdf.h Makefile
 					@echo "$(GREEN)All files compiled succesfully :D$(NC)"
-					@norminette $(INC_DIR) | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
-					@norminette $(SRC_DIR) | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
+					@norminette $(INC_DIR)fdf.h | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
+					@norminette $(SRC_DIR)*.c | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 
 bonus:			libft fdf_bonus includes/fdf_bonus.h Makefile
 					@echo "$(GREEN)All files compiled succesfully :D$(NC)"
-					@norminette $(INC_DIR) | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
-					@norminette $(SRC_DIR) | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
+					@norminette $(INC_DIR)fdf_bonus.h | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
+					@norminette $(SRC_DIR)/bonus/*.c | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 
 $(LIBFT)::
 					@make -sC libft
