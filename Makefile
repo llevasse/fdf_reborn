@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/23 14:18:32 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/23 16:27:57 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ FILES			=	srcs/fdf.c			\
 					srcs/init_matrix.c
 
 BONUS_FILES		=	./srcs/bonus/init_matrix_bonus.c \
-					./srcs/bonus/filling_bonus.c \
 					./srcs/bonus/extra_bonus.c \
 					./srcs/bonus/input_bonus.c \
 					./srcs/bonus/fdf_bonus.c \
@@ -39,6 +38,7 @@ BONUS_FILES		=	./srcs/bonus/init_matrix_bonus.c \
 					./srcs/bonus/colour_bonus.c \
 					./srcs/bonus/colour_help_bonus.c \
 					./srcs/bonus/project_bonus.c \
+					./srcs/bonus/cross_bonus.c \
 					./srcs/bonus/matrix_bonus.c
 
 OBJS				=	${FILES:.c=.o}
@@ -79,7 +79,7 @@ fdf_bonus::		$(BONUS_OBJS) $(LIBFT) includes/fdf.h Makefile
 
 clean:
 					@make -sC libft clean
-					@rm -f ${OBJS}
+					@rm -f ${OBJS} ${BONUS_OBJS}
 					@echo "$(GREEN)All object files deleted succesfully :D$(NC)"
 
 fclean:			clean

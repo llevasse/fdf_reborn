@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 14:38:58 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:18:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,8 @@ int						hex2int(char byte);
 t_colour				init_colour(int colour, int r, int g, int b);
 t_colour				init_colour_from_str(const char *str);
 unsigned int			get_colour(t_line line);
-void					help_get_colour(t_line line, t_colour *rgb, double gradiant);
+void					help_get_colour(t_line line, t_colour *rgb,
+							double gradiant);
 
 /* filling_bonus.c */
 t_point					set_false_point(t_point p_1, t_point p_2);
@@ -206,5 +207,9 @@ void					draw_filling(t_line l_to_r, t_line l_to_t,
 							t_line r_to_t, t_img *img);
 
 void					print_lines(char **lines, int col, int rows);
+
+/* cross_bonus.c */
+void					draw_redcross_on_point(t_point point, t_img *img);
+void					draw_greencross_on_center(t_img *img);
 
 #endif
