@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:40:24 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 13:07:14 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:03:26 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,36 @@ void	draw_line_filling(t_line line, t_img *img)
 
 void	draw_triangle(t_point left, t_point right, t_point top, t_img *img)
 {
-	t_line	left_to_right;
-	t_line	left_to_top;
-	t_line	right_to_top;
+	t_line	l_to_r;
+	t_line	l_to_t;
+	t_line	r_to_t;
 
 	left.colour.hex = 0x000000;
 	right.colour.hex = 0x000000;
 	top.colour.hex = 0x000000;
-	left_to_right = set_line_data(left, right);
-	left_to_top = set_line_data(left, top);
-	right_to_top = set_line_data(right, top);
-	while ((left_to_top.i <= left_to_top.dx || left_to_top.i <= left_to_top.dy)
-		&& (right_to_top.i <= right_to_top.dx
-			|| right_to_top.i <= right_to_top.dy))
+	l_to_r = set_line_data(left, right);
+	l_to_t = set_line_data(left, top);
+	r_to_t = set_line_data(right, top);
+	draw_filling(l_to_r, l_to_t, r_to_t, img);
+}
+
+void	draw_filling(t_line l_to_r, t_line l_to_t, t_line r_to_t, t_img *img)
+{
+	while ((l_to_t.i <= l_to_t.dx || l_to_t.i <= l_to_t.dy)
+		&& (r_to_t.i <= r_to_t.dx
+			|| r_to_t.i <= r_to_t.dy))
 	{
-		draw_line_filling(left_to_right, img);
-		move_forward(&left_to_top);
-		left_to_right.p_a.x_bis = left_to_top.x;
-		left_to_right.p_a.y_bis = left_to_top.y;
-		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);
-		draw_line_filling(left_to_right, img);
-		move_forward(&right_to_top);
-		left_to_right.p_b.x_bis = right_to_top.x;
-		left_to_right.p_b.y_bis = right_to_top.y;
-		left_to_right = set_line_data(left_to_right.p_a, left_to_right.p_b);
-		left_to_top.i++;
-		right_to_top.i++;
+		draw_line_filling(l_to_r, img);
+		move_forward(&l_to_t);
+		l_to_r.p_a.x_bis = l_to_t.x;
+		l_to_r.p_a.y_bis = l_to_t.y;
+		l_to_r = set_line_data(l_to_r.p_a, l_to_r.p_b);
+		draw_line_filling(l_to_r, img);
+		move_forward(&r_to_t);
+		l_to_r.p_b.x_bis = r_to_t.x;
+		l_to_r.p_b.y_bis = r_to_t.y;
+		l_to_r = set_line_data(l_to_r.p_a, l_to_r.p_b);
+		l_to_t.i++;
+		r_to_t.i++;
 	}
 }
