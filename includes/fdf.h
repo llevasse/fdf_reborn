@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 10:13:31 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:18:07 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void					img_pix_put(t_img *img, int x, int y, int colour);
 float					check_angle(float angle);
 t_line					set_line_data(t_point p_a, t_point p_b);
 void					move_forward(t_line *line);
-unsigned int			get_pixel_color(t_img *img, int x, int y);
 
 void					print_lines(char **lines, int col, int rows);
 

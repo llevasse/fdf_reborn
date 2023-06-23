@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/22 10:50:41 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:17:38 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,6 @@ void	move_forward(t_line *line)
 	}
 }
 
-//  plotLine(x0, y0, x1, y1)
-//      dx = abs(x1 - x0)
-//      sx = x0 < x1 ? 1 : -1
-//      dy = -abs(y1 - y0)
-//      sy = y0 < y1 ? 1 : -1
-//      error = dx + dy
-//
-//      while true
-//          plot(x0, y0)
-//          if x0 == x1 && y0 == y1 break
-//          e2 = 2 * error
-//          if e2 >= dy
-//              if x0 == x1 break
-//              error = error + dy
-//              x0 = x0 + sx
-//          end if
-//          if e2 <= dx
-//              if y0 == y1 break
-//              error = error + dx
-//              y0 = y0 + sy
-//          end if
-//      end while
-
 void	img_pix_put(t_img *img, int x, int y, int colour)
 {
 	char	*pixel;
@@ -132,13 +109,4 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 		pixel++;
 		i -= 8;
 	}
-}
-
-float	check_angle(float angle)
-{
-	while (angle < 0)
-		angle += 360;
-	while (angle > 360)
-		angle -= 360;
-	return (angle);
 }

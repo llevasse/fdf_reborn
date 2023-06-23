@@ -6,22 +6,19 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/22 11:07:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:17:30 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	reset_setting(t_data *data)
+float	check_angle(float angle)
 {
-	data->angle_x = check_angle(45);
-	data->angle_y = check_angle(-35);
-	data->angle_z = check_angle(30);
-	data->zoom = 1000 / data->nb_column;
-	data->beg_x = WINDOW_WIDTH / 2;
-	data->beg_y = WINDOW_HEIGHT / 2;
-	data->dif_x = 0;
-	data->dif_y = 0;
+	while (angle < 0)
+		angle += 360;
+	while (angle > 360)
+		angle -= 360;
+	return (angle);
 }
 
 void	print_line(t_data data)
