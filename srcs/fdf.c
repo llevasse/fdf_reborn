@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 15:25:14 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:35:28 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ int	main(int argc, char *argv[])
 		return (ft_printf("Missing .fdf file\n"));
 	data.point = NULL;
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Invalid .fdf file.\nExited with error code : %d\n", errno);
+		return (*__errno_location());
+	}
 	if (init_data(&data, fd))
 		return (1);
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);

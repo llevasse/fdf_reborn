@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 10:18:07 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:29:37 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
+# include <errno.h>
 
 /* 720p */
 //# define WINDOW_WIDTH 1280
