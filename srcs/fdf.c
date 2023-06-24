@@ -6,21 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 21:47:36 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:05:41 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-int	close_window(t_data *data)
-{
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	free(data->point);
-	free_tab(data->line);
-	data->win_ptr = NULL;
-	return (0);
-}
 
 int	render(t_data *data)
 {
@@ -54,7 +44,7 @@ int	init_data(t_data *data, int fd)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
 			"fdf");
 	if (!data->win_ptr)
-		return (free(data->win_ptr), 1);
+		return (free(data->mlx_ptr), 1);
 	data->angle_x = 45;
 	data->angle_y = -35;
 	data->angle_z = 30;
@@ -63,7 +53,7 @@ int	init_data(t_data *data, int fd)
 	data->z_amplifier = 1;
 	init_points(data, fd);
 	if (!data->point)
-		return (1);
+		return (free(data->win_ptr), free(data->mlx_ptr), 1);
 	set_highest_n_lowest_z(data);
 	data->zoom = 1000 / data->nb_column;
 	data->beg_x = WINDOW_WIDTH / 2;
