@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/21 17:29:03 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:46:46 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int argc, char *argv[])
 	int		fd;
 
 	if (argc == 1)
-		return (1);
+		return (ft_printf("Missing .fdf file\n"));
 	data.point = NULL;
 	fd = open(argv[1], O_RDONLY);
 	if (init_data(&data, fd))
