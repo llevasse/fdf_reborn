@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:53:53 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 13:55:23 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:39:22 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ float	**init_matrix(void)
 	if (!matrix[0])
 		return (free(matrix), NULL);
 	matrix[1] = malloc(3 * sizeof(float));
-	if (!matrix)
+	if (!matrix[1])
 	{
 		free(matrix[0]);
 		return (free(matrix), NULL);
 	}
 	matrix[2] = malloc(3 * sizeof(float));
-	if (!matrix)
+	if (!matrix[2])
 	{
 		free(matrix[0]);
 		free(matrix[1]);
