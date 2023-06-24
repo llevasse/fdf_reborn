@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/23 16:48:16 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/24 22:26:51 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ FILES			=	srcs/fdf.c			\
 					srcs/project.c		\
 					srcs/matrix.c		\
 					srcs/input.c		\
+					srcs/init.c			\
 					srcs/extra.c		\
 					srcs/init_matrix.c
 

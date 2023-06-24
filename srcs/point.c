@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 17:50:56 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:38:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void	init_points(t_data *data, int fd)
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
 	if (!data->line)
 		return ;
+	data->point = NULL;
 	data->point = malloc(((data->nb_row * data->nb_column) + 1)
 			* sizeof(t_point));
 	if (!data->point)
-		return ;
+		return ((void)(free_tab(data->line), data->line = NULL));
 	set_points(data);
 	data->nb_point = data->point->point_id;
 	reset_point_ptr(data);
