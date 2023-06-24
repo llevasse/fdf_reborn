@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 21:44:30 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:47:36 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ int	init_data(t_data *data, int fd)
 			"fdf");
 	if (!data->win_ptr)
 		return (free(data->win_ptr), 1);
-	data->angle_x = check_angle(45);
-	data->angle_y = check_angle(-35);
-	data->angle_z = check_angle(30);
+	data->angle_x = 45;
+	data->angle_y = -35;
+	data->angle_z = 30;
 	data->nb_column = 0;
 	data->nb_row = 0;
-	data->is_wireframe = 1;
 	data->z_amplifier = 1;
 	init_points(data, fd);
 	if (!data->point)

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 15:29:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:48:00 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_point
 
 typedef struct s_data
 {
-	int					is_wireframe;
 	t_point				*point;
 	t_img				img;
 	void				*mlx_ptr;

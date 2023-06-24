@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 15:49:16 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:47:20 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	init_data(t_data *data, int fd)
 	data->angle_z = 30;
 	data->nb_column = 0;
 	data->nb_row = 0;
-	data->is_wireframe = 1;
 	data->z_amplifier = 1;
 	init_points(data, fd);
 	set_highest_n_lowest_z(data);
