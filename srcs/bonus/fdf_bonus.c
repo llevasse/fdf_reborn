@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 18:10:10 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:49:16 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,16 @@ int	main(int argc, char *argv[])
 	t_data	data;
 	int		fd;
 
-	if (argc == 1)
-		return (1);
+	if (argc == 1 || (!ft_strnstr(argv[1], ".fdf",
+				ft_strlen(argv[1]))))
+		return (ft_printf("Missing .fdf file\n"));
 	data.point = NULL;
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("Invalid .fdf file.\nExited with error code : %d\n", errno);
+		return (*__errno_location());
+	}
 	if (init_data(&data, fd))
 		return (1);
 	close(fd);
