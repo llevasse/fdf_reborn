@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/24 22:26:51 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/24 23:09:35 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ FILES			=	srcs/fdf.c			\
 					srcs/init_matrix.c
 
 BONUS_FILES		=	srcs/bonus/init_matrix_bonus.c \
+					srcs/bonus/init_bonus.c \
 					srcs/bonus/extra_bonus.c \
 					srcs/bonus/input_bonus.c \
 					srcs/bonus/fdf_bonus.c \

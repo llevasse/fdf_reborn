@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 21:47:49 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 23:08:35 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,11 @@ void					print_info(t_data data);
 void					reset_img(t_data *data);
 void					reset_setting(t_data *data);
 int						close_window(t_data *data);
+
+/* init.c */
+int						init_data(t_data *data, int fd);
+void					free_data(t_data *data, int fd);
+void					init_null(t_data *data);
 
 /* input_bonus.c */
 int						handle_input(int keysym, t_data *data);
