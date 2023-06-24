@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 15:35:28 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:44:30 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	init_data(t_data *data, int fd)
 	data->is_wireframe = 1;
 	data->z_amplifier = 1;
 	init_points(data, fd);
+	if (!data->point)
+		return (1);
 	set_highest_n_lowest_z(data);
 	data->zoom = 1000 / data->nb_column;
 	data->beg_x = WINDOW_WIDTH / 2;
