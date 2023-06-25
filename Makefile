@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/24 23:09:35 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/25 14:05:21 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ NC					=	\033[0m
 
 LIBFT			=	libft/libft.a
 
+MINILIBX		=	minilibx/libmlx.a
+
 NAME			=	art
 
 %.o:			%.c $(LIBFT) Makefile includes/fdf.h
@@ -70,12 +72,15 @@ bonus:			libft fdf_bonus includes/fdf_bonus.h Makefile
 $(LIBFT)::
 					@make -sC libft
 
+$(MINILIBX):
+					@make -sC minilibx
+
 all:			$(NAME)
 
-fdf::			$(OBJS) $(LIBFT) includes/fdf.h Makefile
+fdf::			$(MINILIBX) $(OBJS) $(LIBFT) includes/fdf.h Makefile
 					cc -g $(OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
-fdf_bonus::		$(BONUS_OBJS) $(LIBFT) includes/fdf.h Makefile
+fdf_bonus::		$(MINILIBX) $(BONUS_OBJS) $(LIBFT) includes/fdf.h Makefile
 					cc -g $(BONUS_OBJS) $(LIBFT) -Lmlx_linux -Lminilibx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 
 
@@ -86,6 +91,7 @@ clean:
 
 fclean:			clean
 					@make -sC libft fclean
+					@make -sC minilibx clean
 					@rm -f ${NAME} fdf fdf_bonus
 					@echo "$(GREEN)All exec files deleted succesfully :D$(NC)"
 

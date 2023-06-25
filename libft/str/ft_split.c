@@ -6,15 +6,15 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:08:31 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 17:59:13 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/25 14:06:29 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char **free_tab(char **tab)
+char	**free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -27,11 +27,11 @@ char **free_tab(char **tab)
 	return (NULL);
 }
 
-char **alloc_tab(char const *s, char *to_skip)
+char	**alloc_tab(char const *s, char *to_skip)
 {
-	int i;
-	int j;
-	char **res;
+	int		i;
+	int		j;
+	char	**res;
 
 	j = 0;
 	i = 0;
@@ -50,11 +50,11 @@ char **alloc_tab(char const *s, char *to_skip)
 	return (res);
 }
 
-char *get_word(char const *s, char *to_skip, int i)
+char	*get_word(char const *s, char *to_skip, int i)
 {
-	int j;
-	int len_word;
-	char *res;
+	int		j;
+	int		len_word;
+	char	*res;
 
 	j = 0;
 	len_word = 0;
@@ -73,18 +73,18 @@ char *get_word(char const *s, char *to_skip, int i)
 	return (res);
 }
 
-int skip_char(const char *s, char *to_skip, int i)
+int	skip_char(const char *s, char *to_skip, int i)
 {
 	while (ft_is_in_str(to_skip, s[i]) && s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char **ft_split(char const *s, char *to_skip)
+char	**ft_split(char const *s, char *to_skip)
 {
-	char **res;
-	int i;
-	int index_word;
+	char	**res;
+	int		i;
+	int		index_word;
 
 	if (!s)
 		return (NULL);
