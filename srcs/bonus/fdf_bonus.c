@@ -6,22 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 23:08:08 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:42:38 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
-
-int	close_window(t_data *data)
-{
-	free(data->point);
-	if (data->line)
-		free_tab(data->line);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	data->win_ptr = NULL;
-	return (0);
-}
 
 int	render(t_data *data)
 {
@@ -57,6 +46,4 @@ int	main(int argc, char *argv[])
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_input, &data);
 	mlx_hook(data.win_ptr, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
 }
