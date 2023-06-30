@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:36:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/25 16:42:19 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:32:42 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	angle_input(int keysym, t_data *data)
 {
 	if (keysym == XK_Left)
-		data->angle_y = no_higher(data->angle_y + 1, 360, 0);
+		data->angle_y = no_higher(data->angle_y + Y_ROT, 360, 0);
 	if (keysym == XK_Right)
-		data->angle_y = no_higher(data->angle_y - 1, 360, 0);
+		data->angle_y = no_higher(data->angle_y - Y_ROT, 360, 0);
 	if (keysym == XK_Up)
-		data->angle_x = no_higher(data->angle_x + 1, 360, 0);
+		data->angle_x = no_higher(data->angle_x + X_ROT, 360, 0);
 	if (keysym == XK_Down)
-		data->angle_x = no_higher(data->angle_x - 1, 360, 0);
+		data->angle_x = no_higher(data->angle_x - X_ROT, 360, 0);
 	if (keysym == XK_e)
-		data->angle_z = no_higher(data->angle_z + 1, 360, 0);
+		data->angle_z = no_higher(data->angle_z + Z_ROT, 360, 0);
 	if (keysym == XK_q)
-		data->angle_z = no_higher(data->angle_z - 1, 360, 0);
+		data->angle_z = no_higher(data->angle_z - Z_ROT, 360, 0);
 	return (0);
 }
 
@@ -38,13 +38,13 @@ int	handle_input(int keysym, t_data *data)
 	if (keysym == XK_KP_Subtract)
 		data->zoom *= 0.90;
 	if (keysym == XK_a)
-		data->beg_x -= 10;
+		data->beg_x -= X_VELOCITY * data->zoom;
 	if (keysym == XK_d)
-		data->beg_x += 10;
+		data->beg_x += X_VELOCITY * data->zoom;
 	if (keysym == XK_s)
-		data->beg_y += 10;
+		data->beg_y += Y_VELOCITY * data->zoom;
 	if (keysym == XK_w)
-		data->beg_y -= 10;
+		data->beg_y -= Y_VELOCITY * data->zoom;
 	if (keysym == XK_r)
 		reset_setting(data);
 	if (keysym == XK_x)

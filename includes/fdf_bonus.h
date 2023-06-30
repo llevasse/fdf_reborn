@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 23:08:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:33:26 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@
 # define ZERO_R 255
 # define ZERO_G 255
 # define ZERO_B 255
+
+# define X_VELOCITY 10
+# define Y_VELOCITY 10
+# define X_ROT 1
+# define Y_ROT 1
+# define Z_ROT 1
 
 typedef struct s_img
 {
