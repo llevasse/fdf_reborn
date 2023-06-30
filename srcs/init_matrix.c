@@ -6,12 +6,14 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:53:53 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 21:38:57 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:03:27 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/// @brief Allocate memory for an array of array of floats.
+/// @return Return an array of array of pointer (matrix[3][3]).
 float	**init_matrix(void)
 {
 	float	**matrix;
