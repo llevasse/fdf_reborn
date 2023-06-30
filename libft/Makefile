@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 16:33:32 by leo               #+#    #+#              #
-#    Updated: 2023/06/20 10:08:40 by llevasse         ###   ########.fr        #
+#    Updated: 2023/06/30 10:27:43 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ STR_FILES		=	./str/ft_strchr.c \
 					./str/ft_strmapi.c \
 					./str/ft_strdup.c \
 					./str/ft_split.c \
+					./str/get_nb_word.c \
 					./str/ft_striteri.c \
 					./str/ft_strncmp.c \
 					./str/ft_strrchr.c \

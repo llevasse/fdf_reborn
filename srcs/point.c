@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 22:38:34 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:43:44 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,22 @@ void	set_points(t_data *data)
 	data->point->point_id = data->nb_column * data->nb_row;
 }
 
-static void	get_nb_elem(char **str, int *nb)
+int	get_nb_elem(char *str)
 {
-	while (*str && !ft_strchr(*str, '\n'))
+	int	nb;
+
+	nb = 0;
+	while (*str)
 	{
-		(*nb)++;
+		if (ft_is_in_str("0123456789", *str))
+		{
+			while (ft_is_in_str("0123456789", *str))
+				str++;
+			nb++;
+		}
 		str++;
 	}
-	if (ft_is_in_str("0123456789", **str))
-		(*nb)++;
+	return (nb);
 }
 
 char	**get_line(int fd, int *nb_row, int *nb_column)
@@ -76,20 +83,19 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	if (!line)
 		return (NULL);
 	(*nb_row)++;
+	*nb_column = get_nb_elem(line);
 	while (line)
 	{
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
+		if (*nb_column > get_nb_elem(temp))
+			*nb_column = get_nb_elem(temp);
 		(*nb_row)++;
 		line = ft_strjoin_free_first(line, temp);
 		free(temp);
 	}
-	res = ft_split(line, " ");
-	if (res)
-		get_nb_elem(res, nb_column);
 	close(fd);
-	free_tab(res);
 	res = ft_split(line, " \n");
 	return (free(line), res);
 }

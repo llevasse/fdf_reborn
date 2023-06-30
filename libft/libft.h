@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 13:10:28 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/25 14:06:52 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:26:28 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_putchar_fd(char c, int fd);
 
 char	**ft_split(char const *s, char *to_skip);
 char	**free_tab(char **tab);
+int		skip_char(const char *s, char *to_skip, int i);
 
 int		ft_atoi(const char *str);
 
@@ -69,5 +70,7 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 int		ft_is_in_str(const char *str, char c);
+
+int		get_nb_word(const char *str, char *to_skip);
 
 #endif
