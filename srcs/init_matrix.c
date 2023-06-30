@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:53:53 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/30 17:03:27 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:12:48 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ float	**init_matrix(void)
 	return (matrix);
 }
 
+
+/// @brief Allocate memory for an array of array of floats used in X rotation.
+/// @return Return an array of array of pointer (matrix[3][3]).
 float	**init_matrix_x(t_data data)
 {
 	float	**matrix;
@@ -59,6 +62,8 @@ float	**init_matrix_x(t_data data)
 	return (matrix);
 }
 
+/// @brief Allocate memory for an array of array of floats used in Y rotation.
+/// @return Return an array of array of pointer (matrix[3][3]).
 float	**init_matrix_y(t_data data)
 {
 	float	**matrix;
@@ -78,6 +83,8 @@ float	**init_matrix_y(t_data data)
 	return (matrix);
 }
 
+/// @brief Allocate memory for an array of array of floats used in Z rotation.
+/// @return Return an array of array of pointer (matrix[3][3]).
 float	**init_matrix_z(t_data data)
 {
 	float	**matrix;

@@ -6,12 +6,15 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/30 10:43:44 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:34:02 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/// @brief Initialize and assign points to *data.
+/// @param *data Pointer to data struct,
+/// @param fd file descriptor to .fdf file.
 void	init_points(t_data *data, int fd)
 {
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
@@ -27,6 +30,8 @@ void	init_points(t_data *data, int fd)
 	reset_point_ptr(data);
 }
 
+/// @brief Assign points to *data.
+/// @param *data Pointer to data struct.
 void	set_points(t_data *data)
 {
 	int	x;
@@ -55,6 +60,9 @@ void	set_points(t_data *data)
 	data->point->point_id = data->nb_column * data->nb_row;
 }
 
+/// @brief Get number of elements in str (pre split).
+/// @param *str Pointer to chars to check.
+/// @returm Return numbers of elements in str.
 int	get_nb_elem(char *str)
 {
 	int	nb;
@@ -73,6 +81,11 @@ int	get_nb_elem(char *str)
 	return (nb);
 }
 
+/// @brief Get array of pointers to chars in .fdf file.
+/// @param fd File descriptor of .fdf file,
+/// @param *nb_row Pointer of (int)nb_row to update the nb of rows,
+/// @param *nb_column Pointer of (int)nb_column to update the nb of column.
+/// @returm Return an array of str containing every point data in .fdf file.
 char	**get_line(int fd, int *nb_row, int *nb_column)
 {
 	char	*line;
@@ -100,6 +113,8 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	return (free(line), res);
 }
 
+/// @brief Reset array of points to first point.
+/// @param *data Pointer to data structur.
 void	reset_point_ptr(t_data *data)
 {
 	if (data->point->point_id > 0)
