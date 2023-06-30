@@ -6,12 +6,14 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 10:17:38 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:49:12 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/// @brief Refresh the map's values and the display.
+/// @param *data Pointr to the Data Struct containing map's data.
 void	project(t_data *data)
 {
 	int		i;
@@ -34,6 +36,10 @@ void	project(t_data *data)
 		0);
 }
 
+/// @brief Create a line based om two poits.
+/// @param p_a Point struct of point A,
+/// @param p_b Point struct of point B.
+/// @return Return the line struct created.
 t_line	set_line_data(t_point p_a, t_point p_b)
 {
 	struct s_line	line;
@@ -58,6 +64,9 @@ t_line	set_line_data(t_point p_a, t_point p_b)
 	return (line);
 }
 
+/// @brief Display the line on to the *img.
+/// @param line The line to display on the *img,
+/// @param *img Pointer to img struct to display the line on.
 void	draw_line(t_line line, t_img *img)
 {
 	while (line.i <= line.dx || line.i <= line.dy)
@@ -74,6 +83,8 @@ void	draw_line(t_line line, t_img *img)
 	}
 }
 
+/// @brief Move the line's cursor toward it's end point.
+/// @param *line The current line being display.
 void	move_forward(t_line *line)
 {
 	if (line->i > line->dx && line->i > line->dy)
@@ -91,6 +102,11 @@ void	move_forward(t_line *line)
 	}
 }
 
+/// @brief Put a pixel at X:Y location on an image.
+/// @param *img Point to img struct to put pixel on,
+/// @param x Int to the horizontal value to print on,
+/// @param y Int to the vertical value to print on,
+/// @param colour Int value of the colour to print.
 void	img_pix_put(t_img *img, int x, int y, int colour)
 {
 	char	*pixel;
