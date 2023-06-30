@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 23:13:39 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:11:33 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,22 @@ void	set_points(t_data *data)
 	}
 }
 
-static void	get_nb_elem(char **str, int *nb)
+int	get_nb_elem(char *str)
 {
-	while (*str && !ft_strchr(*str, '\n'))
+	int	nb;
+
+	nb = 0;
+	while (*str)
 	{
-		(*nb)++;
+		if (ft_is_in_str("0123456789,xXaAbBcCdDeEfF", *str))
+		{
+			while (ft_is_in_str("0123456789,xXaAbBcCdDeEfF", *str))
+				str++;
+			nb++;
+		}
 		str++;
 	}
-	if (ft_is_in_str("0123456789", **str))
-		(*nb)++;
+	return (nb);
 }
 
 char	**get_line(int fd, int *nb_row, int *nb_column)
@@ -78,20 +85,18 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 	line = get_next_line(fd);
 	if (line && ft_strchr(line, '\n'))
 		(*nb_row)++;
+	*nb_column = get_nb_elem(line);
 	while (line)
 	{
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
-		if (ft_strchr(temp, '\n'))
-			(*nb_row)++;
+		if (*nb_column > get_nb_elem(temp))
+			*nb_column = get_nb_elem(temp);
+		(*nb_row)++;
 		line = ft_strjoin_free_first(line, temp);
 		free(temp);
 	}
-	res = ft_split(line, " ");
-	if (res)
-		get_nb_elem(res, nb_column);
-	free_tab(res);
 	res = ft_split(line, " \n");
 	return (free(line), res);
 }
