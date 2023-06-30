@@ -6,12 +6,17 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/03/20 11:00:32 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:56:08 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/// @brief Assign to *x and *y their values post matrix multiplication.
+/// @param *data Pointer to structur cointaining map data,
+/// @param point Structur of point data,
+/// @param *x Pointer to x value of a point,
+/// @param *y Pointer to y value of a point.
 void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
 {
 	float	**matrix_x;
@@ -41,6 +46,11 @@ void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
 //	0	|  cos	| -sin		0	|	1	|	0		sin	|  cos	|	0
 //	0	|  sin	|  cos		-sin	|	0	|  cos		0	|	0	|	1
 
+/// @brief Multiply the matrix of point with the matrix of XYZ.
+/// @param **matrix Pointer to pointers of to multiply with,
+/// @param *matrix_point Pointer to floats to be multiplied,
+/// @param *data Pointer to structur cointaining map data.
+/// @return Return a pointer to a matrix of floats.
 float	*multiply_matrix(float **matrix, float *matrix_point, t_data *data)
 {
 	float	temp_x;
@@ -62,6 +72,11 @@ float	*multiply_matrix(float **matrix, float *matrix_point, t_data *data)
 	return (matrix_point);
 }
 
+/// @brief Free all matrix in program.
+/// @param *matrix_point Pointer to floats to be freed,
+/// @param **matrix_x Pointer to pointers of float to be freed,
+/// @param **matrix_y Pointer to pointers of float to be freed,
+/// @param **matrix_z Pointer to pointers of float to be freed.
 void	free_all_matrix(float *matrix_point, float **matrix_x, float **matrix_y,
 		float **matrix_z)
 {
@@ -72,6 +87,8 @@ void	free_all_matrix(float *matrix_point, float **matrix_x, float **matrix_y,
 	free_matrix(matrix_z);
 }
 
+/// @brief Free one matrix in array.
+/// @param **matrix Pointer to pointers of float to be freed.
 void	free_matrix(float **matrix)
 {
 	int	i;
