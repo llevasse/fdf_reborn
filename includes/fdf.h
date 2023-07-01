@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 22:27:21 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:04:43 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_line
 /* fdf.c */
 void					print_line(t_data data);
 void					print_info(t_data data);
-void					reset_img(t_data *data);
+void					paint_it_black(t_data *data);
 void					reset_setting(t_data *data);
 int						close_window(t_data *data);
 

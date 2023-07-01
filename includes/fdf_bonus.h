@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/30 11:33:26 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:04:31 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef struct s_polygon
 /* fdf_bonus.c */
 void					print_line(t_data data);
 void					print_info(t_data data);
-void					reset_img(t_data *data);
+void					paint_it_black(t_data *data);
 void					reset_setting(t_data *data);
 int						close_window(t_data *data);
 

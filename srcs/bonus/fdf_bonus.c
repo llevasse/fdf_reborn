@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:49:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/25 16:42:38 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:04:03 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	render(t_data *data)
 {
 	if (!data->win_ptr)
 		return (1);
-	reset_img(data);
+	paint_it_black(data);
 	project(data);
 	return (0);
 }
