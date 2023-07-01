@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:36:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/25 16:38:05 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 16:54:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	handle_input(int keysym, t_data *data)
 	return (0);
 }
 
+/// @brief Close and free everything.
+/// @param *data Pointer to a data structur containing the map's info.
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
