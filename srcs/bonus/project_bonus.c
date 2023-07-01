@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/30 15:51:57 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:06:24 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	project(t_data *data)
 /// @param p_a Point struct of point A,
 /// @param p_b Point struct of point B.
 /// @return Return the line struct created.
-it_line	set_line_data(t_point p_a, t_point p_b)
+t_line	set_line_data(t_point p_a, t_point p_b)
 {
 	struct s_line	line;
 
