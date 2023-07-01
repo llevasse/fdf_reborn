@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/01 11:17:27 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:12:41 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ void	print_info(t_data data)
 		(int)data.angle_y, (int)data.angle_z);
 	while (data.point->point_id != data.nb_point)
 	{
-		ft_printf("{%i.%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
-			(int)data.point->z, data.point->colour);
+		ft_printf("{%i.%i.%i} ", (int)data.point->x, (int)data.point->y,
+			(int)data.point->z);
 		data.point++;
 		if (data.point->x == 0)
 			ft_printf("\n");
 	}
-	ft_printf("\ncenter position : {%i.%i} (%i.%i)\n", (int)data.point->x_bis,
+	ft_printf("\ncenter position : {%i.%i} (point : %i.%i)\n",
+		(int)data.point->x_bis,
 		(int)data.point->y_bis, (int)data.point->x, (int)data.point->y);
 	ft_printf("center screen : {%i.%i}\n", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	ft_printf("beg_x : %i | beg_y %i\n", (int)data.beg_x, (int)data.beg_y);
