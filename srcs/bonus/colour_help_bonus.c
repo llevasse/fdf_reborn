@@ -6,12 +6,17 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:18:40 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 17:18:15 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:48:03 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
+/// @brief Check if value is in range.
+/// @param nb Int to check,
+/// @param highest Highest value acceptable,
+/// @param lowest Lowest value acceptable,
+/// @return Return integer in range.
 int	no_higher(int nb, int highest, int lowest)
 {
 	if (nb < lowest)
@@ -21,6 +26,12 @@ int	no_higher(int nb, int highest, int lowest)
 	return (nb);
 }
 
+/// @brief Initialize and assign colour to point.
+/// @param colour RGB int value of colour (-1 if not known),
+/// @param colour r int value of colour (-1 if not known),
+/// @param colour g int value of colour (-1 if not known),
+/// @param colour b int value of colour (-1 if not known).
+/// @return Return colour structur of point.
 t_colour	init_colour(int colour, int r, int g, int b)
 {
 	struct s_colour	elem;
@@ -44,6 +55,9 @@ t_colour	init_colour(int colour, int r, int g, int b)
 	return (elem);
 }
 
+/// @brief Update nb value from str of hexadecimal.
+/// @param *nb Pointer to int to update,
+/// @param *str Str containing hex value of point's colour.
 void	init_colour_help(int *nb, const char *str)
 {
 	*nb *= hex2int(*str++) + 1;
@@ -52,6 +66,9 @@ void	init_colour_help(int *nb, const char *str)
 	(*nb)--;
 }
 
+/// @brief Initialize colour of point from str.
+/// @param *str Str containing hex value of point's colour.
+/// @return Return colour structur of point.
 t_colour	init_colour_from_str(const char *str)
 {
 	int	r;
@@ -73,6 +90,9 @@ t_colour	init_colour_from_str(const char *str)
 	return (init_colour(0, r, g, b));
 }
 
+/// @brief Get integer value from hexa char.
+/// @param byte hexadecimal char.
+/// @return Return integer value from 0 to 15.
 int	hex2int(char byte)
 {
 	if (byte >= '0' && byte <= '9')
