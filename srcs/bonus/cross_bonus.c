@@ -6,12 +6,15 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:06 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:18:42 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 16:34:59 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
+/// @brief Draw red cross on a defined point.
+/// @param point Point struct on which to draw,
+/// @param *img Pointer to img struct on which to draw.
 void	draw_redcross_on_point(t_point point, t_img *img)
 {
 	img_pix_put(img, point.x_bis, point.y_bis, 0xff0000);
@@ -33,6 +36,8 @@ void	draw_redcross_on_point(t_point point, t_img *img)
 	img_pix_put(img, point.x_bis, point.y_bis + 4, 0xff0000);
 }
 
+/// @brief Draw green cross at center of img.
+/// @param *img Pointer to img struct on which to draw.
 void	draw_greencross_on_center(t_img *img)
 {
 	img_pix_put(img, (WINDOW_WIDTH / 2) - 1, (WINDOW_HEIGHT / 2), 0x00ff00);
