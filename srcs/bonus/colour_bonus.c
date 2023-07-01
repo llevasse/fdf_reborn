@@ -6,12 +6,14 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:42:12 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/23 16:45:53 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/01 16:27:14 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
+/// @brief Get colour to print at index of line.
+/// @param line Line structur currently being printed.
 unsigned int	get_colour(t_line line)
 {
 	t_colour	rgb;
@@ -33,6 +35,10 @@ unsigned int	get_colour(t_line line)
 	return ((rgb.r * 256 * 256) + (rgb.g * 256) + rgb.b);
 }
 
+/// @brief Update the rgb structur in a line structur.
+/// @param line Line structur currently being printed,
+/// @param *rgb Pointer to rgb structur int current line,
+/// @param gradiant Value between 0 and 1.
 void	help_get_colour(t_line line, t_colour *rgb, double gradiant)
 {
 	rgb->r = line.p_b.colour.r - ((1 - gradiant) * (line.p_b.colour.r
@@ -53,6 +59,9 @@ void	help_get_colour(t_line line, t_colour *rgb, double gradiant)
 	}
 }
 
+/// @brief Assign the colour of every point based on their altitude
+/// and if they are not specified in the .fdf file.
+/// @param *data Pointer to a data structur containing the map's info.
 void	set_colour(t_data *data)
 {
 	reset_point_ptr(data);
@@ -76,6 +85,8 @@ void	set_colour(t_data *data)
 	}
 }
 
+/// @brief Assign the colour of a point with positive and non-zero altitude.
+/// @param *data Pointer to a data structur containing the map's info.
 void	set_colour_high(t_data *data)
 {
 	double	gradiant;
@@ -87,6 +98,8 @@ void	set_colour_high(t_data *data)
 					- HIGHEST_B)));
 }
 
+/// @brief Assign the colour of a point with negative and non-zero altitude.
+/// @param *data Pointer to a data structur containing the map's info.
 void	set_colour_low(t_data *data)
 {
 	double	gradiant;
