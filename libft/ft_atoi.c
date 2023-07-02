@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 06:58:58 by llevasse          #+#    #+#             */
-/*   Updated: 2022/12/09 12:44:37 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 20:30:50 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	ft_atoi(const char *str)
 
 	is_neg = 1;
 	i = 0;
+	if (!str)
+		return (0);
 	while (ft_isspace(str[i]) == 1)
 		i++;
+	if (str[i] == '-')
+		is_neg *= -1;
 	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			is_neg *= -1;
 		i++;
-	}
 	if (str[i] >= '0' && str[i] <= '9')
 		res = str[i] - '0';
 	else

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 13:07:08 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 20:36:22 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	set_points(t_data *data)
 	while (y < data->nb_row)
 	{
 		x = 0;
-		while (x < data->nb_column)
+		while (x < data->nb_column && data->line[(y * data->nb_column) + x])
 		{	
 			data->point->x = x;
 			data->point->y = y;
