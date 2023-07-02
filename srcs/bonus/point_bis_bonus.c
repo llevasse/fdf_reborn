@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:17:11 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 10:30:23 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 10:36:47 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	set_bis_point(t_data *data)
 	data->point->x_bis += data->dif_x;
 	data->point->y_bis += data->dif_y;
 }
+
 /// @brief Get int value of rgb.
 /// @param r Red value,
 /// @param g Green value,
