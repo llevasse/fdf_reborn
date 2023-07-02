@@ -6,11 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:36:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/01 23:09:42 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 int	angle_input(int keysym, t_data *data)
 {

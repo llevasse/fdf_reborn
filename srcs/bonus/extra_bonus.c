@@ -6,11 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:03:35 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 10:36:13 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 /// @brief Reset map variables to default.
 /// @param *data Pointer to data structur containing map's info.

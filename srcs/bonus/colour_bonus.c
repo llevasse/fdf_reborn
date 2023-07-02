@@ -6,11 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:42:12 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/01 16:27:14 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 /// @brief Get colour to print at index of line.
 /// @param line Line structur currently being printed.

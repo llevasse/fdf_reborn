@@ -6,11 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:06 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/01 16:34:59 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 /// @brief Draw red cross on a defined point.
 /// @param point Point struct on which to draw,

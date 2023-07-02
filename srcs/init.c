@@ -6,11 +6,11 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 22:18:58 by llevasse          #+#    #+#             */
-/*   Updated: 2023/06/24 22:39:28 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 13:07:08 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	set_highest_n_lowest_z(t_data *data)
 {
