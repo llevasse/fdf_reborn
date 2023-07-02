@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/01 11:04:31 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/02 09:18:31 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ typedef struct s_point
 	float				x_bis;
 	float				y_bis;
 	float				z_bis;
-	float				x_bis_no_z;
-	float				y_bis_no_z;
 	int					point_id;
 	t_colour			colour;
 }						t_point;
