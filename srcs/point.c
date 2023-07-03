@@ -18,8 +18,9 @@
 void	init_points(t_data *data, int fd)
 {
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
+	close(fd);
 	if (!data->line)
-		return ;
+		return ((void)ft_printf("Error. Check map's format.\n"));
 	data->point = NULL;
 	data->point = malloc(((data->nb_row * data->nb_column) + 1)
 			* sizeof(t_point));
@@ -102,13 +103,13 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
-		if (*nb_column > get_nb_elem(temp))
-			*nb_column = get_nb_elem(temp);
+		ft_printf("format column %d | current column %d\n", *nb_column, get_nb_elem(temp));
+		if (*nb_column != get_nb_elem(temp))
+			return ((void)free(line), free(temp), NULL);
 		(*nb_row)++;
 		line = ft_strjoin_free_first(line, temp);
 		free(temp);
 	}
-	close(fd);
 	res = ft_split(line, " \n");
 	return (free(line), res);
 }
