@@ -28,14 +28,14 @@ int	ft_atoi(const char *str)
 
 	is_neg = 1;
 	i = 0;
+	if (!str)
+		return (0);
 	while (ft_isspace(str[i]) == 1)
 		i++;
+	if (str[i] == '-')
+		is_neg *= -1;
 	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			is_neg *= -1;
-		i++;
-	}
+			i++;
 	if (str[i] >= '0' && str[i] <= '9')
 		res = str[i] - '0';
 	else
