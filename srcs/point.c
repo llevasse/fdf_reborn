@@ -44,6 +44,7 @@ void	set_points(t_data *data)
 		x = 0;
 		while (x < data->nb_column)
 		{	
+			ft_printf("Assigning point x:%dy:%d\n", x, y);
 			data->point->x = x;
 			data->point->y = y;
 			data->point->z = ft_atoi((const char *)data->line[(y
@@ -103,9 +104,9 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
-		ft_printf("format column %d | current column %d\n", *nb_column, get_nb_elem(temp));
-		if (*nb_column != get_nb_elem(temp))
-			return ((void)free(line), free(temp), NULL);
+		ft_printf("row : %d, format column %d | current column %d\n",*nb_row, *nb_column, get_nb_elem(temp));
+//		if (*nb_column != get_nb_elem(temp))
+//			return ((void)free(line), free(temp), NULL);
 		(*nb_row)++;
 		line = ft_strjoin_free_first(line, temp);
 		free(temp);
