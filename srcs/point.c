@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 20:36:22 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/11 08:44:42 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,20 @@ int	get_nb_elem(char *str)
 	nb = 0;
 	while (*str)
 	{
-		if (ft_is_in_str("0123456789", *str))
+		if (*str && *str != '\n' && *str != ' ')
 		{
-			while (ft_is_in_str("0123456789", *str))
+			while (*str && *str != '\n' && *str != ' ')
 				str++;
 			nb++;
 		}
 		str++;
+//		if (ft_is_in_str("0123456789,abcdefABCDEF", *str))
+//		{
+//			while (ft_is_in_str("0123456789,abcdefABCDEF", *str))
+//				str++;
+//			nb++;
+//		}
+//		str++;
 	}
 	return (nb);
 }
