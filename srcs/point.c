@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/11 08:44:42 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:01:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ void	set_points(t_data *data)
 		x = 0;
 		while (x < data->nb_column && data->line[(y * data->nb_column) + x])
 		{	
-			ft_printf("Assigning point x:%dy:%d\n", x, y);
-			data->point->x = x;
-			data->point->y = y;
-			data->point->z = ft_atoi((const char *)data->line[(y
+			data->point->x = (double)x;
+			data->point->y = (double)y;
+			data->point->z = (double)ft_atoi((const char *)data->line[(y
 						* (data->nb_column)) + x]);
 			data->point->point_id = (y * data->nb_column) + x;
 			data->point++;
@@ -56,8 +55,8 @@ void	set_points(t_data *data)
 		}
 		y++;
 	}
-	data->point->x = (float)(data->nb_column - 1) / 2;
-	data->point->y = (float)(data->nb_row - 1) / 2;
+	data->point->x = (double)(data->nb_column - 1) / 2;
+	data->point->y = (double)(data->nb_row - 1) / 2;
 	data->point->z = 0;
 	data->point->point_id = data->nb_column * data->nb_row;
 }
@@ -79,13 +78,6 @@ int	get_nb_elem(char *str)
 			nb++;
 		}
 		str++;
-//		if (ft_is_in_str("0123456789,abcdefABCDEF", *str))
-//		{
-//			while (ft_is_in_str("0123456789,abcdefABCDEF", *str))
-//				str++;
-//			nb++;
-//		}
-//		str++;
 	}
 	return (nb);
 }
