@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 13:07:08 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:51:05 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ void	project(t_data *data)
 	int		i;
 
 	get_bis(data);
+	printf("Ended get_bis()\n");
 	i = 0;
+	reset_point_ptr(data);
 	while (data->point->point_id != (data->nb_point - 1))
 	{
+		printf("Inside while loop\n");
 		if ((data->point + 1)->x != 0)
 			draw_line(set_line_data(*data->point, *(data->point + 1)),
 				&data->img);
+		printf("Draw line n%d\n", i);
 		if (i < data->nb_point - data->nb_column)
 			draw_line(set_line_data(*data->point, *(data->point
 						+ data->nb_column)), &data->img);
@@ -69,6 +73,7 @@ t_line	set_line_data(t_point p_a, t_point p_b)
 /// @param *img Pointer to img struct to display the line on.
 void	draw_line(t_line line, t_img *img)
 {
+	printf("cc\n");
 	while (line.i <= line.dx || line.i <= line.dy)
 	{
 		if ((line.p_a.x_bis < 0 && line.p_b.x_bis < 0)
@@ -77,10 +82,14 @@ void	draw_line(t_line line, t_img *img)
 			|| (line.p_a.y_bis > WINDOW_HEIGHT
 				&& line.p_b.y_bis > WINDOW_HEIGHT))
 			break ;
+		printf("put pixel at %.0f:%.0f\n", line.x, line.y);
 		img_pix_put(img, line.x, line.y, 0xffffff);
 		move_forward(&line);
 		line.i++;
 	}
+	printf("Drawn line between point %d(%.0f:%.0f) and point %d(%.0f:%.0f)\n", 
+			line.p_a.point_id, line.p_a.x, line.p_a.y,
+			line.p_b.point_id, line.p_b.x, line.p_b.y);
 }
 
 /// @brief Move the line's cursor toward it's end point.

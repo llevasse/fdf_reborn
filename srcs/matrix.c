@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 16:40:38 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:55:12 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	get_matrix_point(t_data *data, t_point point, double *x, double *y)
 	matrix_point = multiply_matrix(matrix_x, matrix_point, data);
 	matrix_point = multiply_matrix(matrix_y, matrix_point, data);
 	matrix_point = multiply_matrix(matrix_z, matrix_point, data);
-	*x = no_higher_double(matrix_point[0], 2147483647, -2147483648);
-	*y = no_higher_double(matrix_point[1], 2147483647, -2147483648);
+	*x = no_higher_double(matrix_point[0], WINDOW_WIDTH + 1, -1);
+	*y = no_higher_double(matrix_point[1], WINDOW_HEIGHT + 1, -1);
 	return (free_all_matrix(matrix_point, matrix_x, matrix_y, matrix_z));
 }
 
