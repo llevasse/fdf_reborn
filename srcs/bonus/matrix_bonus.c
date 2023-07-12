@@ -17,14 +17,14 @@
 /// @param point Structur of point data,
 /// @param *x Pointer to x value of a point,
 /// @param *y Pointer to y value of a point.
-void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
+void	get_matrix_point(t_data *data, t_point point, double *x, double *y)
 {
-	float	**matrix_x;
-	float	**matrix_y;
-	float	**matrix_z;
-	float	*matrix_point;
+	double	**matrix_x;
+	double	**matrix_y;
+	double	**matrix_z;
+	double	*matrix_point;
 
-	matrix_point = malloc(sizeof(float) * 3);
+	matrix_point = malloc(sizeof(double) * 3);
 	matrix_x = init_matrix_x(*data);
 	matrix_y = init_matrix_y(*data);
 	matrix_z = init_matrix_z(*data);
@@ -48,14 +48,14 @@ void	get_matrix_point(t_data *data, t_point point, float *x, float *y)
 
 /// @brief Multiply the matrix of point with the matrix of XYZ.
 /// @param **matrix Pointer to pointers of to multiply with,
-/// @param *matrix_point Pointer to floats to be multiplied,
+/// @param *matrix_point Pointer to doubles to be multiplied,
 /// @param *data Pointer to structur cointaining map data.
-/// @return Return a pointer to a matrix of floats.
-float	*multiply_matrix(float **matrix, float *matrix_point, t_data *data)
+/// @return Return a pointer to a matrix of doubles.
+double	*multiply_matrix(double **matrix, double *matrix_point, t_data *data)
 {
-	float	temp_x;
-	float	temp_y;
-	float	temp_z;
+	double	temp_x;
+	double	temp_y;
+	double	temp_z;
 
 	temp_x = ((matrix_point[0] - data->beg_x) * matrix[0][0])
 		+ ((matrix_point[1] - data->beg_y) * matrix[0][1]) + (matrix_point[2]
@@ -73,12 +73,12 @@ float	*multiply_matrix(float **matrix, float *matrix_point, t_data *data)
 }
 
 /// @brief Free all matrix in program.
-/// @param *matrix_point Pointer to floats to be freed,
-/// @param **matrix_x Pointer to pointers of float to be freed,
-/// @param **matrix_y Pointer to pointers of float to be freed,
-/// @param **matrix_z Pointer to pointers of float to be freed.
-void	free_all_matrix(float *matrix_point, float **matrix_x, float **matrix_y,
-		float **matrix_z)
+/// @param *matrix_point Pointer to doubles to be freed,
+/// @param **matrix_x Pointer to pointers of double to be freed,
+/// @param **matrix_y Pointer to pointers of double to be freed,
+/// @param **matrix_z Pointer to pointers of double to be freed.
+void	free_all_matrix(double *matrix_point, double **matrix_x, double **matrix_y,
+		double **matrix_z)
 {
 	if (matrix_point)
 		free(matrix_point);
@@ -88,8 +88,8 @@ void	free_all_matrix(float *matrix_point, float **matrix_x, float **matrix_y,
 }
 
 /// @brief Free one matrix in array.
-/// @param **matrix Pointer to pointers of float to be freed.
-void	free_matrix(float **matrix)
+/// @param **matrix Pointer to pointers of double to be freed.
+void	free_matrix(double **matrix)
 {
 	int	i;
 

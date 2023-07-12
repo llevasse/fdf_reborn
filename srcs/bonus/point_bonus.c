@@ -25,8 +25,8 @@ void	init_points(t_data *data, int fd)
 	if (!data->point)
 		return ((void)(free_tab(data->line), data->line = NULL));
 	set_points(data);
-	data->point->x = (float)(data->nb_column - 1) / 2;
-	data->point->y = (float)(data->nb_row - 1) / 2;
+	data->point->x = (double)(data->nb_column - 1) / 2;
+	data->point->y = (double)(data->nb_row - 1) / 2;
 	data->point->z = 0;
 	data->point->point_id = data->nb_column * data->nb_row;
 	data->nb_point = data->point->point_id;
