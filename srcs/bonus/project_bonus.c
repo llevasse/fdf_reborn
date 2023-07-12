@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:31:41 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,7 @@ void	draw_line(t_line line, t_img *img)
 {
 	while (line.i <= line.dx || line.i <= line.dy)
 	{
-		if ((line.p_a.x_bis < 0 && line.p_b.x_bis < 0)
-			|| (line.p_a.x_bis > WINDOW_WIDTH && line.p_b.x_bis > WINDOW_WIDTH)
-			|| (line.p_a.y_bis < 0 && line.p_b.y_bis < 0)
-			|| (line.p_a.y_bis > WINDOW_HEIGHT
-				&& line.p_b.y_bis > WINDOW_HEIGHT))
+		if (is_out_of_bound(line.p_a) || is_out_of_bound(line.p_b))
 			break ;
 		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
 			&& line.y <= WINDOW_HEIGHT)
@@ -85,6 +81,18 @@ void	draw_line(t_line line, t_img *img)
 		move_forward(&line);
 		line.i++;
 	}
+}
+
+/// @brief Check if point is out of bound.
+/// @param point t_point struct.
+/// @return Return 1 if out of bound and 0 if not.
+int	is_out_of_bound(t_point point)
+{
+	if (point.x_bis > WINDOW_WIDTH || point.x_bis < 0)
+		return (1);
+	if (point.y_bis > WINDOW_HEIGHT || point.y_bis < 0)
+		return (1);
+	return (0);
 }
 
 /// @brief Move the line's cursor toward it's end point.
