@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/06/25 16:57:21 by llevasse         ###   ########.fr        #
+#    Updated: 2023/07/12 22:30:47 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,9 @@ BONUS_FILES		=	srcs/bonus/init_matrix_bonus.c \
 					srcs/bonus/cross_bonus.c \
 					srcs/bonus/matrix_bonus.c
 
-OBJS				=	${FILES:.c=.o}
-BONUS_OBJS			=	${BONUS_FILES:.c=.o}
+OBJS_DIR			=	.OBJS/
+OBJS				=	$(addprefix $(OBJS_DIR), $(FILES:.c=.o))
+BONUS_OBJS			=	$(addprefix $(OBJS_DIR), $(BONUS_FILES:.c=.o))
 
 RED					=	\033[0;31m
 GREEN				=	\033[0;32m
@@ -56,16 +57,16 @@ MINILIBX		=	minilibx/libmlx.a
 
 NAME			=	art
 
-%.o:			%.c $(LIBFT) Makefile includes/fdf.h
-					cc ${FLAGS} -c $< -o ${<:.c=.o}
+$(OBJS_DIR)%.o:	%.c | $(LIBFT) $(OBJS_DIR)  Makefile includes/fdf.h
+					cc ${FLAGS} -c $< -o $@
 
-$(NAME):		libft fdf includes/fdf.h Makefile
+$(NAME):		$(OBJS) libft fdf includes/fdf.h Makefile
 					@echo "$(GREEN)All files compiled succesfully :D$(NC)"
 					@norminette $(INC_DIR)fdf.h | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 					@norminette $(SRC_DIR)*.c | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 					@norminette libft/ | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 
-bonus:			libft fdf_bonus includes/fdf_bonus.h Makefile
+bonus:			$(BONUS_OBJS) libft fdf_bonus includes/fdf_bonus.h Makefile
 					@echo "$(GREEN)All files compiled succesfully :D$(NC)"
 					@norminette $(INC_DIR)fdf_bonus.h | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
 					@norminette $(SRC_DIR)/bonus/*.c | awk '$$NF!="OK!" {print "$(RED)" $$0 "$(NC)"}'
@@ -76,6 +77,11 @@ $(LIBFT)::
 
 $(MINILIBX):
 					@make -sC minilibx
+
+$(OBJS_DIR):
+					@mkdir -p $(OBJS_DIR)
+					@mkdir -p $(OBJS_DIR)srcs
+					@mkdir -p $(OBJS_DIR)srcs/bonus
 
 all:			$(NAME)
 
