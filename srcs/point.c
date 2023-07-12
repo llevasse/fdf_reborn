@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 17:29:02 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:22:11 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ char	**get_line(int fd, int *nb_row, int *nb_column)
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
-//		ft_printf("row : %d, format column %d | current column %d\n",*nb_row, *nb_column, get_nb_elem(temp));
 		if (*nb_column != get_nb_elem(temp))
 			return ((void)free(line), free(temp), NULL);
 		(*nb_row)++;

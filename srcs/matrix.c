@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 17:55:12 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:21:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ double	*multiply_matrix(double **matrix, double *matrix_point, t_data *data)
 /// @param **matrix_x Pointer to pointers of double to be freed,
 /// @param **matrix_y Pointer to pointers of double to be freed,
 /// @param **matrix_z Pointer to pointers of double to be freed.
-void	free_all_matrix(double *matrix_point, double **matrix_x, double **matrix_y,
-		double **matrix_z)
+void	free_all_matrix(double *matrix_point,
+		double **matrix_x, double **matrix_y, double **matrix_z)
 {
 	if (matrix_point)
 		free(matrix_point);
