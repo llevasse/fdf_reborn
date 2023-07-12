@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 09:36:54 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:22:47 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,24 @@ int	angle_input(int keysym, t_data *data)
 		data->angle_z = no_higher(data->angle_z + Z_ROT, 360, 0);
 	if (keysym == XK_q)
 		data->angle_z = no_higher(data->angle_z - Z_ROT, 360, 0);
+	if (keysym == 65438)
+		set_angle(data, 0, 0, 0);
+	if (keysym == 65431)
+		set_angle(data, 0, 90, 0);
+	if (keysym == 65432)
+		set_angle(data, 90, 0, 0);
+	if (keysym == 65433)
+		set_angle(data, 0, -90, 0);
+	if (keysym == 65430)
+		set_angle(data, -90, 0, 0);
 	return (0);
+}
+
+void	set_angle(t_data *data, double x, double y, double z)
+{
+	data->angle_x = no_higher(y, 360, 0);
+	data->angle_y = no_higher(x, 360, 0);
+	data->angle_z = no_higher(z, 360, 0);
 }
 
 int	handle_input(int keysym, t_data *data)

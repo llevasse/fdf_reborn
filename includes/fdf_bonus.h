@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 23:30:28 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:11:23 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void					free_data(t_data *data, int fd);
 void					init_null(t_data *data);
 
 /* input_bonus.c */
+void					set_angle(t_data *data, double x, double y, double z);
 int						handle_input(int keysym, t_data *data);
 int						handle_mouse_input(int button, int x, int y,
 							t_data *data);
