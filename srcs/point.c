@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 21:22:11 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:42:44 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 void	init_points(t_data *data, int fd)
 {
 	data->line = get_line(fd, &data->nb_row, &data->nb_column);
-	close(fd);
 	if (!data->line)
 		return ((void)ft_printf("Error. Check map's format.\n"));
 	data->point = NULL;

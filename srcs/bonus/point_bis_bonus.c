@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:17:11 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:46:02 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	set_bis_point(t_data *data)
 		&data->point->y_bis);
 	data->point->x_bis += data->dif_x;
 	data->point->y_bis += data->dif_y;
+	no_higher_double(&data->point->x_bis, 2147483647.0, -2147483648.0);
+	no_higher_double(&data->point->y_bis, 2147483647.0, -2147483648.0);
+	no_higher_double(&data->point->z_bis, 2147483647.0, -2147483648.0);
 }
 
 /// @brief Get int value of rgb.
@@ -57,4 +60,12 @@ void	set_bis_point(t_data *data)
 int	get_rgb(int r, int g, int b)
 {
 	return ((r * 256 * 256) + (g * 256) + b);
+}
+
+void	no_higher_double(double *nb, double highest, double lowest)
+{
+	if (*nb <= lowest)
+		*nb = lowest;
+	if (*nb >= highest)
+		*nb = highest;
 }

@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:18:42 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 13:06:55 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:51:49 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	get_matrix_point(t_data *data, t_point point, double *x, double *y)
 	matrix_point = multiply_matrix(matrix_z, matrix_point, data);
 	*x = matrix_point[0];
 	*y = matrix_point[1];
+	no_higher_double(x, WINDOW_WIDTH + 1, -1);
+	no_higher_double(y, WINDOW_HEIGHT + 1, -1);
 	return (free_all_matrix(matrix_point, matrix_x, matrix_y, matrix_z));
 }
 
@@ -77,8 +79,8 @@ double	*multiply_matrix(double **matrix, double *matrix_point, t_data *data)
 /// @param **matrix_x Pointer to pointers of double to be freed,
 /// @param **matrix_y Pointer to pointers of double to be freed,
 /// @param **matrix_z Pointer to pointers of double to be freed.
-void	free_all_matrix(double *matrix_point, double **matrix_x, double **matrix_y,
-		double **matrix_z)
+void	free_all_matrix(double *matrix_point,
+		double **matrix_x, double **matrix_y, double **matrix_z)
 {
 	if (matrix_point)
 		free(matrix_point);

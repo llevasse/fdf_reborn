@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 10:38:05 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:47:44 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ typedef struct s_colour
 
 typedef struct s_point
 {
-	float				x;
-	float				y;
-	float				z;
-	float				x_bis;
-	float				y_bis;
-	float				z_bis;
+	double				x;
+	double				y;
+	double				z;
+	double				x_bis;
+	double				y_bis;
+	double				z_bis;
 	int					point_id;
 	t_colour			colour;
 }						t_point;
@@ -97,15 +97,15 @@ typedef struct s_data
 	int					nb_row;
 	int					nb_point;
 	char				**line;
-	float				angle_x;
-	float				angle_y;
-	float				angle_z;
-	float				zoom;
-	float				beg_x;
-	float				beg_y;
-	float				lowest_z;
-	float				highest_z;
-	float				z_amplifier;
+	double				angle_x;
+	double				angle_y;
+	double				angle_z;
+	double				zoom;
+	double				beg_x;
+	double				beg_y;
+	double				lowest_z;
+	double				highest_z;
+	double				z_amplifier;
 	int					dif_x;
 	int					dif_y;
 	t_colour			bg;
@@ -116,7 +116,7 @@ typedef struct s_line
 {
 	t_point				p_a;
 	t_point				p_b;
-	float				len;
+	double				len;
 	int					dx;
 	int					dy;
 	int					sx;
@@ -124,8 +124,8 @@ typedef struct s_line
 	int					error;
 	int					e2;
 	int					i;
-	float				x;
-	float				y;
+	double				x;
+	double				y;
 }						t_line;
 
 typedef struct s_polygon
@@ -177,24 +177,26 @@ void					set_colour(t_data *data);
 void					get_bis(t_data *data);
 void					set_bis_point(t_data *data);
 void					set_bis_matrix(t_data *data);
+void					no_higher_double(double *nb,
+							double highest, double lowest);
 
 /* matrix_bonus.c */
-float					**init_matrix_x(t_data data);
-float					**init_matrix_y(t_data data);
-float					**init_matrix_z(t_data data);
-void					get_matrix_point(t_data *data, t_point point, float *x,
-							float *y);
-void					free_all_matrix(float *matrix_point, float **matrix_x,
-							float **matrix_y, float **matrix_z);
-void					free_matrix(float **matrix);
-float					*multiply_matrix(float **matrix, float *matrix_point,
+double					**init_matrix_x(t_data data);
+double					**init_matrix_y(t_data data);
+double					**init_matrix_z(t_data data);
+void					get_matrix_point(t_data *data, t_point point, double *x,
+							double *y);
+void					free_all_matrix(double *matrix_point, double **matrix_x,
+							double **matrix_y, double **matrix_z);
+void					free_matrix(double **matrix);
+double					*multiply_matrix(double **matrix, double *matrix_point,
 							t_data *data);
 
 /* project_bonus.c */
 void					project(t_data *data);
 void					draw_line(t_line line, t_img *img);
 void					img_pix_put(t_img *img, int x, int y, int color);
-float					check_angle(float angle);
+double					check_angle(double angle);
 t_line					set_line_data(t_point p_a, t_point p_b);
 void					move_forward(t_line *line);
 unsigned int			get_pixel_color(t_img *img, int x, int y);
