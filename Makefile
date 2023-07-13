@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/07/12 22:30:47 by llevasse         ###   ########.fr        #
+#    Updated: 2023/07/13 17:26:36 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ BONUS_FILES		=	srcs/bonus/init_matrix_bonus.c \
 					srcs/bonus/colour_bonus.c \
 					srcs/bonus/colour_help_bonus.c \
 					srcs/bonus/project_bonus.c \
+					srcs/bonus/line_bonus.c \
 					srcs/bonus/cross_bonus.c \
 					srcs/bonus/matrix_bonus.c
 

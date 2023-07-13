@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 21:42:30 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:24:35 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void	init_points(t_data *data, int fd)
 	if (!data->point)
 		return ((void)(free_tab(data->line), data->line = NULL));
 	set_points(data);
+	data->point->x = (double)(data->nb_column - 1) / 2;
+	data->point->y = (double)(data->nb_row - 1) / 2;
+	data->point->z = 0;
+	data->point->point_id = data->nb_column * data->nb_row;
 	data->nb_point = data->point->point_id;
 	reset_point_ptr(data);
 }
@@ -58,10 +62,6 @@ void	set_points(t_data *data)
 		}
 		y++;
 	}
-	data->point->x = (double)(data->nb_column - 1) / 2;
-	data->point->y = (double)(data->nb_row - 1) / 2;
-	data->point->z = 0;
-	data->point->point_id = data->nb_column * data->nb_row;
 }
 
 /// @brief Get number of elements in str (pre split).
