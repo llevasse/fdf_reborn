@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 19:37:51 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/12 23:48:18 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:17:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_line	set_line_data(t_point p_a, t_point p_b)
 {
 	struct s_line	line;
 
+	if (is_out_of_bound(p_a) && !is_out_of_bound(p_b))
+		return (set_line_data(p_b, p_a));
 	line.p_a = p_a;
 	line.p_b = p_b;
 	line.dx = abs((int)p_b.x_bis - (int)p_a.x_bis);
@@ -73,11 +75,13 @@ void	draw_line(t_line line, t_img *img)
 {
 	while (line.i <= line.dx || line.i <= line.dy)
 	{
-		if (is_out_of_bound(line.p_a) || is_out_of_bound(line.p_b))
+		if (is_out_of_bound(line.p_a) && is_out_of_bound(line.p_b))
 			break ;
 		if (line.x >= 0 && line.x <= WINDOW_WIDTH && line.y >= 0
 			&& line.y <= WINDOW_HEIGHT)
 			img_pix_put(img, line.x, line.y, get_colour(line));
+		else
+			break ;
 		move_forward(&line);
 		line.i++;
 	}

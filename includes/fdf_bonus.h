@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/13 00:11:23 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:47:39 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # include <errno.h>
 
 /* 720p */
-//# define WINDOW_WIDTH 1280
-//# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 
 /* 1080p */
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+// # define WINDOW_WIDTH 1920
+// # define WINDOW_HEIGHT 1080
 
 # define PI 3.1415926535
 # define RADIAN 0.017453292519444445
