@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 12:10:12 by llevasse          #+#    #+#              #
-#    Updated: 2023/07/13 17:26:36 by llevasse         ###   ########.fr        #
+#    Updated: 2023/07/13 17:33:13 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ FILES			=	srcs/fdf.c			\
 					srcs/point.c		\
 					srcs/point_bis.c	\
 					srcs/project.c		\
+					srcs/line.c			\
 					srcs/matrix.c		\
 					srcs/input.c		\
 					srcs/init.c			\
