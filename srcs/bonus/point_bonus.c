@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:53:00 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/13 17:24:35 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:48:25 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	set_points(t_data *data)
 		{	
 			data->point->x = (double)x;
 			data->point->y = (double)y;
-			data->point->z = (double)ft_atoi((const char *)data->line[(y
-						* (data->nb_column)) + x]);
+			data->point->z = (double)ft_atoi_long_long(
+					(const char *)data->line[(y * (data->nb_column)) + x]);
 			data->point->point_id = (y * data->nb_column) + x;
 			data->point->colour = init_colour(-1, -1, -1, -1);
 			if (ft_is_in_str(data->line[(y * data->nb_column) + x], ','))

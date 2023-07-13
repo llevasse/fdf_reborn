@@ -6,7 +6,7 @@
 #    By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 16:33:32 by leo               #+#    #+#              #
-#    Updated: 2023/06/30 10:27:43 by llevasse         ###   ########.fr        #
+#    Updated: 2023/07/13 18:44:24 by llevasse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ LIST_FILES		=	./list/ft_lstadd_back.c \
 					./list/ft_lstsize.c \
 					./list/ft_lstdelone.c \
 					./list/ft_lstadd_front.c
-INT_FILES		=	./ft_atoi.c
+INT_FILES		=	./ft_atoi.c \
+					./ft_atoi_long_long.c
 PRINTF_FILES	=	./ft_printf/flags/print_precision.c \
 					./ft_printf/flags/print_field_width.c \
 					./ft_printf/flags/print_space.c \
