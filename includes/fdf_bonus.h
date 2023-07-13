@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/13 16:47:39 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:10:34 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,12 +195,12 @@ double					*multiply_matrix(double **matrix, double *matrix_point,
 
 /* project_bonus.c */
 void					project(t_data *data);
-void					draw_line(t_line line, t_img *img);
 void					img_pix_put(t_img *img, int x, int y, int color);
-double					check_angle(double angle);
+
+/* line_bonus.c */
+void					draw_line(t_line line, t_img *img);
 t_line					set_line_data(t_point p_a, t_point p_b);
 void					move_forward(t_line *line);
-unsigned int			get_pixel_color(t_img *img, int x, int y);
 int						is_out_of_bound(t_point point);
 
 /* colour_bonus.c */
