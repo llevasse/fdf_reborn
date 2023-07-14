@@ -6,14 +6,12 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:58:01 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/13 18:09:07 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:16:05 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
-# include <stdio.h> // TODO remove
 
 # include "../libft/libft.h"
 # include "mlx.h"
