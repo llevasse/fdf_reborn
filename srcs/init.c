@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 22:18:58 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/16 11:16:53 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/16 11:40:39 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ void	init_null(t_data *data)
 
 void	free_data(t_data *data, int fd)
 {
+	if (!data->point)
+		ft_printf("Error in initializing map's data\n");
+	else if (!data->mlx_ptr)
+		ft_printf("Error in initializing mlx's pointer\n");
+	else if (!data->win_ptr)
+		ft_printf("Error in initializing window's pointer\n");
 	if (data->win_ptr)
 		close_window(data);
 	if (data->mlx_ptr)
