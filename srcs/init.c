@@ -6,7 +6,7 @@
 /*   By: llevasse <llevasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 22:18:58 by llevasse          #+#    #+#             */
-/*   Updated: 2023/07/02 20:43:34 by llevasse         ###   ########.fr       */
+/*   Updated: 2023/07/16 11:16:53 by llevasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	free_data(t_data *data, int fd)
 		free(data->mlx_ptr);
 	}
 	if (data->point)
+	{
+		reset_point_ptr(data);
 		free(data->point);
+	}
 	if (data->line)
 		free_tab(data->line);
 	close(fd);
